@@ -5,5 +5,3 @@ export const classNames = (cls: string, mods: Mods, additions: string[]): string
 
   return [cls, ...filtratedMods, ...additions].join(' ');
 };
-
-console.log(classNames('remove-btn', { h: true, right: false }, ['123']));
