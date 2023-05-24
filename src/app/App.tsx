@@ -1,29 +1,21 @@
-import { Suspense } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { FC } from 'react';
+import { AppRouter } from '@/app/providers/app-router';
+import { useTheme } from '@/app/providers/theme-provider';
 
-import { useTheme } from '@/app/providers/ThemeProvider';
+import { Navbar } from '@/widgets/navbar';
 
-import { MainPage } from '@/pages/MainPage';
-import { AboutPage } from '@/pages/AboutPage';
-
-import { classNames as cn } from '@/shared/lib/classNames';
+import { cn } from '@/shared/lib';
 
 import './styles/index.scss';
 
-const App: React.FC = () => {
+const App: FC = () => {
   const { theme, toggledTheme } = useTheme();
 
   return (
     <div className={cn('app', {}, [theme])}>
+      <Navbar />
+      <AppRouter />
       <button onClick={toggledTheme}>TOGGLE</button>
-      <Link to={'/'}>Главная</Link>
-      <Link to={'/about'}>О Сайте</Link>
-      <Suspense fallback={<div>Загрузка...</div>}>
-        <Routes>
-          <Route path={'/'} element={<MainPage />} />
-          <Route path={'/about'} element={<AboutPage />} />
-        </Routes>
-      </Suspense>
     </div>
   );
 };
