@@ -1,15 +1,17 @@
 import { FC, useMemo, useState } from 'react';
 
-import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from '../lib/ThemeContext';
+import { LOCAL_STORAGE_THEME_KEY, ThemeContext } from '../lib/ThemeContext';
 
-const defaultTheme = (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT;
+import { ThemeEnum } from '@/shared/api';
+
+const defaultTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) || ThemeEnum.LIGHT;
 
 interface ThemeProviderProps {
   children: React.ReactNode;
 }
 
 const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(defaultTheme);
+  const [theme, setTheme] = useState<ThemeEnum>(defaultTheme as ThemeEnum);
 
   const memoizedValue = useMemo(
     () => ({

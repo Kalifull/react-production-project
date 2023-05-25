@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { AppLink } from '@/shared/ui';
+import { AppLink, ThemeSwitcher } from '@/shared/ui';
 
 import { AppLinkThemeEnum } from '@/shared/api';
 
@@ -17,6 +17,7 @@ interface NavbarProps {
 const Navbar: FC<NavbarProps> = ({ className }) => {
   return (
     <div className={cn(styles.navbar, {}, [className])}>
+      <ThemeSwitcher />
       <div className={styles.links}>
         <AppLink to={routesPaths['main']} variant={AppLinkThemeEnum.PRIMARY}>
           Главная

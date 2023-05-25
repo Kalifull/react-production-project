@@ -1,9 +1,11 @@
 import { useContext } from 'react';
 
-import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from './ThemeContext';
+import { ThemeEnum } from '@/shared/api';
+
+import { LOCAL_STORAGE_THEME_KEY, ThemeContext } from './ThemeContext';
 
 interface UseThemeResult {
-  theme: Theme;
+  theme: ThemeEnum;
   toggledTheme: () => void;
 }
 
@@ -11,7 +13,7 @@ const useTheme = (): UseThemeResult => {
   const { theme, setTheme } = useContext(ThemeContext);
 
   const toggledTheme = () => {
-    const newTheme = theme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
+    const newTheme = theme === ThemeEnum.DARK ? ThemeEnum.LIGHT : ThemeEnum.DARK;
 
     localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
     setTheme(newTheme);
