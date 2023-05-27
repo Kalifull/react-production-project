@@ -1,13 +1,25 @@
 import { RuleSetRule } from 'webpack';
+
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import ReactRefreshTypeScript from 'react-refresh-typescript';
 
 import { BuildOptions } from './types/config';
 
 export const buildLoaders = ({ isDev }: BuildOptions): RuleSetRule[] => {
-  const typescriptRuleLoader = {
+  const typescriptLoader = {
     test: /\.tsx?$/,
-    use: 'ts-loader',
     exclude: /node_modules/,
+    use: [
+      {
+        loader: 'ts-loader',
+        options: {
+          getCustomTransformers: () => ({
+            before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
+          }),
+          transpileOnly: isDev,
+        },
+      },
+    ],
   };
 
   const cssLoader = {
@@ -53,5 +65,5 @@ export const buildLoaders = ({ isDev }: BuildOptions): RuleSetRule[] => {
     },
   };
 
-  return [fileLoader, babelLoader, typescriptRuleLoader, cssLoader, svgLoader];
+  return [fileLoader, babelLoader, typescriptLoader, cssLoader, svgLoader];
 };
