@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { AppLink } from '@/shared/ui';
 
@@ -15,14 +16,16 @@ interface NavbarProps {
 }
 
 const Navbar: FC<NavbarProps> = ({ className }) => {
+  const { t } = useTranslation('translation');
+
   return (
     <div className={cn(styles.navbar, {}, [className])}>
       <div className={styles.links}>
         <AppLink to={routesPaths.main} variant={AppLinkThemeEnum.PRIMARY}>
-          Главная
+          {t('mainPage')}
         </AppLink>
         <AppLink to={routesPaths.about} variant={AppLinkThemeEnum.PRIMARY}>
-          О Сайте
+          {t('aboutTheSite')}
         </AppLink>
       </div>
     </div>
