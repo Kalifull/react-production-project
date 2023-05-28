@@ -3,6 +3,8 @@ import { FC, useState } from 'react';
 import { ThemeSwitcher } from '@/features/theme-switcher';
 import { LanguageSwitcher } from '@/features/language-switcher';
 
+import { Button } from '@/shared/ui';
+
 import { cn } from '@/shared/lib';
 
 import styles from './Sidebar.module.scss';
@@ -20,7 +22,9 @@ const Sidebar: FC<SidebarProps> = ({ className }) => {
 
   return (
     <div className={cn(styles.sidebar, { [styles.collapsed]: collapsed }, [className])}>
-      <button onClick={toggleCollapse}>TOGGLE</button>
+      <Button type="button" onClick={toggleCollapse}>
+        TOGGLE
+      </Button>
       <div className={styles.switchers}>
         <ThemeSwitcher />
         <LanguageSwitcher />

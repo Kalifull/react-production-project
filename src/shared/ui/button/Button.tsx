@@ -15,7 +15,11 @@ const Button: FC<ButtonProps> = (props) => {
   const { className, variant = ThemeButtonEnum.CLEAR, children, ...restProps } = props;
 
   return (
-    <button className={cn(styles.button, {}, [className, styles[variant]])} {...restProps}>
+    <button
+      type="button"
+      className={cn(styles.button, {}, [className, styles[variant]])}
+      {...restProps}
+    >
       {children}
     </button>
   );

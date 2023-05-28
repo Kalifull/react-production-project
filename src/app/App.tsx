@@ -14,7 +14,7 @@ const App: FC = () => {
   const { theme } = useTheme();
 
   return (
-    <Suspense fallback={'loading'}>
+    <Suspense fallback="loading">
       <div className={cn('app', {}, [theme])}>
         <Navbar />
         <div className="content-page">
