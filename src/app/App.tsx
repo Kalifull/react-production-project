@@ -14,15 +14,15 @@ const App: FC = () => {
   const { theme } = useTheme();
 
   return (
-    <Suspense fallback="loading">
-      <div className={cn('app', {}, [theme])}>
+    <div className={cn('app', {}, [theme])}>
+      <Suspense fallback="loading">
         <Navbar />
         <div className="content-page">
           <Sidebar />
           <AppRouter />
         </div>
-      </div>
-    </Suspense>
+      </Suspense>
+    </div>
   );
 };
 
