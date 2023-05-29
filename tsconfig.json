@@ -21,7 +21,7 @@
     "allowSyntheticDefaultImports": true, // Разрешить импортировать модули не имеющие внутри себя "import default"
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "__tests__/**/*", "config/**/*"],
   "exclude": ["node_modules", "build"],
   "ts-node": {
     "compilerOptions": {
