@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Button } from '@/shared/ui';
+import { ButtonVariantEnum } from '@/shared/api';
 
-import { ThemeButtonEnum } from '@/shared/api';
+import { Button } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -25,7 +25,7 @@ const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ className }) => {
   return (
     <Button
       className={cn(styles.button, {}, [className])}
-      variant={ThemeButtonEnum.CLEAR}
+      variant={ButtonVariantEnum.CLEAR}
       onClick={handleSwitchLanguage}
     >
       {t('language')}

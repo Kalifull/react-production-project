@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { cn } from '@/shared/lib';
-
 import { Loader } from '@/shared/ui';
+
+import { cn } from '@/shared/lib';
 
 import styles from './PageLoader.module.scss';
 

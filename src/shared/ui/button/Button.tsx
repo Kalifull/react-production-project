@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, FC } from 'react';
 
-import { ThemeButtonEnum } from '@/shared/api';
+import { ButtonVariantEnum } from '@/shared/api';
 
 import { cn } from '@/shared/lib';
 
@@ -8,11 +8,11 @@ import styles from './Button.module.scss';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
-  variant?: ThemeButtonEnum;
+  variant?: ButtonVariantEnum;
 }
 
 const Button: FC<ButtonProps> = (props) => {
-  const { className, variant = ThemeButtonEnum.CLEAR, children, ...restProps } = props;
+  const { className, variant, children, ...restProps } = props;
 
   return (
     <button

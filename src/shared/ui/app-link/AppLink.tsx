@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
 
-import { AppLinkThemeEnum } from '@/shared/api';
+import { AppLinkVariantEnum } from '@/shared/api';
 
 import { cn } from '@/shared/lib';
 
@@ -9,11 +9,11 @@ import styles from './AppLink.module.scss';
 
 interface AppLinkProps extends LinkProps {
   className?: string;
-  variant?: AppLinkThemeEnum;
+  variant?: AppLinkVariantEnum;
 }
 
 const AppLink: FC<AppLinkProps> = (props) => {
-  const { to, className, variant = AppLinkThemeEnum.PRIMARY, children, ...restProps } = props;
+  const { to, className, variant = AppLinkVariantEnum.PRIMARY, children, ...restProps } = props;
 
   return (
     <Link to={to} className={cn(styles.link, {}, [className, styles[variant]])} {...restProps}>

@@ -2,5 +2,7 @@
   "language": "English",
   "mainPage": "Main",
   "aboutTheSite": "About Us",
-  "notFoundPage": "Not found page"
+  "notFoundPage": "Not found page",
+  "errorPage": "Oops! Something went wrong...",
+  "refreshPage": "Refresh the page"
 }

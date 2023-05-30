@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { AppLink } from '@/shared/ui';
 
-import { AppLinkThemeEnum } from '@/shared/api';
+import { AppLinkVariantEnum } from '@/shared/api';
 
 import { routesPaths } from '@/shared/config/routes-config';
 
@@ -21,10 +21,10 @@ const Navbar: FC<NavbarProps> = ({ className }) => {
   return (
     <div className={cn(styles.navbar, {}, [className])}>
       <div className={styles.links}>
-        <AppLink to={routesPaths.main} variant={AppLinkThemeEnum.PRIMARY}>
+        <AppLink to={routesPaths.main} variant={AppLinkVariantEnum.PRIMARY}>
           {t('mainPage')}
         </AppLink>
-        <AppLink to={routesPaths.about} variant={AppLinkThemeEnum.PRIMARY}>
+        <AppLink to={routesPaths.about} variant={AppLinkVariantEnum.PRIMARY}>
           {t('aboutTheSite')}
         </AppLink>
       </div>

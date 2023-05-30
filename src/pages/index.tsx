@@ -3,9 +3,9 @@ import { Route, Routes } from 'react-router-dom';
 
 import { PageLoader } from '@/widgets/page-loader';
 
-import { routesConfig } from '@/shared/config/routes-config';
+import { routesConfig } from './routes';
 
-const AppRouter: FC = () => {
+export const Routing: FC = () => {
   return (
     <Routes>
       {Object.values(routesConfig).map(({ path, element }) => (
@@ -22,5 +22,3 @@ const AppRouter: FC = () => {
     </Routes>
   );
 };
-
-export default AppRouter;

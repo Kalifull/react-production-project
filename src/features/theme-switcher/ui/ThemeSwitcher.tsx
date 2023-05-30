@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { useTheme } from '@/app/providers/theme-provider';
 
-import { ThemeEnum, ThemeButtonEnum } from '@/shared/api';
+import { ThemeEnum, ButtonVariantEnum } from '@/shared/api';
 
 import { Button } from '@/shared/ui';
 
@@ -21,7 +21,7 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ className }) => {
   return (
     <Button
       className={cn('', {}, [className])}
-      variant={ThemeButtonEnum.CLEAR}
+      variant={ButtonVariantEnum.CLEAR}
       onClick={toggledTheme}
     >
       {theme === ThemeEnum.LIGHT ? <LightIcon /> : <DarkIcon />}

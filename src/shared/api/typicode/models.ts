@@ -3,11 +3,11 @@ export enum ThemeEnum {
   DARK = 'dark',
 }
 
-export enum AppLinkThemeEnum {
+export enum AppLinkVariantEnum {
   PRIMARY = 'primary',
   SECONDARY = 'secondary',
 }
 
-export enum ThemeButtonEnum {
+export enum ButtonVariantEnum {
   CLEAR = 'clear',
 }

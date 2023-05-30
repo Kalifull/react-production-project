@@ -2,5 +2,7 @@
   "language": "Русский",
   "mainPage": "Главная",
   "aboutTheSite": "О сайте",
-  "notFoundPage": "Страница не найдена"
+  "notFoundPage": "Страница не найдена",
+  "errorPage": "Упс! Что-то пошло не так...",
+  "refreshPage": "Обновить страницу"
 }
