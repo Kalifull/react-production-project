@@ -8,6 +8,7 @@ import { buildWebpackConfig } from './config/build/buildWebpackConfig';
 export default (env: BuildEnv) => {
   const mode: BuildMode = env.mode || 'development';
   const port = env.port || 3000;
+  const analyze = env.analyze || false;
 
   const isDev = mode === 'development';
 
@@ -18,7 +19,7 @@ export default (env: BuildEnv) => {
     src: path.resolve(__dirname, 'src'),
   };
 
-  const config: Configuration = buildWebpackConfig({ mode, port, isDev, paths });
+  const config: Configuration = buildWebpackConfig({ mode, port, isDev, paths, analyze });
 
   return config;
 };
