@@ -3,11 +3,13 @@ import { initReactI18next } from 'react-i18next';
 
 const defaultLanguage = 'ru';
 
-i18n.use(initReactI18next).init({
+const i18nTest = i18n.createInstance();
+
+i18nTest.use(initReactI18next).init({
   lng: defaultLanguage,
   fallbackLng: defaultLanguage,
   debug: false,
   resources: { ru: { translations: {} } },
 });
 
-export default i18n;
+export default i18nTest;

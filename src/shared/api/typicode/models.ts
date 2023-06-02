@@ -10,4 +10,5 @@ export enum AppLinkVariantEnum {
 
 export enum ButtonVariantEnum {
   CLEAR = 'clear',
+  OUTLINE = 'outline',
 }

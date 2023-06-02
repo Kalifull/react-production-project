@@ -17,9 +17,18 @@
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:i18next/recommended",
+    "plugin:storybook/recommended",
     "plugin:prettier/recommended"
   ],
   "plugins": ["react", "react-hooks", "@typescript-eslint", "import", "i18next"],
+  "overrides": [
+    {
+      "files": ["__tests__/**/*.test.{ts,tsx}"],
+      "rules": {
+        "i18next/no-literal-string": "off"
+      }
+    }
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
