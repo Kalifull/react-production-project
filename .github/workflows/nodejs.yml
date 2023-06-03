@@ -11,18 +11,18 @@ jobs:
     # The type of machine to run the job on
     runs-on: ubuntu-latest
     strategy:
-    # Node versions list
+      # Node versions list
       matrix:
         node-version: [17.x]
     steps:
-    # Check-out repository under GitHub workspace
+      # Check-out repository under GitHub workspace
       - name: Check out repository ${{ matrix.node-version }}
         uses: actions/checkout@v3
-    # Step's name
+      # Step's name
       - name: Use Node.js ${{ matrix.node-version }}
-    # Configures the node version used on GitHub-hosted runners
+        # Configures the node version used on GitHub-hosted runners
         uses: actions/setup-node@v3
-    # The Node.js version to configure
+        # The Node.js version to configure
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
@@ -40,4 +40,3 @@ jobs:
 
       - name: unit testing
         run: npm run test:unit
-
