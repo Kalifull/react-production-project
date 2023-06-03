@@ -1,11 +1,12 @@
 # Name of workflow
 name: Node CI
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+
+# Trigger the workflow on push or pull request
 on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+  - push
+  - pull_request
+
 jobs:
   build:
     # The type of machine to run the job on
