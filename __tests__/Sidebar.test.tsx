@@ -1,19 +1,18 @@
 import { fireEvent, screen } from '@testing-library/react';
 
 import { Sidebar } from '@/widgets/sidebar';
-
-import { renderWithTransition } from '@/shared/lib';
+import renderWithComponent from '@/shared/config/test/render-with-component';
 
 describe('Sidebar test', () => {
   test('Sidebar render', () => {
-    renderWithTransition(<Sidebar />);
+    renderWithComponent(<Sidebar />);
 
     const sidebar = screen.getByTestId('sidebar');
     expect(sidebar).toBeInTheDocument();
   });
 
   test('Sidebar test toggles visibility', () => {
-    renderWithTransition(<Sidebar />);
+    renderWithComponent(<Sidebar />);
 
     const sidebar = screen.getByTestId('sidebar');
     expect(sidebar).toBeInTheDocument();

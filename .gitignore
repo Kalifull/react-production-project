@@ -12,6 +12,8 @@
 # misc
 .vscode
 /storybook-static
+.loki/report.html
+.loki/report.json
 .DS_Store
 .env.local
 .env.development.local

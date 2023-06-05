@@ -1,11 +1,4 @@
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
-
-import { AppLink } from '@/shared/ui';
-
-import { AppLinkVariantEnum } from '@/shared/api';
-
-import { routesPaths } from '@/shared/config/routes-config';
 
 import { cn } from '@/shared/lib';
 
@@ -16,18 +9,9 @@ interface NavbarProps {
 }
 
 const Navbar: FC<NavbarProps> = ({ className }) => {
-  const { t } = useTranslation('translation');
-
   return (
     <div className={cn(styles.navbar, {}, [className])}>
-      <div className={styles.links}>
-        <AppLink to={routesPaths.main} variant={AppLinkVariantEnum.PRIMARY}>
-          {t('mainPage')}
-        </AppLink>
-        <AppLink to={routesPaths.about} variant={AppLinkVariantEnum.PRIMARY}>
-          {t('aboutTheSite')}
-        </AppLink>
-      </div>
+      <div className={styles.links}>TEXT</div>
     </div>
   );
 };

@@ -7,13 +7,12 @@ import { Button } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
-import styles from './LanguageSwitcher.module.scss';
-
 interface LanguageSwitcherProps {
   className?: string;
+  short?: boolean;
 }
 
-const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ className }) => {
+const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ className, short }) => {
   const { t, i18n } = useTranslation('translation');
 
   const handleSwitchLanguage = () => {
@@ -24,11 +23,11 @@ const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ className }) => {
 
   return (
     <Button
-      className={cn(styles.button, {}, [className])}
+      className={cn('', {}, [className])}
       variant={ButtonVariantEnum.CLEAR}
       onClick={handleSwitchLanguage}
     >
-      {t('language')}
+      {t(short ? 'shortLanguage' : 'language')}
     </Button>
   );
 };

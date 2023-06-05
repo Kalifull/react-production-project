@@ -15,6 +15,9 @@
     "test:ui": "loki test",
     "test:ui:ok": "loki approve",
     "test:ui:ci": "concurrently --kill-others --raw --success first \"npm run storybook\" \"npm run test:ui\" \"deelay\"",
+    "test:ui:report": "npm run test:ui:json && npm run test:ui:html",
+    "test:ui:json": "node scripts/generate-visual-json-report.ts",
+    "test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html",
     "analyze:dev": "npm run build:dev --env analyze=true",
     "analyze:prod": "npm run build:prod --env analyze=true",
     "storybook": "storybook dev -p 6006 -c ./config/storybook",
@@ -73,6 +76,7 @@
     "mini-css-extract-plugin": "^2.5.3",
     "prettier": "^2.8.8",
     "react-refresh-typescript": "^2.0.9",
+    "reg-cli": "^0.17.7",
     "regenerator-runtime": "^0.13.9",
     "sass": "^1.49.9",
     "sass-loader": "^12.6.0",
@@ -113,14 +117,14 @@
   "loki": {
     "configurations": {
       "chrome.laptop": {
-        "target": "chrome.docker",
+        "target": "chrome.app",
         "width": 1366,
         "height": 768,
         "deviceScaleFactor": 1,
         "mobile": false
       },
       "chrome.iphone7": {
-        "target": "chrome.docker",
+        "target": "chrome.app",
         "preset": "iPhone 7"
       }
     },
