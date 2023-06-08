@@ -6,11 +6,16 @@
 
 @import "./variables/global.scss";
 
-.app {
-  min-height: 100vh;
+body,
+.app-dark-theme,
+.app-light-theme {
   color: var(--primary-color);
   font: var(--font-m);
   background: var(--bg-color);
+}
+
+.app {
+  min-height: 100vh;
 }
 
 .content-page {
