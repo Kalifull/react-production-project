@@ -7,16 +7,11 @@ import { Sidebar } from '@/widgets/sidebar';
 
 import { Routing } from '@/pages';
 
-import { useTheme } from './providers/theme-provider';
 import { ErrorProvider, withProviders } from './providers';
 
-import './styles/index.scss';
-
 const App: FC = () => {
-  const { theme } = useTheme();
-
   return (
-    <div className={cn('app', {}, [theme])}>
+    <div className={cn('app')}>
       <Navbar />
       <div className="content-page">
         <Sidebar />

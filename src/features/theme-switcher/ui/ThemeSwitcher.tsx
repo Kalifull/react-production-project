@@ -1,10 +1,10 @@
 import { FC } from 'react';
 
-import { useTheme } from '@/app/providers/theme-provider';
-
 import { ThemeEnum, ButtonVariantEnum } from '@/shared/api';
 
 import { Button } from '@/shared/ui';
+
+import { useTheme } from '@/shared/lib/hooks';
 
 import { cn } from '@/shared/lib';
 

@@ -1,6 +1,6 @@
 export enum ThemeEnum {
-  LIGHT = 'light',
-  DARK = 'dark',
+  LIGHT = 'app-light-theme',
+  DARK = 'app-dark-theme',
 }
 
 export enum AppLinkVariantEnum {

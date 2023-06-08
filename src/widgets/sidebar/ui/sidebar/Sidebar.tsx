@@ -49,8 +49,8 @@ const Sidebar: FC<SidebarProps> = ({ className }) => {
 
       <div className={styles.links}>
         <AppLink
-          className={styles.icons}
           to={routesPaths.main}
+          className={styles.icons}
           variant={AppLinkVariantEnum.PRIMARY}
         >
           <MainIcon className={styles.icon} />
@@ -58,8 +58,8 @@ const Sidebar: FC<SidebarProps> = ({ className }) => {
         </AppLink>
 
         <AppLink
-          className={styles.icons}
           to={routesPaths.about}
+          className={styles.icons}
           variant={AppLinkVariantEnum.PRIMARY}
         >
           <AboutIcon className={styles.icon} />
