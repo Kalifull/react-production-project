@@ -1,6 +1,5 @@
 .modal {
   position: fixed;
-  visibility: hidden;
   opacity: 0;
   transition: all .3s ease;
   inset: 0;
@@ -25,7 +24,6 @@
 }
 
 .opened {
-  visibility: visible;
   opacity: 1;
 
   .content {

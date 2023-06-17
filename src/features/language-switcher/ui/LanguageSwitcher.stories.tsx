@@ -7,7 +7,7 @@ import { ThemeDecorator } from '@/shared/config/storybook/theme-decorator';
 import LanguageSwitcher from './LanguageSwitcher';
 
 const meta = {
-  title: 'feature/LanguageSwitcher',
+  title: 'features/LanguageSwitcher',
   component: LanguageSwitcher,
   argTypes: {},
 } satisfies Meta<typeof LanguageSwitcher>;

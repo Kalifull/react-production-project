@@ -7,7 +7,11 @@ interface PortalProps {
 }
 
 const Portal: FC<PortalProps> = (props) => {
-  const { children, container = document.body } = props;
+  const { children, container = document.querySelector('#root') } = props;
+
+  if (!container) {
+    return <>{children}</>;
+  }
 
   return createPortal(children, container);
 };

@@ -6,5 +6,7 @@
   "notFoundPage": "Not found page",
   "errorPage": "Oops! Something went wrong...",
   "refreshPage": "Refresh the page",
-  "login": "Login"
+  "login": "Login",
+  "username": "Username",
+  "password": "Password"
 }

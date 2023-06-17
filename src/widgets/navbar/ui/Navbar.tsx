@@ -1,10 +1,11 @@
-/* eslint-disable i18next/no-literal-string */
 import { FC, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { LoginModal } from '@/features/user-auth';
+
 import { ButtonVariantEnum } from '@/shared/api';
 
-import { Button, Modal, Portal } from '@/shared/ui';
+import { Button, Portal } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -19,22 +20,22 @@ const Navbar: FC<NavbarProps> = ({ className }) => {
 
   const [isAuthModal, setIsAuthModal] = useState(false);
 
-  const handleToggle = useCallback(() => {
-    setIsAuthModal((prev) => !prev);
+  const handleClose = useCallback(() => {
+    setIsAuthModal(false);
+  }, []);
+
+  const handleOpen = useCallback(() => {
+    setIsAuthModal(true);
   }, []);
 
   return (
     <div className={cn(styles.navbar, {}, [className])}>
-      <Button className={styles.links} variant={ButtonVariantEnum.OUTLINE} onClick={handleToggle}>
+      <Button className={styles.links} variant={ButtonVariantEnum.OUTLINE} onClick={handleOpen}>
         {t('login')}
       </Button>
 
       <Portal>
-        <Modal isOpen={isAuthModal} handleToggle={handleToggle}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat adipisci expedita dolore
-          corporis ratione, nam quibusdam aspernatur sed reiciendis tenetur atque ullam. Ab
-          consequuntur dolores nulla obcaecati voluptatem cumque facilis.
-        </Modal>
+        <LoginModal isOpen={isAuthModal} onClose={handleClose} />
       </Portal>
     </div>
   );

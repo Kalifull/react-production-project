@@ -16,7 +16,14 @@
     "allowSyntheticDefaultImports": true, // Разрешить импортировать модули не имеющие внутри себя "import default"
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
-  "include": ["src/**/*", "__tests__/**/*", "config/**/*", "webpack.config.ts", "scripts/**/*"],
+  "include": [
+    "src/**/*",
+    "__tests__/**/*",
+    "config/**/*",
+    "webpack.config.ts",
+    "scripts/**/*",
+    "json-server/**/*"
+  ],
   "exclude": ["node_modules", "build"],
   "ts-node": {
     "compilerOptions": {
