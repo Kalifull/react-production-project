@@ -15,7 +15,7 @@ interface ModalProps {
 
 const Modal: FC<ModalProps> = ({ className, children, isOpen, onClose }) => {
   const [isMounted, setIsMounted] = useState(false);
-  const hasTransitionedIn = useMountTransition(isMounted, 300);
+  const hasTransitioned = useMountTransition(isMounted, 300);
 
   const mods: Record<string, boolean> = {
     [styles.opened]: isOpen,
@@ -34,7 +34,7 @@ const Modal: FC<ModalProps> = ({ className, children, isOpen, onClose }) => {
   };
 
   return (
-    hasTransitionedIn && (
+    hasTransitioned && (
       <div className={cn(styles.modal, mods, [className])}>
         <div className={styles.overlay} onClick={onClose}>
           <div className={styles.content} onClick={handleClose}>
