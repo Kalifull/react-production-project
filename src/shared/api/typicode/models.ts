@@ -20,3 +20,8 @@ export enum ButtonSizeEnum {
   L = 'size-l',
   XL = 'size-xl',
 }
+
+export enum TextVariantEnum {
+  PRIMARY = 'primary',
+  ERROR = 'error',
+}

@@ -100,3 +100,11 @@ export const SquareSizeXL: Story = {
     size: ButtonSizeEnum.XL,
   },
 };
+
+export const Disabled: Story = {
+  args: {
+    children: 'Disabled',
+    variant: ButtonVariantEnum.OUTLINE,
+    disabled: true,
+  },
+};

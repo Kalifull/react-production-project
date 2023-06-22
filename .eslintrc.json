@@ -54,7 +54,9 @@
   },
   "rules": {
     "no-console": "off",
+    "import/no-cycle": "off",
     "linebreak-style": "off",
+    "consistent-return": "off",
     "no-param-reassign": "off",
     "no-underscore-dangle": "off",
     "testing-library/no-debug": 0,

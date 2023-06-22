@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { ThemeDecorator } from '@/shared/config/storybook/theme-decorator';
+import { StoreDecorator } from '@/shared/config/storybook/store-decorator';
 
 import { ThemeEnum } from '@/shared/api';
 
@@ -10,6 +11,7 @@ const meta = {
   title: 'widget/Navbar',
   component: Navbar,
   argTypes: {},
+  decorators: [StoreDecorator({ loginFormInfo: { username: '', password: '' } })],
 } satisfies Meta<typeof Navbar>;
 
 export default meta;

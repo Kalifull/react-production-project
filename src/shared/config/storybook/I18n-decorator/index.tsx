@@ -6,7 +6,7 @@ import i18nStorybook from '../../i18n-storybook';
 
 export const I18nDecorator = (Story: StoryFn) => {
   return (
-    <Suspense fallback={<div>loading translations...</div>}>
+    <Suspense fallback={<div>Loading translations...</div>}>
       <I18nextProvider i18n={i18nStorybook}>
         <Story />
       </I18nextProvider>

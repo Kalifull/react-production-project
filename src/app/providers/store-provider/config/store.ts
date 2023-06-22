@@ -1,17 +1,23 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import { configureStore } from '@reduxjs/toolkit';
 
-import { userReducer } from '@/entities/user';
+import { rootReducer } from './root-reducer';
 
 import { StateSchema } from './state-schema';
 
-const rootReducer = combineReducers({
-  userInfo: userReducer,
-});
-
 export const createReduxStore = (initialState?: StateSchema) => {
-  return configureStore<StateSchema>({
+  return configureStore({
     reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: {
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
+      }),
     devTools: __IS_DEV__,
     preloadedState: initialState,
   });
 };
+
+export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];
+export type RootState = ReturnType<ReturnType<typeof createReduxStore>['getState']>;
