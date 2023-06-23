@@ -34,8 +34,8 @@ export const Error: Story = {
 
 Error.decorators = [
   StoreDecorator({
-    loginFormInfo: { username: 'User', password: 'Password' },
     userInfo: { error: 'Неверный пароль' },
+    loginFormInfo: { username: 'User', password: 'Password' },
   }),
 ];
 
@@ -43,8 +43,4 @@ export const Loading: Story = {
   args: {},
 };
 
-Loading.decorators = [
-  StoreDecorator({
-    userInfo: { isLoading: true },
-  }),
-];
+Loading.decorators = [StoreDecorator({ userInfo: { isLoading: true } })];

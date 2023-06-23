@@ -1,11 +1,10 @@
 import { useContext } from 'react';
 
-import {
-  LOCAL_STORAGE_THEME_KEY,
-  ThemeContext,
-} from '@/app/providers/theme-provider/lib/ThemeContext';
+import { ThemeEnum } from '../../../api';
 
-import { ThemeEnum } from '@/shared/api';
+import { LOCAL_STORAGE_THEME_KEY } from '../../../constant';
+
+import { ThemeContext } from '../../../context';
 
 interface UseThemeResult {
   theme: ThemeEnum;

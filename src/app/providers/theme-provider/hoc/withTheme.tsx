@@ -1,6 +1,6 @@
 import { ElementType } from 'react';
 
-import { ThemeProvider } from '../lib/ThemeContext';
+import { ThemeProvider } from '@/shared/context';
 
 const withTheme = (Component: ElementType) => () =>
   (

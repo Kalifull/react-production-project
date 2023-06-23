@@ -1,20 +1,24 @@
 import { FC, ReactNode } from 'react';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
-import { DeepPartial } from '@reduxjs/toolkit';
 import { PersistGate } from 'redux-persist/integration/react';
+import { DeepPartial, ReducersMapObject } from '@reduxjs/toolkit';
 
-import { StateSchema } from '../config/state-schema';
+import type { StateSchema } from '../config/state-schema';
 
 import { createReduxStore } from '../config/store';
 
 interface StoreProviderProps {
   children: ReactNode;
   initialState?: DeepPartial<StateSchema>;
+  asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>;
 }
 
-const StoreProvider: FC<StoreProviderProps> = ({ children, initialState }) => {
-  const store = createReduxStore(initialState as StateSchema);
+const StoreProvider: FC<StoreProviderProps> = ({ children, initialState, asyncReducers }) => {
+  const store = createReduxStore(
+    initialState as StateSchema,
+    asyncReducers as ReducersMapObject<StateSchema>
+  );
   const persistor = persistStore(store);
 
   return (

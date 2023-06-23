@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react';
 
-import { Button } from '@/shared/ui';
 import { ButtonVariantEnum } from '@/shared/api';
+
+import { Button } from '@/shared/ui';
 
 describe('Button test', () => {
   test('Button render test with text', () => {

@@ -2,7 +2,8 @@ import { fireEvent, screen } from '@testing-library/react';
 import { PersistGateProps } from 'redux-persist/integration/react';
 
 import { Sidebar } from '@/widgets/sidebar';
-import renderWithComponent from '@/shared/config/test/render-with-component';
+
+import { renderWithComponent } from '@/shared/config/test';
 
 jest.mock('redux-persist/integration/react', () => ({
   PersistGate: (props: PersistGateProps) => props.children,

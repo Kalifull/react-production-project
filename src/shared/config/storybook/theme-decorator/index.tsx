@@ -1,10 +1,10 @@
 import { StoryFn } from '@storybook/react';
 
-import { ThemeProvider } from '@/app/providers/theme-provider/lib/ThemeContext';
+import { ThemeEnum } from '../../../api';
 
-import { ThemeEnum } from '@/shared/api';
+import { ThemeProvider } from '../../../context';
 
-import { cn } from '@/shared/lib';
+import { cn } from '../../../lib';
 
 export const ThemeDecorator = (theme: ThemeEnum) => (Story: StoryFn) => {
   return (

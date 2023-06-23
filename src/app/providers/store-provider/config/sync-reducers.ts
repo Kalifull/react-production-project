@@ -1,10 +1,10 @@
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { combineReducers } from '@reduxjs/toolkit';
-
-import { loginReducer } from '@/features/user-auth';
+import { ReducersMapObject } from '@reduxjs/toolkit';
 
 import { userReducer } from '@/entities/user';
+
+import type { StateSchema } from './state-schema';
 
 const authPersistConfig = {
   key: 'auth',
@@ -12,7 +12,6 @@ const authPersistConfig = {
   whitelist: ['authData'],
 };
 
-export const rootReducer = combineReducers({
+export const syncReducers: ReducersMapObject<StateSchema> = {
   userInfo: persistReducer(authPersistConfig, userReducer),
-  loginFormInfo: loginReducer,
-});
+};

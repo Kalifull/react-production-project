@@ -1,8 +1,8 @@
 import { createContext, Dispatch, FC, SetStateAction, useEffect, useMemo, useState } from 'react';
 
-import { ThemeEnum } from '@/shared/api';
+import { ThemeEnum } from '../../api';
 
-export const LOCAL_STORAGE_THEME_KEY = 'theme';
+import { LOCAL_STORAGE_THEME_KEY } from '../../constant';
 
 const defaultTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) || ThemeEnum.LIGHT;
 
@@ -18,7 +18,7 @@ interface ThemeProviderProps {
   initialTheme?: ThemeEnum;
 }
 
-export const ThemeProvider: FC<ThemeProviderProps> = ({ children, initialTheme }) => {
+const ThemeProvider: FC<ThemeProviderProps> = ({ children, initialTheme }) => {
   const currentTheme = initialTheme || (defaultTheme as ThemeEnum);
   const [theme, setTheme] = useState<ThemeEnum>(currentTheme);
 
@@ -36,3 +36,5 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({ children, initialTheme }
 
   return <ThemeContext.Provider value={memoizedValue}>{children}</ThemeContext.Provider>;
 };
+
+export default ThemeProvider;

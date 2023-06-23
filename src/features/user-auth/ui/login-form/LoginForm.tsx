@@ -1,5 +1,5 @@
-import { FC, memo, useCallback } from 'react';
 import FocusLock from 'react-focus-lock';
+import { FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { selectUserState } from '@/entities/user';
@@ -10,6 +10,8 @@ import { Button, Input, Text } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
+import { withAsyncReducers } from '@/shared/lib/hoc';
+
 import {
   useActionCreators,
   useAppSelector,
@@ -17,7 +19,8 @@ import {
   allActions,
 } from '@/shared/lib/hooks';
 
-import { selectLoginState } from '../../model/selectors/select-login-state';
+import { selectLoginUsername, selectLoginPassword } from '../../model/selectors/select-login-state';
+import { loginReducer } from '../../model/slice/login-slice';
 
 import styles from './LoginForm.module.scss';
 
@@ -31,7 +34,9 @@ const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
   const { setUsername, setPassword, fetchLoginByUsername } = useActionCreators(allActions);
 
   const { error, isLoading } = useAppSelector(selectUserState);
-  const { username, password } = useAppSelector(selectLoginState);
+
+  const username = useAppSelector(selectLoginUsername);
+  const password = useAppSelector(selectLoginPassword);
 
   const { icon, inputType, handleShownPasswordVisibility } = usePasswordToggle();
 
@@ -93,4 +98,4 @@ const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
   );
 });
 
-export default LoginForm;
+export default withAsyncReducers(LoginForm, { reducers: { loginFormInfo: loginReducer } });
