@@ -84,7 +84,7 @@ const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
         </div>
       </FocusLock>
 
-      {error && <Text text={error} variant={TextVariantEnum.ERROR} />}
+      {error && <Text text={t(`${error}`, { ns: 'auth' })} variant={TextVariantEnum.ERROR} />}
 
       <Button
         variant={ButtonVariantEnum.OUTLINE}

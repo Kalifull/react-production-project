@@ -3,13 +3,13 @@ import { PersistGateProps } from 'redux-persist/integration/react';
 
 import { Sidebar } from '@/widgets/sidebar';
 
-import { renderWithComponent } from '@/shared/config/test';
+import { renderWithComponent } from '@/shared/lib/test';
 
 jest.mock('redux-persist/integration/react', () => ({
   PersistGate: (props: PersistGateProps) => props.children,
 }));
 
-describe('Sidebar test', () => {
+describe('test Sidebar', () => {
   test('Sidebar render', () => {
     renderWithComponent(<Sidebar />);
 

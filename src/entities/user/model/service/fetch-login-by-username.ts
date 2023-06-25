@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import i18next from 'i18next';
 
 import { User } from '../types/user-schema';
 
@@ -23,6 +22,6 @@ export const fetchLoginByUsername = createAsyncThunk<
 
     return data;
   } catch (error) {
-    return rejectWithValue(i18next.t('authError', { ns: 'auth' }));
+    return rejectWithValue('authError');
   }
 });

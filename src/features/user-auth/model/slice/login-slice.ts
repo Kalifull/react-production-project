@@ -1,7 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { userActions } from '@/entities/user';
-
 import { LoginSchema, PayloadPassword, PayloadUsername } from '../types/login-schema';
 
 const initialState: LoginSchema = {
@@ -20,12 +18,6 @@ export const loginSlice = createSlice({
     setPassword(state, { payload: { password } }: PayloadAction<PayloadPassword>) {
       state.password = password;
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(userActions.logout, (state) => {
-      state.username = '';
-      state.password = '';
-    });
   },
 });
 

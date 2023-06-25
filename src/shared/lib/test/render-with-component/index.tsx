@@ -6,7 +6,7 @@ import { I18nextProvider } from 'react-i18next';
 
 import { StoreProvider, StateSchema } from '@/app/providers/store-provider';
 
-import i18nTest from '../../i18n-test';
+import i18nTest from '../../../config/i18n-test';
 
 interface renderWithComponentOptions {
   route?: string;

@@ -1,6 +1,6 @@
 import { cn } from '@/shared/lib';
 
-describe('classNames test', () => {
+describe('test cn', () => {
   test('with only first parameter styles', () => {
     expect(cn('someClass')).toBe('someClass');
   });
