@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
 
 import { AppLinkVariantEnum } from '@/shared/api';
@@ -12,7 +12,7 @@ interface AppLinkProps extends LinkProps {
   variant?: AppLinkVariantEnum;
 }
 
-const AppLink: FC<AppLinkProps> = (props) => {
+const AppLink: FC<AppLinkProps> = memo((props) => {
   const { to, className, variant = AppLinkVariantEnum.PRIMARY, children, ...restProps } = props;
 
   return (
@@ -20,6 +20,6 @@ const AppLink: FC<AppLinkProps> = (props) => {
       {children}
     </Link>
   );
-};
+});
 
 export default AppLink;

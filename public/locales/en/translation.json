@@ -1,13 +1,11 @@
 {
   "language": "English",
   "shortLanguage": "En",
-  "mainPage": "Main",
-  "aboutTheSite": "About Us",
-  "notFoundPage": "Not found page",
   "errorPage": "Oops! Something went wrong...",
   "refreshPage": "Refresh the page",
   "login": "Login",
   "logout": "Logout",
   "username": "Username",
-  "password": "Password"
+  "password": "Password",
+  "notFoundPage": "Not found page"
 }

@@ -2,7 +2,7 @@ import FocusLock from 'react-focus-lock';
 import { FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { selectUserState } from '@/entities/user';
+import { selectUserError, selectUserIsLoading } from '@/entities/user';
 
 import { ButtonVariantEnum, TextVariantEnum } from '@/shared/api';
 
@@ -33,12 +33,13 @@ const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
 
   const { setUsername, setPassword, fetchLoginByUsername } = useActionCreators(allActions);
 
-  const { error, isLoading } = useAppSelector(selectUserState);
+  const isLoading = useAppSelector(selectUserIsLoading);
+  const error = useAppSelector(selectUserError);
 
   const username = useAppSelector(selectLoginUsername);
   const password = useAppSelector(selectLoginPassword);
 
-  const { icon, inputType, handleShownPasswordVisibility } = usePasswordToggle();
+  const { Icon, inputType, handleShownPasswordVisibility } = usePasswordToggle();
 
   const handleChangeUsername = useCallback(
     (value: string) => {
@@ -54,47 +55,51 @@ const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
     [setPassword]
   );
 
-  const handleClick = useCallback(() => {
+  const handleLoginClick = useCallback(() => {
     fetchLoginByUsername({ username, password });
   }, [fetchLoginByUsername, password, username]);
 
   return (
-    <div className={cn(styles.form, {}, [className])}>
-      <Text title={t('authForm', { ns: 'auth' })} />
+    <FocusLock>
+      <div className={cn(styles.form, {}, [className])}>
+        <Text title={t('authForm', { ns: 'auth' })} />
 
-      <FocusLock group="input">
         <Input
-          type="text"
           className={cn(styles.input)}
+          type="text"
           onChange={handleChangeUsername}
           value={username}
           placeholder={t('username')}
+          readOnly={isLoading}
+          required
         />
 
         <Input
-          type={inputType}
           className={cn(styles.input)}
+          type={inputType}
           onChange={handleChangePassword}
           value={password}
           placeholder={t('password')}
+          readOnly={isLoading}
+          required
         />
 
         <div className={cn(styles.icon)} onClick={handleShownPasswordVisibility}>
-          {icon}
+          {Icon}
         </div>
-      </FocusLock>
 
-      {error && <Text text={t(`${error}`, { ns: 'auth' })} variant={TextVariantEnum.ERROR} />}
+        {error && <Text text={t(`${error}`, { ns: 'auth' })} variant={TextVariantEnum.ERROR} />}
 
-      <Button
-        variant={ButtonVariantEnum.OUTLINE}
-        className={cn(styles.button)}
-        onClick={handleClick}
-        disabled={isLoading}
-      >
-        {t('login')}
-      </Button>
-    </div>
+        <Button
+          variant={ButtonVariantEnum.OUTLINE}
+          className={cn(styles.button)}
+          onClick={handleLoginClick}
+          disabled={isLoading}
+        >
+          {t('login')}
+        </Button>
+      </div>
+    </FocusLock>
   );
 });
 

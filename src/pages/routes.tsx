@@ -4,6 +4,7 @@ import { RoutesEnum, routesPaths } from '@/shared/config';
 
 import { MainPage } from './main-page';
 import { AboutPage } from './about-page';
+import { ProfilePage } from './profile-page';
 import { NotFoundPage } from './not-found-page';
 
 export const routesConfig: Record<RoutesEnum, RouteProps> = {
@@ -15,6 +16,11 @@ export const routesConfig: Record<RoutesEnum, RouteProps> = {
   [RoutesEnum.ABOUT]: {
     path: routesPaths[RoutesEnum.ABOUT],
     element: <AboutPage />,
+  },
+
+  [RoutesEnum.PROFILE]: {
+    path: routesPaths[RoutesEnum.PROFILE],
+    element: <ProfilePage />,
   },
 
   [RoutesEnum.NOT_FOUND]: {

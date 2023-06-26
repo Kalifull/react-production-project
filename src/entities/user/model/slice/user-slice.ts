@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { fetchLoginByUsername } from '../service/fetch-login-by-username';
 
-import { UserSchema } from '../types/user-schema';
+import { UserSchema } from '../types/user-schema.interface';
 
 const initialState: UserSchema = {
   authData: null,

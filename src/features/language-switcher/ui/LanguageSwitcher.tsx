@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ButtonVariantEnum } from '@/shared/api';
@@ -9,10 +9,10 @@ import { cn } from '@/shared/lib';
 
 interface LanguageSwitcherProps {
   className?: string;
-  short?: boolean;
+  collapsed?: boolean;
 }
 
-const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ className, short }) => {
+const LanguageSwitcher: FC<LanguageSwitcherProps> = memo(({ className, collapsed }) => {
   const { t, i18n } = useTranslation('translation');
 
   const handleSwitchLanguage = () => {
@@ -27,9 +27,9 @@ const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ className, short }) => {
       variant={ButtonVariantEnum.CLEAR}
       onClick={handleSwitchLanguage}
     >
-      {t(short ? 'shortLanguage' : 'language')}
+      {t(collapsed ? 'shortLanguage' : 'language')}
     </Button>
   );
-};
+});
 
 export default LanguageSwitcher;

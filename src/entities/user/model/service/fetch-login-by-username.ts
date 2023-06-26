@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { User } from '../types/user-schema';
+import { User } from '../types/user-schema.interface';
 
 interface fetchLoginByUsernameProps {
   username: string;

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import { ThemeEnum, ButtonVariantEnum } from '@/shared/api';
 
@@ -15,7 +15,7 @@ interface ThemeSwitcherProps {
   className?: string;
 }
 
-const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ className }) => {
+const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(({ className }) => {
   const { theme, toggledTheme } = useTheme();
 
   return (
@@ -27,6 +27,6 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ className }) => {
       {theme === ThemeEnum.LIGHT ? <LightIcon /> : <DarkIcon />}
     </Button>
   );
-};
+});
 
 export default ThemeSwitcher;

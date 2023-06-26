@@ -5,4 +5,4 @@ export {
   selectLoginUsername,
   selectLoginPassword,
 } from './model/selectors/select-login-state';
-export type { LoginSchema } from './model/types/login-schema';
+export type { LoginSchema } from './model/types/login-schema.interface';

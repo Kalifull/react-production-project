@@ -1,19 +1,17 @@
-import { FC, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { FC, memo, useCallback, useState } from 'react';
 
 import { ThemeSwitcher } from '@/features/theme-switcher';
 import { LanguageSwitcher } from '@/features/language-switcher';
 
-import { AppLinkVariantEnum, ButtonSizeEnum, ButtonVariantEnum } from '@/shared/api';
+import { ButtonSizeEnum, ButtonVariantEnum } from '@/shared/api';
 
-import { AppLink, Button } from '@/shared/ui';
+import { Button } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
-import { routesPaths } from '@/shared/config';
+import { SidebarItem } from '../sidebar-item/SidebarItem';
 
-import MainIcon from '@/shared/assets/icons/main.svg';
-import AboutIcon from '@/shared/assets/icons/about.svg';
+import { SidebarItemsList } from '../../model/types/sidebar-item.interface';
 
 import styles from './Sidebar.module.scss';
 
@@ -21,14 +19,12 @@ interface SidebarProps {
   className?: string;
 }
 
-const Sidebar: FC<SidebarProps> = ({ className }) => {
-  const { t } = useTranslation('translation');
-
+const Sidebar: FC<SidebarProps> = memo(({ className }) => {
   const [collapsed, setCollapsed] = useState(false);
 
-  const toggleCollapse = () => {
+  const toggleCollapse = useCallback(() => {
     setCollapsed((prev) => !prev);
-  };
+  }, []);
 
   return (
     <div
@@ -48,31 +44,17 @@ const Sidebar: FC<SidebarProps> = ({ className }) => {
       </Button>
 
       <div className={styles.links}>
-        <AppLink
-          to={routesPaths.main}
-          className={styles.icons}
-          variant={AppLinkVariantEnum.PRIMARY}
-        >
-          <MainIcon className={styles.icon} />
-          <span className={styles.link}>{t('mainPage')}</span>
-        </AppLink>
-
-        <AppLink
-          to={routesPaths.about}
-          className={styles.icons}
-          variant={AppLinkVariantEnum.PRIMARY}
-        >
-          <AboutIcon className={styles.icon} />
-          <span className={styles.link}>{t('aboutTheSite')}</span>
-        </AppLink>
+        {SidebarItemsList.map((item) => (
+          <SidebarItem key={item.id} {...item} collapsed={collapsed} />
+        ))}
       </div>
 
       <div className={styles.switchers}>
         <ThemeSwitcher />
-        <LanguageSwitcher className={styles.lang} short={collapsed} />
+        <LanguageSwitcher className={styles.lang} collapsed={collapsed} />
       </div>
     </div>
   );
-};
+});
 
 export default Sidebar;

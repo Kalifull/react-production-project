@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import { cn } from '@/shared/lib';
 
@@ -8,7 +8,7 @@ interface LoaderProps {
   className?: string;
 }
 
-const Loader: FC<LoaderProps> = ({ className }) => (
+const Loader: FC<LoaderProps> = memo(({ className }) => (
   <div className={cn(styles.spinner, {}, [className])}>
     <div />
     <div />
@@ -23,6 +23,6 @@ const Loader: FC<LoaderProps> = ({ className }) => (
     <div />
     <div />
   </div>
-);
+));
 
 export default Loader;

@@ -1,13 +1,11 @@
 {
   "language": "Русский",
   "shortLanguage": "Ru",
-  "mainPage": "Главная",
-  "aboutTheSite": "О сайте",
-  "notFoundPage": "Страница не найдена",
   "errorPage": "Упс! Что-то пошло не так...",
   "refreshPage": "Обновить страницу",
   "login": "Войти",
   "logout": "Выйти",
   "username": "Имя пользователя",
-  "password": "Пароль"
+  "password": "Пароль",
+  "notFoundPage": "Страница не найдена"
 }
