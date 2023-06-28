@@ -20,15 +20,15 @@ interface SidebarProps {
 }
 
 const Sidebar: FC<SidebarProps> = memo(({ className }) => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const toggleCollapse = useCallback(() => {
-    setCollapsed((prev) => !prev);
+    setIsCollapsed((prev) => !prev);
   }, []);
 
   return (
     <div
-      className={cn(styles.sidebar, { [styles.collapsed]: collapsed }, [className])}
+      className={cn(styles.sidebar, { [styles.collapsed]: isCollapsed }, [className])}
       data-testid="sidebar"
     >
       <Button
@@ -40,18 +40,18 @@ const Sidebar: FC<SidebarProps> = memo(({ className }) => {
         data-testid="sidebar-toggle"
         onClick={toggleCollapse}
       >
-        {collapsed ? '>' : '<'}
+        {isCollapsed ? '>' : '<'}
       </Button>
 
       <div className={styles.links}>
         {SidebarItemsList.map((item) => (
-          <SidebarItem key={item.id} {...item} collapsed={collapsed} />
+          <SidebarItem key={item.id} {...item} isCollapsed={isCollapsed} />
         ))}
       </div>
 
       <div className={styles.switchers}>
         <ThemeSwitcher />
-        <LanguageSwitcher className={styles.lang} collapsed={collapsed} />
+        <LanguageSwitcher className={styles.lang} isCollapsed={isCollapsed} />
       </div>
     </div>
   );

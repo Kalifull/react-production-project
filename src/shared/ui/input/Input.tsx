@@ -16,7 +16,7 @@ const Input: FC<InputProps> = memo((props) => {
   const { className, value, onChange, type = 'text', placeholder, ...restProps } = props;
 
   const [isFocused, setIsFocused] = useState(false);
-  const [caretPosition, setCaretPosition] = useState(0);
+  const [caretPosition, setCaretPosition] = useState<number | null>(0);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     onChange?.(event.target.value);

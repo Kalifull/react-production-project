@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, FC, memo } from 'react';
 
 import { ButtonSizeEnum, ButtonVariantEnum } from '@/shared/api';
 
-import { cn } from '@/shared/lib';
+import { Mods, cn } from '@/shared/lib';
 
 import styles from './Button.module.scss';
 
@@ -17,7 +17,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: FC<ButtonProps> = memo((props) => {
   const {
     className,
-    variant,
+    variant = ButtonVariantEnum.OUTLINE,
     square,
     size = ButtonSizeEnum.M,
     disabled,
@@ -25,7 +25,7 @@ const Button: FC<ButtonProps> = memo((props) => {
     ...restProps
   } = props;
 
-  const mods: Record<string, boolean> = {
+  const mods: Mods = {
     [styles.square]: square,
     [styles.disabled]: disabled,
   };

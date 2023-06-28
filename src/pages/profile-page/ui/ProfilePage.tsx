@@ -1,14 +1,21 @@
 import { FC, memo } from 'react';
-import { useTranslation } from 'react-i18next';
 
-import { profileReducer } from '@/entities/profile';
+import { ProfileCard, profileReducer } from '@/entities/profile';
+
+import { cn } from '@/shared/lib';
 
 import { withAsyncReducers } from '@/shared/lib/hoc';
 
-const ProfilePage: FC = memo(() => {
-  const { t } = useTranslation('profile');
+interface ProfilePageProps {
+  className?: string;
+}
 
-  return <div>{t('profilePage')}</div>;
+const ProfilePage: FC<ProfilePageProps> = memo(({ className }) => {
+  return (
+    <div className={cn('', {}, [className])}>
+      <ProfileCard />
+    </div>
+  );
 });
 
 export default withAsyncReducers(ProfilePage, { reducers: { profileInfo: profileReducer } });

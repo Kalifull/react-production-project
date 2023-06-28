@@ -11,8 +11,13 @@ import {
 
 import { BuildOptions } from './types/config';
 
-export const buildPlugins = ({ paths, isDev, analyze }: BuildOptions): WebpackPluginInstance[] => {
-  return [
+export const buildPlugins = ({
+  paths,
+  isDev,
+  analyze,
+  apiUrl,
+}: BuildOptions): WebpackPluginInstance[] => {
+  const plugins = [
     new HtmlWebpackPlugin({
       template: paths.html,
     }),
@@ -23,14 +28,21 @@ export const buildPlugins = ({ paths, isDev, analyze }: BuildOptions): WebpackPl
     }),
     new DefinePlugin({
       __IS_DEV__: JSON.stringify(isDev),
+      __API__: JSON.stringify(apiUrl),
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: analyze ? 'server' : 'disabled',
     }),
-    isDev && new HotModuleReplacementPlugin(),
-    isDev &&
+  ];
+
+  if (isDev) {
+    plugins.push(new HotModuleReplacementPlugin());
+    plugins.push(
       new ReactRefreshWebpackPlugin({
         overlay: false,
-      }),
-  ].filter(Boolean);
+      })
+    );
+  }
+
+  return plugins;
 };

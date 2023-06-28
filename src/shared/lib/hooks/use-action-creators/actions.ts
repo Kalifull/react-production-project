@@ -1,11 +1,14 @@
 import { loginActions } from '@/features/user-auth';
 
+import { fetchProfileData, profileActions } from '@/entities/profile';
 import { fetchLoginByUsername, userActions } from '@/entities/user';
 
 const allActions = {
+  fetchProfileData,
   fetchLoginByUsername,
-  ...userActions,
   ...loginActions,
+  ...profileActions,
+  ...userActions,
 };
 
 export default allActions;

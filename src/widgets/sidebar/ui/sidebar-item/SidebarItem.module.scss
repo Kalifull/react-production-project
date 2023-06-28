@@ -1,23 +1,33 @@
-.link {
-  margin-left: 10px;
-  opacity: 1;
-}
-
-.icons {
+.links {
   display: flex;
-  align-items: center;
-  margin-top: 10px;
-}
+  flex-wrap: wrap;
+  align-content: center;
+  height: 45px;
 
-.icon {
-  fill: var(--inverted-primary-color);
-}
+  
+  .icons {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
 
-.collapsed {
+  .icon {
+    fill: var(--inverted-primary-color);
+  }
 
   .link {
-    width: 0;
-    opacity: 0;
-    transition: 0.15s opacity;
+    margin-left: 10px;
+    opacity: 1;
+    transition: 0.3s opacity;
   }
+
+  .collapsed {
+
+    .link {
+      width: 0;
+      opacity: 0;
+      transition: 0.15s opacity;
+    }
+  }
+
 }

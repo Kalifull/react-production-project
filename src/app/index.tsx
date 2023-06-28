@@ -1,5 +1,3 @@
-import { FC } from 'react';
-
 import { Routing } from '@/pages';
 
 import { Navbar } from '@/widgets/navbar';
@@ -9,7 +7,7 @@ import { cn } from '@/shared/lib';
 
 import { ErrorProvider, withProviders } from './providers';
 
-const App: FC = () => (
+const App = () => (
   <div className={cn('app')}>
     <Navbar />
     <div className={cn('content-page')}>

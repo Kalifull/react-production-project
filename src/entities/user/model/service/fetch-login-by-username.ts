@@ -1,27 +1,27 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
+import type { ThunkConfig } from '@/app/providers/store-provider';
 
 import { User } from '../types/user-schema.interface';
 
-interface fetchLoginByUsernameProps {
+interface FetchLoginByUsernameParams {
   username: string;
   password: string;
 }
 
-export const fetchLoginByUsername = createAsyncThunk<
-  User,
-  fetchLoginByUsernameProps,
-  { rejectValue: string }
->('login/fetchLoginByUsername', async (authData, { rejectWithValue }) => {
-  try {
-    const { data } = await axios.post<User>('http://localhost:8000/login', authData);
+export const fetchLoginByUsername = createAsyncThunk<User, FetchLoginByUsernameParams, ThunkConfig>(
+  'login/fetchLoginByUsername',
+  async (authData, { rejectWithValue, extra }) => {
+    try {
+      const { data } = await extra.api.post<User>('/login', authData);
 
-    if (!data) {
-      throw new Error();
+      if (!data) {
+        throw new Error();
+      }
+
+      return data;
+    } catch (error) {
+      return rejectWithValue('authError');
     }
-
-    return data;
-  } catch (error) {
-    return rejectWithValue('authError');
   }
-});
+);

@@ -6,14 +6,12 @@ import type { StateSchemaKey, StoreWithReducerManager } from '@/app/providers/st
 
 import { useAppDispatch } from '@/shared/lib/hooks';
 
-type ReducersList = [StateSchemaKey, Reducer];
-
-type InitialRegister = {
+type InitialReducers = {
   [k in StateSchemaKey]: Reducer;
 };
 
 interface AsyncReducersConfig {
-  reducers: DeepPartial<InitialRegister>;
+  reducers: DeepPartial<InitialReducers>;
   removeAfterUnmount?: boolean;
 }
 
@@ -24,17 +22,17 @@ const withAsyncReducers = (Component: ElementType, config: AsyncReducersConfig) 
   const store = useStore() as StoreWithReducerManager;
 
   useEffect(() => {
-    Object.entries(reducers).forEach(([keyReducer, reducer]: ReducersList) => {
-      if (!store.getState()[keyReducer]) {
-        store.reducerManager.add(keyReducer, reducer);
+    Object.entries(reducers).forEach(([keyReducer, reducer]) => {
+      if (!store.getState()[keyReducer as StateSchemaKey]) {
+        store.reducerManager.add(keyReducer as StateSchemaKey, reducer as Reducer);
         dispatch({ type: `@INIT/${keyReducer} reducer` });
       }
     });
 
     return () => {
       if (removeAfterUnmount) {
-        Object.entries(reducers).forEach(([keyReducer]: ReducersList) => {
-          store.reducerManager.remove(keyReducer);
+        Object.entries(reducers).forEach(([keyReducer]) => {
+          store.reducerManager.remove(keyReducer as StateSchemaKey);
           dispatch({ type: `@DESTROY/${keyReducer} reducer` });
         });
       }

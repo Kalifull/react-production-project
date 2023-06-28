@@ -1,10 +1,13 @@
 import FocusLock from 'react-focus-lock';
 import { FC, memo, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { selectUserError, selectUserIsLoading } from '@/entities/user';
 
 import { ButtonVariantEnum, TextVariantEnum } from '@/shared/api';
+
+import { routesPaths } from '@/shared/config';
 
 import { Button, Input, Text } from '@/shared/ui';
 
@@ -29,6 +32,7 @@ interface LoginFormProps {
 }
 
 const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
+  const navigate = useNavigate();
   const { t } = useTranslation(['translation', 'auth']);
 
   const { setUsername, setPassword, fetchLoginByUsername } = useActionCreators(allActions);
@@ -55,21 +59,25 @@ const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
     [setPassword]
   );
 
-  const handleLoginClick = useCallback(() => {
-    fetchLoginByUsername({ username, password });
-  }, [fetchLoginByUsername, password, username]);
+  const handleLoginClick = useCallback(async () => {
+    const result = await fetchLoginByUsername({ username, password });
+
+    if (result.meta.requestStatus === 'fulfilled') {
+      navigate(routesPaths.main);
+    }
+  }, [fetchLoginByUsername, navigate, password, username]);
 
   return (
     <FocusLock>
       <div className={cn(styles.form, {}, [className])}>
-        <Text title={t('authForm', { ns: 'auth' })} />
+        <Text title={t('authForm', { ns: 'auth' })} className={styles.text} />
 
         <Input
           className={cn(styles.input)}
           type="text"
           onChange={handleChangeUsername}
           value={username}
-          placeholder={t('username')}
+          placeholder={t('username', { ns: 'auth' })}
           readOnly={isLoading}
           required
         />
@@ -79,7 +87,7 @@ const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
           type={inputType}
           onChange={handleChangePassword}
           value={password}
-          placeholder={t('password')}
+          placeholder={t('password', { ns: 'auth' })}
           readOnly={isLoading}
           required
         />

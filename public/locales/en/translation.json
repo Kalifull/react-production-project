@@ -1,11 +1,12 @@
 {
+  "mainPage": "Main",
+  "aboutPage": "About",
+  "profilePage": "Profile",
+  "notFoundPage": "Not found page",
   "language": "English",
   "shortLanguage": "En",
   "errorPage": "Oops! Something went wrong...",
   "refreshPage": "Refresh the page",
   "login": "Login",
-  "logout": "Logout",
-  "username": "Username",
-  "password": "Password",
-  "notFoundPage": "Not found page"
+  "logout": "Logout"
 }

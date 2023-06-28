@@ -9,10 +9,10 @@ import { cn } from '@/shared/lib';
 
 interface LanguageSwitcherProps {
   className?: string;
-  collapsed?: boolean;
+  isCollapsed?: boolean;
 }
 
-const LanguageSwitcher: FC<LanguageSwitcherProps> = memo(({ className, collapsed }) => {
+const LanguageSwitcher: FC<LanguageSwitcherProps> = memo(({ className, isCollapsed }) => {
   const { t, i18n } = useTranslation('translation');
 
   const handleSwitchLanguage = () => {
@@ -27,7 +27,7 @@ const LanguageSwitcher: FC<LanguageSwitcherProps> = memo(({ className, collapsed
       variant={ButtonVariantEnum.CLEAR}
       onClick={handleSwitchLanguage}
     >
-      {t(collapsed ? 'shortLanguage' : 'language')}
+      {t(isCollapsed ? 'shortLanguage' : 'language')}
     </Button>
   );
 });

@@ -1,6 +1,6 @@
 import { FC, MouseEvent, ReactNode, useEffect, useState } from 'react';
 
-import { cn } from '@/shared/lib';
+import { Mods, cn } from '@/shared/lib';
 
 import { useMountTransition } from '@/shared/lib/hooks';
 
@@ -17,7 +17,7 @@ const Modal: FC<ModalProps> = ({ className, children, isOpen, onClose }) => {
   const [isMounted, setIsMounted] = useState(false);
   const hasTransitioned = useMountTransition(isMounted, 300);
 
-  const mods: Record<string, boolean> = {
+  const mods: Mods = {
     [styles.opened]: isOpen,
   };
 
@@ -33,17 +33,15 @@ const Modal: FC<ModalProps> = ({ className, children, isOpen, onClose }) => {
     event.stopPropagation();
   };
 
-  return (
-    hasTransitioned && (
-      <div className={cn(styles.modal, mods, [className])}>
-        <div className={styles.overlay} onClick={onClose}>
-          <div className={styles.content} onClick={handleClose}>
-            {children}
-          </div>
+  return hasTransitioned ? (
+    <div className={cn(styles.modal, mods, [className])}>
+      <div className={styles.overlay} onClick={onClose}>
+        <div className={styles.content} onClick={handleClose}>
+          {children}
         </div>
       </div>
-    )
-  );
+    </div>
+  ) : null;
 };
 
 export default Modal;

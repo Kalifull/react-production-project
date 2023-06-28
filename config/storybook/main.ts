@@ -4,10 +4,10 @@ import type { StorybookConfig } from '@storybook/react-webpack5';
 const storybookConfig: StorybookConfig = {
   stories: ['../../src/**/*.mdx', '../../src/**/*.stories.@(js|jsx|ts|tsx)'],
   webpackFinal: async (config) => {
-    config.resolve.plugins = [
-      ...(config.resolve.plugins || []),
+    config.resolve!.plugins = [
+      ...(config.resolve!.plugins || []),
       new TsconfigPathsPlugin({
-        extensions: config.resolve.extensions,
+        extensions: config.resolve!.extensions,
       }),
     ];
     return config;
