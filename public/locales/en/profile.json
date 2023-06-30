@@ -3,5 +3,15 @@
   "profileUser": "User profile",
   "firstName": "Your name",
   "lastName": "Your surname",
-  "edit": "Edit"
+  "age": "Age",
+  "currency": "Currency",
+  "country": "Country",
+  "city": "City",
+  "username": "Username",
+  "avatar": "Avatar",
+  "edit": "Edit",
+  "profileError": "An error occurred while loading the profile",
+  "refreshPage": "Please try refreshing the page",
+  "cancel": "Cancel",
+  "save": "Save"
 }

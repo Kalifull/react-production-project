@@ -15,6 +15,14 @@
   }
 }
 
+.readonly {
+  color: var(--secondary-color);
+
+  .input {
+    text-shadow: 0 0 0 var(--secondary-color);
+  }
+}
+
 .placeholder {
   margin-right: 5px;
 }

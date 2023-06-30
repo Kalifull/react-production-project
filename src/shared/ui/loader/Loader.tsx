@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 
-import { cn } from '@/shared/lib';
+import { cn } from '../../lib';
 
 import styles from './Loader.module.scss';
 

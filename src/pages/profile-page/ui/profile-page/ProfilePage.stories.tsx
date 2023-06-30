@@ -13,7 +13,7 @@ const meta = {
   argTypes: {},
   decorators: [
     StoreDecorator({
-      profileInfo: { profileData: null, isLoading: false, error: null, readonly: true },
+      profileInfo: { profileData: null, isLoading: false, error: null, readOnly: true },
     }),
   ],
 } satisfies Meta<typeof ProfilePage>;

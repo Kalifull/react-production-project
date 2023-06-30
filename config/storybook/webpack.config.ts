@@ -2,8 +2,8 @@ import path from 'path';
 import { Configuration, DefinePlugin, RuleSetRule } from 'webpack';
 
 import { BuildPaths } from '../build/types/config';
-import { buildCssLoader } from '../build/loaders/buildCssLoader';
-import { buildSvgLoader } from '../build/loaders/buildSvgLoader';
+import { buildCssLoader } from '../build/loaders/build-css-loader';
+import { buildSvgLoader } from '../build/loaders/build-svg-loader';
 
 export default ({ config }: { config: Configuration }) => {
   const paths: BuildPaths = {
@@ -26,6 +26,7 @@ export default ({ config }: { config: Configuration }) => {
     new DefinePlugin({
       __IS_DEV__: JSON.stringify(true),
       __API__: JSON.stringify(''),
+      __PROJECT__: JSON.stringify('storybook'),
     })
   );
 

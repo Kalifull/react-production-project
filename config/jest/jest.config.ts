@@ -25,7 +25,7 @@ export default {
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
     '\\.(scss|less|css)$': 'identity-obj-proxy',
-    '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+    '\\.svg': path.resolve(__dirname, 'JestEmptyComponent.tsx'),
     axios: 'axios/dist/node/axios.cjs',
     '^@/(.*)$': '<rootDir>/src/$1',
   },
@@ -34,6 +34,7 @@ export default {
   globals: {
     __IS_DEV__: true,
     __API__: '',
+    __PROJECT__: 'jest',
   },
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test

@@ -1,9 +1,10 @@
 import { RuleSetRule } from 'webpack';
 import ReactRefreshTypeScript from 'react-refresh-typescript';
 
-import { BuildOptions } from './types/config';
-import { buildCssLoader } from './loaders/buildCssLoader';
-import { buildSvgLoader } from './loaders/buildSvgLoader';
+import { buildCssLoader } from './loaders/build-css-loader';
+import { buildSvgLoader } from './loaders/build-svg-loader';
+
+import type { BuildOptions } from './types/config';
 
 export const buildLoaders = ({ isDev }: BuildOptions): RuleSetRule[] => {
   const typescriptLoader = {

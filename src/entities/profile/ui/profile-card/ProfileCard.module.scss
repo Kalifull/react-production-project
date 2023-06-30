@@ -1,22 +1,28 @@
 .card {
+  margin-top: 30px;
   padding: 20px;
   border: 2px solid var(--primary-color);
 
-  .header {
+  .avatar-wrapper {
     display: flex;
-
-    .button {
-      margin-left: auto;
-    }
+    justify-content: center;
+    width: 100%;
   }
 
-  .data {
-    margin-top: 30px;
-
-    .input {
-      margin-top: 10px;
-    }
+  .input {
+    margin-top: 10px;
   }
+  
 }
 
+.editing {
+  border: 2px solid var(--secondary-color);
+}
 
+.loader,
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}

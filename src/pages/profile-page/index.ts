@@ -1,1 +1,1 @@
-export { default as ProfilePage } from './ui/LazyProfilePage';
+export { default as ProfilePage } from './ui/profile-page/LazyProfilePage';

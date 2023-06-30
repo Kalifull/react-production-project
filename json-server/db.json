@@ -26,13 +26,13 @@
     }
   ],
   "profile": {
-    "firstName": "Alexei",
-    "lastName": "Vorona",
+    "firstName": "Алексей",
+    "lastName": "Соловьев",
     "age": 24,
-    "currency": "RU",
+    "currency": "RUB",
     "country": "Russia",
-    "city": "Saint Petersburg",
-    "username": "admin",
+    "city": "Санкт-Петербург",
+    "username": "Администратор",
     "avatar": "https://cs14.pikabu.ru/post_img/big/2023/02/13/8/1676295806139337963.png"
   }
 }

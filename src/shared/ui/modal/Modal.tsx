@@ -1,8 +1,8 @@
 import { FC, MouseEvent, ReactNode, useEffect, useState } from 'react';
 
-import { Mods, cn } from '@/shared/lib';
+import { Mods, cn } from '../../lib';
 
-import { useMountTransition } from '@/shared/lib/hooks';
+import { useMountTransition } from '../../lib/hooks';
 
 import styles from './Modal.module.scss';
 

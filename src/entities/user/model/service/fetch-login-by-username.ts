@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import type { ThunkConfig } from '@/app/providers/store-provider';
 
-import { User } from '../types/user-schema.interface';
+import type { User } from '../types/user-schema.interface';
 
 interface FetchLoginByUsernameParams {
   username: string;

@@ -1,9 +1,9 @@
 import path from 'path';
 import { Configuration } from 'webpack';
 
-import { BuildEnv, BuildMode, BuildPaths } from './config/build/types/config';
+import { buildWebpackConfig } from './config/build/build-webpack-config';
 
-import { buildWebpackConfig } from './config/build/buildWebpackConfig';
+import type { BuildEnv, BuildMode, BuildPaths } from './config/build/types/config';
 
 export default (env: BuildEnv) => {
   const mode: BuildMode = env.mode || 'development';
@@ -20,7 +20,15 @@ export default (env: BuildEnv) => {
     src: path.resolve(__dirname, 'src'),
   };
 
-  const config: Configuration = buildWebpackConfig({ mode, port, isDev, paths, analyze, apiUrl });
+  const config: Configuration = buildWebpackConfig({
+    mode,
+    port,
+    isDev,
+    paths,
+    analyze,
+    apiUrl,
+    project: 'frontend',
+  });
 
   return config;
 };

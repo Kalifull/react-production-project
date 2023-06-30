@@ -1,63 +1,111 @@
-import { FC, memo, useEffect } from 'react';
+import { FC, memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { ButtonVariantEnum } from '@/shared/api';
+import { TextVariantEnum } from '@/shared/api';
 
-import { Button, Input, Text } from '@/shared/ui';
+import { Input, Text, Loader, Avatar } from '@/shared/ui';
 
-import { cn } from '@/shared/lib';
+import { Mods, cn } from '@/shared/lib';
 
-import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
+import { withAsyncReducers } from '@/shared/lib/hoc';
 
-import {
-  selectProfileData,
-  selectProfileIsLoading,
-  selectProfileError,
-} from '../../model/selectors/select-profile-state';
+import { allActions, useActionCreators } from '@/shared/lib/hooks';
+
+import { CurrencySelect } from '../../../currency';
+import { CountrySelect } from '../../../country';
+
+import { profileReducer } from '../../model/slice/profile-slice';
+import type { Profile } from '../../model/types/profile-schema.interface';
 
 import styles from './ProfileCard.module.scss';
 
 interface ProfileCardProps {
   className?: string;
+  formData?: Profile | null;
+  isLoading?: boolean;
+  error?: string | null;
+  readOnly?: boolean;
 }
 
-const ProfileCard: FC<ProfileCardProps> = memo(({ className }) => {
+const ProfileCard: FC<ProfileCardProps> = memo((props) => {
+  const { className, formData, isLoading, error, readOnly } = props;
+
   const { t } = useTranslation('profile');
 
-  const { fetchProfileData } = useActionCreators(allActions);
+  const { updateProfileForm } = useActionCreators(allActions);
 
-  useEffect(() => {
-    fetchProfileData();
-  }, [fetchProfileData]);
+  const mods: Mods = {
+    [styles.editing]: readOnly,
+  };
 
-  const profileData = useAppSelector(selectProfileData);
-  const isLoading = useAppSelector(selectProfileIsLoading);
-  const error = useAppSelector(selectProfileError);
+  const handleChangeProfileForm = useCallback(
+    (value: string, field: keyof Profile) => {
+      if (field === 'age') {
+        const validationValue = value.replace(/\D+/gm, '');
+        updateProfileForm({ value: +validationValue, field });
+      } else {
+        updateProfileForm({ value, field });
+      }
+    },
+    [updateProfileForm]
+  );
+
+  const ProfileForm = useMemo(() => {
+    return (
+      formData &&
+      Object.entries(formData)
+        .filter(([field]) => field !== 'currency' && field !== 'country')
+        .map(([field, value]) => (
+          <Input
+            key={field}
+            className={cn(styles.input)}
+            type="text"
+            field={field}
+            value={value}
+            placeholder={t(field)}
+            onChangeProfileForm={handleChangeProfileForm}
+            readOnly={readOnly}
+          />
+        ))
+    );
+  }, [formData, handleChangeProfileForm, readOnly, t]);
+
+  if (isLoading) {
+    return (
+      <div className={cn(styles.card, {}, [className, styles.loader])}>
+        <Loader />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={cn(styles.card, {}, [className, styles.error])}>
+        <Text variant={TextVariantEnum.ERROR} title={t(error)} text={t('refreshPage')} />
+      </div>
+    );
+  }
 
   return (
-    <div className={cn(styles.card, {}, [className])}>
-      <div className={cn(styles.header)}>
-        <Text title={t('profileUser')} />
-        <Button className={cn(styles.button)} variant={ButtonVariantEnum.OUTLINE}>
-          {t('edit')}
-        </Button>
+    <div className={cn(styles.card, mods, [className])}>
+      <div className={cn(styles['avatar-wrapper'])}>
+        <Avatar src={formData?.avatar} size={200} alt={t('avatar')} readOnly={readOnly} />
       </div>
-      <div className={cn(styles.data)}>
-        <Input
-          className={cn(styles.input)}
-          type="text"
-          value={profileData?.firstName}
-          placeholder={t('firstName')}
-        />
-        <Input
-          className={cn(styles.input)}
-          type="text"
-          value={profileData?.lastName}
-          placeholder={t('lastName')}
-        />
-      </div>
+      {ProfileForm}
+      <CurrencySelect
+        className={cn(styles.input)}
+        value={formData?.currency}
+        readOnly={readOnly}
+        onChangeProfileForm={handleChangeProfileForm}
+      />
+      <CountrySelect
+        className={cn(styles.input)}
+        value={formData?.country}
+        readOnly={readOnly}
+        onChangeProfileForm={handleChangeProfileForm}
+      />
     </div>
   );
 });
 
-export default ProfileCard;
+export default withAsyncReducers(ProfileCard, { reducers: { profileInfo: profileReducer } });

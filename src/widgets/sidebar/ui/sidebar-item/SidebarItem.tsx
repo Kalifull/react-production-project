@@ -1,11 +1,15 @@
 import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { selectAuthData } from '@/entities/user';
+
 import { AppLinkVariantEnum } from '@/shared/api';
 
 import { AppLink } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
+
+import { useAppSelector } from '@/shared/lib/hooks';
 
 import type { SidebarItemType } from '../../model/types/sidebar-item.interface';
 
@@ -15,11 +19,20 @@ interface SidebarItemProps {
   path: SidebarItemType['path'];
   text: SidebarItemType['text'];
   Icon: SidebarItemType['Icon'];
+  authOnly?: boolean;
   isCollapsed: boolean;
 }
 
-export const SidebarItem: FC<SidebarItemProps> = memo(({ path, text, Icon, isCollapsed }) => {
+export const SidebarItem: FC<SidebarItemProps> = memo((props) => {
+  const { path, text, Icon, authOnly, isCollapsed } = props;
+
   const { t } = useTranslation('translation');
+
+  const auth = useAppSelector(selectAuthData);
+
+  if (authOnly && !auth) {
+    return null;
+  }
 
   return (
     <div className={cn(styles.links)}>

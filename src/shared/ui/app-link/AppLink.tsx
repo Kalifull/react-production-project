@@ -1,9 +1,9 @@
 import { FC, memo } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
 
-import { AppLinkVariantEnum } from '@/shared/api';
+import { AppLinkVariantEnum } from '../../api';
 
-import { cn } from '@/shared/lib';
+import { cn } from '../../lib';
 
 import styles from './AppLink.module.scss';
 

@@ -1,8 +1,8 @@
 import { ButtonHTMLAttributes, FC, memo } from 'react';
 
-import { ButtonSizeEnum, ButtonVariantEnum } from '@/shared/api';
+import { ButtonSizeEnum, ButtonVariantEnum } from '../../api';
 
-import { Mods, cn } from '@/shared/lib';
+import { Mods, cn } from '../../lib';
 
 import styles from './Button.module.scss';
 

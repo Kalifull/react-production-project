@@ -9,6 +9,11 @@ export const selectProfileData = createSelector(
   (profileState) => profileState?.profileData
 );
 
+export const selectFormData = createSelector(
+  [selectProfileState],
+  (profileState) => profileState?.formData
+);
+
 export const selectProfileIsLoading = createSelector(
   [selectProfileState],
   (profileState) => profileState?.isLoading
@@ -17,4 +22,9 @@ export const selectProfileIsLoading = createSelector(
 export const selectProfileError = createSelector(
   [selectProfileState],
   (profileState) => profileState?.error
+);
+
+export const selectProfileReadOnly = createSelector(
+  [selectProfileState],
+  (profileState) => profileState?.readOnly
 );
