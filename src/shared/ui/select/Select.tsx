@@ -1,13 +1,10 @@
 import { ChangeEvent, FC, memo, useMemo } from 'react';
 
-import { CountryEnum } from '@/entities/country';
-import { CurrencyEnum } from '@/entities/currency';
-
 import { Mods, cn } from '../../lib';
 
 import styles from './Select.module.scss';
 
-interface SelectOptions<V = string, C = CountryEnum | CurrencyEnum> {
+interface SelectOptions<V = string, C = string> {
   optionValue: V;
   content: C;
 }
