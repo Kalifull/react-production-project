@@ -28,3 +28,8 @@ export const selectProfileReadOnly = createSelector(
   [selectProfileState],
   (profileState) => profileState?.readOnly
 );
+
+export const selectValidationErrors = createSelector(
+  [selectProfileState],
+  (profileState) => profileState?.validationErrors
+);

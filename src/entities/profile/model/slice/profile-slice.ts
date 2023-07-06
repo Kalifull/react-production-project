@@ -8,6 +8,8 @@ import type {
   ProfileSchema,
   PayloadReadOnly,
   PayloadProfileForm,
+  PayloadFetchErrors,
+  PayloadSaveErrors,
 } from '../types/profile-schema.interface';
 
 const initialState: ProfileSchema = {
@@ -16,6 +18,7 @@ const initialState: ProfileSchema = {
   isLoading: false,
   error: null,
   readOnly: true,
+  validationErrors: null,
 };
 
 export const profileSlice = createSlice({
@@ -29,6 +32,7 @@ export const profileSlice = createSlice({
     setCancelEdit(state, { payload: { readOnly } }: PayloadAction<PayloadReadOnly>) {
       state.readOnly = readOnly;
       state.formData = state.profileData;
+      state.validationErrors = null;
     },
 
     updateProfileForm(state, { payload: { value, field } }: PayloadAction<PayloadProfileForm>) {
@@ -48,14 +52,14 @@ export const profileSlice = createSlice({
       })
       .addCase(
         fetchProfileData.rejected,
-        (state, { payload }: PayloadAction<string | undefined>) => {
+        (state, { payload }: PayloadAction<PayloadFetchErrors>) => {
           state.isLoading = false;
           state.error = payload;
         }
       )
       .addCase(saveProfileData.pending, (state) => {
         state.isLoading = true;
-        state.error = null;
+        state.validationErrors = null;
       })
       .addCase(saveProfileData.fulfilled, (state, { payload }: PayloadAction<Profile>) => {
         state.profileData = payload;
@@ -63,13 +67,10 @@ export const profileSlice = createSlice({
         state.isLoading = false;
         state.readOnly = true;
       })
-      .addCase(
-        saveProfileData.rejected,
-        (state, { payload }: PayloadAction<string | undefined>) => {
-          state.isLoading = false;
-          state.error = payload;
-        }
-      );
+      .addCase(saveProfileData.rejected, (state, { payload }: PayloadAction<PayloadSaveErrors>) => {
+        state.isLoading = false;
+        state.validationErrors = payload;
+      });
   },
 });
 

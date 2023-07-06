@@ -9,19 +9,20 @@ interface FetchLoginByUsernameParams {
   password: string;
 }
 
-export const fetchLoginByUsername = createAsyncThunk<User, FetchLoginByUsernameParams, ThunkConfig>(
-  'login/fetchLoginByUsername',
-  async (authData, { rejectWithValue, extra }) => {
-    try {
-      const { data } = await extra.api.post<User>('/login', authData);
+export const fetchLoginByUsername = createAsyncThunk<
+  User,
+  FetchLoginByUsernameParams,
+  ThunkConfig<string>
+>('login/fetchLoginByUsername', async (authData, { rejectWithValue, extra }) => {
+  try {
+    const { data } = await extra.api.post<User>('/login', authData);
 
-      if (!data) {
-        throw new Error();
-      }
-
-      return data;
-    } catch (error) {
-      return rejectWithValue('authError');
+    if (!data) {
+      throw new Error();
     }
+
+    return data;
+  } catch (error) {
+    return rejectWithValue('authError');
   }
-);
+});

@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { fetchLoginByUsername } from '../service/fetch-login-by-username';
 
-import type { User, UserSchema } from '../types/user-schema.interface';
+import type { User, UserSchema, PayloadFetchLogin } from '../types/user-schema.interface';
 
 const initialState: UserSchema = {
   authData: null,
@@ -30,7 +30,7 @@ export const userSlice = createSlice({
       })
       .addCase(
         fetchLoginByUsername.rejected,
-        (state, { payload }: PayloadAction<string | undefined>) => {
+        (state, { payload }: PayloadAction<PayloadFetchLogin>) => {
           state.isLoading = false;
           state.error = payload;
         }

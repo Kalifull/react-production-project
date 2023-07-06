@@ -1,12 +1,18 @@
 import { FC, memo, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   ProfileCard,
-  selectFormData,
   selectProfileError,
-  selectProfileIsLoading,
   selectProfileReadOnly,
+  selectProfileIsLoading,
+  selectValidationErrors,
+  validateErrorTranslation,
 } from '@/entities/profile';
+
+import { TextVariantEnum } from '@/shared/api';
+
+import { Text } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -21,10 +27,12 @@ interface ProfilePageProps {
 const ProfilePage: FC<ProfilePageProps> = memo(({ className }) => {
   const { fetchProfileData } = useActionCreators(allActions);
 
-  const formData = useAppSelector(selectFormData);
-  const isLoading = useAppSelector(selectProfileIsLoading);
+  const { t } = useTranslation('profile');
+
   const error = useAppSelector(selectProfileError);
   const readOnly = useAppSelector(selectProfileReadOnly);
+  const isLoading = useAppSelector(selectProfileIsLoading);
+  const validationErrors = useAppSelector(selectValidationErrors);
 
   useEffect(() => {
     if (__PROJECT__ !== 'storybook') {
@@ -35,7 +43,15 @@ const ProfilePage: FC<ProfilePageProps> = memo(({ className }) => {
   return (
     <div className={cn('', {}, [className])}>
       <ProfilePageHeader isLoading={isLoading} readOnly={readOnly} />
-      <ProfileCard formData={formData} isLoading={isLoading} error={error} readOnly={readOnly} />
+      {validationErrors?.length &&
+        validationErrors.map((validateError) => (
+          <Text
+            key={validateError}
+            variant={TextVariantEnum.ERROR}
+            text={t(validateErrorTranslation[validateError])}
+          />
+        ))}
+      <ProfileCard isLoading={isLoading} error={error} readOnly={readOnly} />
     </div>
   );
 });

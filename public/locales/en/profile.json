@@ -13,5 +13,11 @@
   "profileError": "An error occurred while loading the profile",
   "refreshPage": "Please try refreshing the page",
   "cancel": "Cancel",
-  "save": "Save"
+  "save": "Save",
+  "incorrectUserData": "Incorrect user data",
+  "incorrectAge": "Incorrect return",
+  "incorrectCity": "Incorrect city",
+  "incorrectCountry": "Incorrect region",
+  "serverError": "An error occurred while saving the profile",
+  "noData": "Data not specified"
 }

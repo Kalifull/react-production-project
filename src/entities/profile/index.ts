@@ -9,5 +9,10 @@ export {
   selectProfileIsLoading,
   selectProfileError,
   selectProfileReadOnly,
+  selectValidationErrors,
 } from './model/selectors/select-profile-state';
+export {
+  ProfileErrorsEnum,
+  validateErrorTranslation,
+} from './model/types/profile-schema.interface';
 export type { Profile, ProfileSchema } from './model/types/profile-schema.interface';

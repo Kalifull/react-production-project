@@ -17,45 +17,45 @@ interface ProfilePageHeaderProps {
   readOnly?: boolean;
 }
 
-export const ProfilePageHeader: FC<ProfilePageHeaderProps> = memo(
-  ({ className, isLoading, readOnly }) => {
-    const { t } = useTranslation('profile');
+export const ProfilePageHeader: FC<ProfilePageHeaderProps> = memo((props) => {
+  const { className, isLoading, readOnly } = props;
 
-    const { setReadOnly, setCancelEdit, saveProfileData } = useActionCreators(allActions);
+  const { t } = useTranslation('profile');
 
-    const handleEdit = useCallback(() => {
-      setReadOnly({ readOnly: false });
-    }, [setReadOnly]);
+  const { setReadOnly, setCancelEdit, saveProfileData } = useActionCreators(allActions);
 
-    const handleCancelEdit = useCallback(() => {
-      setCancelEdit({ readOnly: true });
-    }, [setCancelEdit]);
+  const handleEdit = useCallback(() => {
+    setReadOnly({ readOnly: false });
+  }, [setReadOnly]);
 
-    const handleSaveData = useCallback(() => {
-      saveProfileData();
-    }, [saveProfileData]);
+  const handleCancelEdit = useCallback(() => {
+    setCancelEdit({ readOnly: true });
+  }, [setCancelEdit]);
 
-    return (
-      <div className={cn(styles.header, {}, [className])}>
-        <Text title={t('profileUser')} />
+  const handleSaveData = useCallback(() => {
+    saveProfileData();
+  }, [saveProfileData]);
+
+  return (
+    <div className={cn(styles.header, {}, [className])}>
+      <Text title={t('profileUser')} />
+      <Button
+        className={cn(styles.button)}
+        variant={readOnly ? ButtonVariantEnum.OUTLINE : ButtonVariantEnum.OUTLINE_RED}
+        onClick={readOnly ? handleEdit : handleCancelEdit}
+        disabled={isLoading}
+      >
+        {readOnly ? t('edit') : t('cancel')}
+      </Button>
+      {!readOnly && (
         <Button
-          className={cn(styles.button)}
-          variant={readOnly ? ButtonVariantEnum.OUTLINE : ButtonVariantEnum.OUTLINE_RED}
-          onClick={readOnly ? handleEdit : handleCancelEdit}
-          disabled={isLoading}
+          className={cn(styles['button-save'])}
+          variant={ButtonVariantEnum.OUTLINE}
+          onClick={handleSaveData}
         >
-          {readOnly ? t('edit') : t('cancel')}
+          {t('save')}
         </Button>
-        {!readOnly && (
-          <Button
-            className={cn(styles['button-save'])}
-            variant={ButtonVariantEnum.OUTLINE}
-            onClick={handleSaveData}
-          >
-            {t('save')}
-          </Button>
-        )}
-      </div>
-    );
-  }
-);
+      )}
+    </div>
+  );
+});

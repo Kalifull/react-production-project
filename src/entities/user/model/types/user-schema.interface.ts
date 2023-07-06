@@ -9,3 +9,5 @@ export interface UserSchema {
   isLoading: boolean;
   error?: string | null;
 }
+
+export type PayloadFetchLogin = string | undefined;
