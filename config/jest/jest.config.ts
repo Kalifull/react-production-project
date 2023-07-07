@@ -24,7 +24,7 @@ export default {
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
-    '\\.(scss|less|css)$': 'identity-obj-proxy',
+    '\\.(scss|less|css|png)$': 'identity-obj-proxy',
     '\\.svg': path.resolve(__dirname, 'JestEmptyComponent.tsx'),
     axios: 'axios/dist/node/axios.cjs',
     '^@/(.*)$': '<rootDir>/src/$1',

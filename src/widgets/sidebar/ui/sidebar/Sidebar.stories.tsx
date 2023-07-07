@@ -11,7 +11,15 @@ const meta = {
   title: 'widget/Sidebar',
   component: Sidebar,
   argTypes: {},
-  decorators: [StoreDecorator({})],
+  decorators: [
+    StoreDecorator({
+      userInfo: {
+        authData: null,
+        isLoading: false,
+        error: null,
+      },
+    }),
+  ],
 } satisfies Meta<typeof Sidebar>;
 
 export default meta;

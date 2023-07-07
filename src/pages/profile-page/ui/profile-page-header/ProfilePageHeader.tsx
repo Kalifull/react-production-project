@@ -52,6 +52,7 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = memo((props) => {
           className={cn(styles['button-save'])}
           variant={ButtonVariantEnum.OUTLINE}
           onClick={handleSaveData}
+          disabled={isLoading}
         >
           {t('save')}
         </Button>

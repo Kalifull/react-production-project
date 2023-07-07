@@ -7,14 +7,14 @@ import Avatar from '@/shared/assets/test/storybook-avatar.png';
 import { ThemeDecorator } from '@/shared/config/storybook/theme-decorator';
 import { StoreDecorator } from '@/shared/config/storybook/store-decorator';
 
-import { CurrencyEnum } from '@/entities/currency';
-import { CountryEnum } from '@/entities/country';
+import { CurrencyEnum } from '../../../currency/model/types/currency-schema.interface';
+import { CountryEnum } from '../../../country/model/types/country-schema.interface';
 
-import ProfilePage from './ProfilePage';
+import ProfileCard from './ProfileCard';
 
 const meta = {
-  title: 'pages/ProfilePage',
-  component: ProfilePage,
+  title: 'entities/ProfileCard',
+  component: ProfileCard,
   argTypes: {},
   decorators: [
     StoreDecorator({
@@ -36,7 +36,7 @@ const meta = {
       },
     }),
   ],
-} satisfies Meta<typeof ProfilePage>;
+} satisfies Meta<typeof ProfileCard>;
 
 export default meta;
 
@@ -44,6 +44,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Light: Story = {
   args: {},
+};
+
+export const ServerError: Story = {
+  args: { error: 'Ошибка при загрузке профиля' },
+};
+
+export const Loading: Story = {
+  args: { isLoading: true },
 };
 
 export const Dark: Story = {
