@@ -4,11 +4,14 @@
 
 @import "./themes/light.scss";
 
+@import "./themes/violet.scss";
+
 @import "./variables/global.scss";
 
 body,
 .app-dark-theme,
-.app-light-theme {
+.app-light-theme,
+.app-violet-theme {
   color: var(--primary-color);
   font: var(--font-m);
   background: var(--bg-color);

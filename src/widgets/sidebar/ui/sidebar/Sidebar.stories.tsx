@@ -35,3 +35,9 @@ export const Dark: Story = {
 };
 
 Dark.decorators = [ThemeDecorator(ThemeEnum.DARK)];
+
+export const Violet: Story = {
+  args: {},
+};
+
+Violet.decorators = [ThemeDecorator(ThemeEnum.VIOLET)];

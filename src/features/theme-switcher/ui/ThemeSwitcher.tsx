@@ -8,8 +8,7 @@ import { useTheme } from '@/shared/lib/hooks';
 
 import { cn } from '@/shared/lib';
 
-import LightIcon from '@/shared/assets/icons/theme-light.svg';
-import DarkIcon from '@/shared/assets/icons/theme-dark.svg';
+import SwitcherIcon from '@/shared/assets/icons/switcher-Icon.svg';
 
 interface ThemeSwitcherProps {
   className?: string;
@@ -24,7 +23,9 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(({ className }) => {
       variant={ButtonVariantEnum.CLEAR}
       onClick={toggledTheme}
     >
-      {theme === ThemeEnum.LIGHT ? <LightIcon /> : <DarkIcon />}
+      {theme === ThemeEnum.LIGHT && <SwitcherIcon fill="#FFC700" />}
+      {theme === ThemeEnum.DARK && <SwitcherIcon fill="#0115C6" />}
+      {theme === ThemeEnum.VIOLET && <SwitcherIcon fill="#59084e" />}
     </Button>
   );
 });
