@@ -33,3 +33,8 @@ export enum TextAlignEnum {
   RIGHT = 'right',
   CENTER = 'center',
 }
+
+export enum TextSizeEnum {
+  M = 'size-m',
+  L = 'size-l',
+}

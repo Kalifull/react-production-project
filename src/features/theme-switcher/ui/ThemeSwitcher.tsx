@@ -23,8 +23,8 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(({ className }) => {
       variant={ButtonVariantEnum.CLEAR}
       onClick={toggledTheme}
     >
-      {theme === ThemeEnum.LIGHT && <SwitcherIcon fill="#FFC700" />}
-      {theme === ThemeEnum.DARK && <SwitcherIcon fill="#0115C6" />}
+      {theme === ThemeEnum.LIGHT && <SwitcherIcon fill="#ffc700" />}
+      {theme === ThemeEnum.DARK && <SwitcherIcon fill="#0115c6" />}
       {theme === ThemeEnum.VIOLET && <SwitcherIcon fill="#59084e" />}
     </Button>
   );

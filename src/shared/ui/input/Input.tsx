@@ -2,7 +2,7 @@ import { ChangeEvent, FC, InputHTMLAttributes, SyntheticEvent, memo, useState } 
 
 import { Profile } from '@/entities/profile';
 
-import { Mods, cn } from '@/shared/lib';
+import { Mods, cn } from '../../lib';
 
 import styles from './Input.module.scss';
 

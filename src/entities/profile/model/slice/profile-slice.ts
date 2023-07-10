@@ -8,8 +8,8 @@ import type {
   ProfileSchema,
   PayloadReadOnly,
   PayloadProfileForm,
-  PayloadFetchErrors,
-  PayloadSaveErrors,
+  PayloadSaveProfileErrors,
+  PayloadFetchProfileErrors,
 } from '../types/profile-schema.interface';
 
 const initialState: ProfileSchema = {
@@ -52,7 +52,7 @@ export const profileSlice = createSlice({
       })
       .addCase(
         fetchProfileData.rejected,
-        (state, { payload }: PayloadAction<PayloadFetchErrors>) => {
+        (state, { payload }: PayloadAction<PayloadFetchProfileErrors>) => {
           state.isLoading = false;
           state.error = payload;
         }
@@ -67,10 +67,13 @@ export const profileSlice = createSlice({
         state.isLoading = false;
         state.readOnly = true;
       })
-      .addCase(saveProfileData.rejected, (state, { payload }: PayloadAction<PayloadSaveErrors>) => {
-        state.isLoading = false;
-        state.validationErrors = payload;
-      });
+      .addCase(
+        saveProfileData.rejected,
+        (state, { payload }: PayloadAction<PayloadSaveProfileErrors>) => {
+          state.isLoading = false;
+          state.validationErrors = payload;
+        }
+      );
   },
 });
 

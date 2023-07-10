@@ -1,4 +1,4 @@
-export { loginReducer, loginActions } from './model/slice/login-slice';
+export { loginActions, loginReducer } from './model/slice/login-slice';
 export { default as LoginModal } from './ui/login-modal/LoginModal';
 export {
   selectLoginState,

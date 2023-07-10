@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { CurrencyEnum } from '@/entities/currency';
+import { CountryEnum } from '@/entities/country';
+
 import { ThemeEnum } from '@/shared/api';
 
 import Avatar from '@/shared/assets/test/storybook-avatar.png';
@@ -7,14 +10,11 @@ import Avatar from '@/shared/assets/test/storybook-avatar.png';
 import { ThemeDecorator } from '@/shared/config/storybook/theme-decorator';
 import { StoreDecorator } from '@/shared/config/storybook/store-decorator';
 
-import { CurrencyEnum } from '../../../currency/model/types/currency-schema.interface';
-import { CountryEnum } from '../../../country/model/types/country-schema.interface';
-
-import ProfileCard from './ProfileCard';
+import EditableProfileCard from './EditableProfileCard';
 
 const meta = {
-  title: 'entities/ProfileCard',
-  component: ProfileCard,
+  title: 'features/EditableProfileCard',
+  component: EditableProfileCard,
   argTypes: {},
   decorators: [
     StoreDecorator({
@@ -36,7 +36,7 @@ const meta = {
       },
     }),
   ],
-} satisfies Meta<typeof ProfileCard>;
+} satisfies Meta<typeof EditableProfileCard>;
 
 export default meta;
 

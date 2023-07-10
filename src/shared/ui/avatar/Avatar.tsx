@@ -8,7 +8,7 @@ interface AvatarProps extends ImgHTMLAttributes<HTMLImageElement> {
   className?: string;
   src?: string;
   size?: number;
-  alt: string;
+  alt?: string;
   readOnly?: boolean;
 }
 

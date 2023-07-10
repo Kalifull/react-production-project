@@ -1,8 +1,9 @@
 import { FC, memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { EditableProfileCard } from '@/features/editable-profile-card';
+
 import {
-  ProfileCard,
   selectProfileError,
   selectProfileReadOnly,
   selectProfileIsLoading,
@@ -51,7 +52,7 @@ const ProfilePage: FC<ProfilePageProps> = memo(({ className }) => {
             text={t(validateErrorTranslation[validateError])}
           />
         ))}
-      <ProfileCard isLoading={isLoading} error={error} readOnly={readOnly} />
+      <EditableProfileCard isLoading={isLoading} error={error} readOnly={readOnly} />
     </div>
   );
 });

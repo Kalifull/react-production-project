@@ -11,11 +11,13 @@ import { PersistPartial } from 'redux-persist/es/persistReducer';
 import type { LoginSchema } from '@/features/user-auth';
 
 import type { UserSchema } from '@/entities/user';
+import type { ArticleSchema } from '@/entities/article';
 import type { ProfileSchema } from '@/entities/profile';
 
 export interface StateSchema {
   userInfo: UserSchema & PersistPartial;
   loginFormInfo?: LoginSchema;
+  articleInfo?: ArticleSchema;
   profileInfo?: ProfileSchema;
 }
 

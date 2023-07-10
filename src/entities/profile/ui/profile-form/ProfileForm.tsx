@@ -1,5 +1,5 @@
-import { FC, memo, useCallback } from 'react';
 import FocusLock from 'react-focus-lock';
+import { FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Input } from '@/shared/ui';
@@ -20,7 +20,7 @@ interface ProfileFormProps {
   onChangeProfileForm?: (value: string, field: keyof Profile) => void;
 }
 
-export const ProfileForm: FC<ProfileFormProps> = memo((props) => {
+const ProfileForm: FC<ProfileFormProps> = memo((props) => {
   const { className, formData, readOnly, onChangeProfileForm } = props;
 
   const { t } = useTranslation('profile');
@@ -66,3 +66,5 @@ export const ProfileForm: FC<ProfileFormProps> = memo((props) => {
     </FocusLock>
   );
 });
+
+export default ProfileForm;

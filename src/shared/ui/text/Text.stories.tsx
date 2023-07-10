@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import Text from './Text';
 
-import { ThemeEnum, TextVariantEnum } from '../../api';
+import { ThemeEnum, TextVariantEnum, TextSizeEnum } from '../../api';
 
 import { ThemeDecorator } from '../../config/storybook/theme-decorator';
 
@@ -39,5 +39,12 @@ export const Error: Story = {
 export const Primary: Story = {
   args: {
     variant: TextVariantEnum.PRIMARY,
+  },
+};
+
+export const SizeL: Story = {
+  args: {
+    variant: TextVariantEnum.PRIMARY,
+    size: TextSizeEnum.L,
   },
 };

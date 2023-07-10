@@ -1,6 +1,8 @@
 import { FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { ProfileForm, selectFormData, profileReducer, Profile } from '@/entities/profile';
+
 import { TextVariantEnum } from '@/shared/api';
 
 import { Text, Loader, Avatar } from '@/shared/ui';
@@ -11,23 +13,16 @@ import { withAsyncReducers } from '@/shared/lib/hoc';
 
 import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
 
-import { selectFormData } from '../../model/selectors/select-profile-state';
-import { profileReducer } from '../../model/slice/profile-slice';
+import styles from './EditableProfileCard.module.scss';
 
-import { ProfileForm } from '../profile-form/ProfileForm';
-
-import type { Profile } from '../../model/types/profile-schema.interface';
-
-import styles from './ProfileCard.module.scss';
-
-interface ProfileCardProps {
+interface EditableProfileCardProps {
   className?: string;
   isLoading?: boolean;
   error?: string | null;
   readOnly?: boolean;
 }
 
-const ProfileCard: FC<ProfileCardProps> = memo((props) => {
+const EditableProfileCard: FC<EditableProfileCardProps> = memo((props) => {
   const { className, isLoading, error, readOnly } = props;
 
   const { t } = useTranslation('profile');
@@ -80,4 +75,6 @@ const ProfileCard: FC<ProfileCardProps> = memo((props) => {
   );
 });
 
-export default withAsyncReducers(ProfileCard, { reducers: { profileInfo: profileReducer } });
+export default withAsyncReducers(EditableProfileCard, {
+  reducers: { profileInfo: profileReducer },
+});
