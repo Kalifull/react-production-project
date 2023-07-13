@@ -2,11 +2,11 @@ import { FC, memo } from 'react';
 
 import { TextAlignEnum } from '@/shared/api';
 
+import { routesPaths } from '@/shared/config';
+
 import { AppLink, Avatar, Skeleton, Text } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
-
-import { routesPaths } from '@/shared/config';
 
 import type { Comment } from '../../model/types/comment.interface';
 

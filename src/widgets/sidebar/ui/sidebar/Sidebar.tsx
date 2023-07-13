@@ -9,9 +9,11 @@ import { Button } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
+import { useAppSelector } from '@/shared/lib/hooks';
+
 import { SidebarItem } from '../sidebar-item/SidebarItem';
 
-import { SidebarItemsList } from '../../model/types/sidebar-item.interface';
+import { selectSidebarItems } from '../../model/selectors/select-sidebar-items';
 
 import styles from './Sidebar.module.scss';
 
@@ -21,6 +23,8 @@ interface SidebarProps {
 
 const Sidebar: FC<SidebarProps> = memo(({ className }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const sidebarItemsList = useAppSelector(selectSidebarItems);
 
   const toggleCollapse = useCallback(() => {
     setIsCollapsed((prev) => !prev);
@@ -44,7 +48,7 @@ const Sidebar: FC<SidebarProps> = memo(({ className }) => {
       </Button>
 
       <div className={styles.links}>
-        {SidebarItemsList.map((item) => (
+        {sidebarItemsList.map((item) => (
           <SidebarItem key={item.id} {...item} isCollapsed={isCollapsed} />
         ))}
       </div>
