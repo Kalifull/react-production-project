@@ -4,17 +4,21 @@ import type { ThunkConfig } from '@/app/providers/store-provider';
 
 import type { Article } from '../types/article.interface';
 
-export const fetchArticleById = createAsyncThunk<Article, string, ThunkConfig<string>>(
+export const fetchArticleById = createAsyncThunk<Article, string | undefined, ThunkConfig<string>>(
   'article/fetchArticleById',
   async (articleId, { rejectWithValue, extra }) => {
     try {
-      const { data } = await extra.api.get<Article>(`/articles/${articleId}`);
+      if (!articleId) {
+        return rejectWithValue('articleError');
+      }
 
-      if (!data) {
+      const { data: article } = await extra.api.get<Article>(`/articles/${articleId}`);
+
+      if (!article) {
         throw new Error();
       }
 
-      return data;
+      return article;
     } catch (error) {
       return rejectWithValue('articleError');
     }

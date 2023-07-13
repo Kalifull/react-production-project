@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { DeepPartial } from '@reduxjs/toolkit';
 
-import { UserSchema, userReducer, userActions, fetchLoginByUsername, User } from '@/entities/user';
+import { UserSchema, userReducer, userActions, fetchUserByUsername, User } from '@/entities/user';
 
 import { testAsyncThunk } from '@/shared/lib/test';
 
@@ -27,7 +27,7 @@ describe('test user slice', () => {
       isLoading: false,
       error: null,
     };
-    const userSlice = userReducer(state as UserSchema, fetchLoginByUsername.pending);
+    const userSlice = userReducer(state as UserSchema, fetchUserByUsername.pending);
 
     expect(userSlice).toStrictEqual({ authData: null, isLoading: true, error: null });
   });
@@ -36,7 +36,7 @@ describe('test user slice', () => {
     const authData: User = { id: 1, username: 'User', password: 'Password' };
     mockedAxios.post.mockReturnValue(Promise.resolve({ data: authData }));
 
-    const thunk = testAsyncThunk(fetchLoginByUsername);
+    const thunk = testAsyncThunk(fetchUserByUsername);
     const action = await thunk.callThunk({ username: 'User', password: 'Password' });
 
     const state: DeepPartial<UserSchema> = {
@@ -52,7 +52,7 @@ describe('test user slice', () => {
   test('test fetch login by username with rejected', async () => {
     mockedAxios.post.mockReturnValue(Promise.resolve({ status: 403 }));
 
-    const thunk = testAsyncThunk(fetchLoginByUsername);
+    const thunk = testAsyncThunk(fetchUserByUsername);
     const action = await thunk.callThunk({ username: 'User', password: 'Password' });
 
     const state: DeepPartial<UserSchema> = {

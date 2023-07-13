@@ -1,4 +1,4 @@
-export { fetchLoginByUsername } from './model/service/fetch-login-by-username';
+export { fetchUserByUsername } from './model/service/fetch-user-by-username';
 export { userActions, userReducer } from './model/slice/user-slice';
 export {
   selectUserState,

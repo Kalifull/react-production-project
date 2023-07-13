@@ -48,6 +48,6 @@ export interface PayloadProfileForm {
   field: keyof Profile;
 }
 
-export type PayloadFetchProfileErrors = string | undefined;
+export type PayloadFetchProfileError = string | undefined;
 
 export type PayloadSaveProfileErrors = ProfileErrorsEnum[] | undefined;

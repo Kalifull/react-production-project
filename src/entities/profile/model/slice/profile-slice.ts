@@ -8,8 +8,8 @@ import type {
   ProfileSchema,
   PayloadReadOnly,
   PayloadProfileForm,
+  PayloadFetchProfileError,
   PayloadSaveProfileErrors,
-  PayloadFetchProfileErrors,
 } from '../types/profile-schema.interface';
 
 const initialState: ProfileSchema = {
@@ -52,7 +52,7 @@ export const profileSlice = createSlice({
       })
       .addCase(
         fetchProfileData.rejected,
-        (state, { payload }: PayloadAction<PayloadFetchProfileErrors>) => {
+        (state, { payload }: PayloadAction<PayloadFetchProfileError>) => {
           state.isLoading = false;
           state.error = payload;
         }

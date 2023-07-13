@@ -1,11 +1,11 @@
-import { User, fetchLoginByUsername } from '@/entities/user';
+import { User, fetchUserByUsername } from '@/entities/user';
 
 import { testAsyncThunk } from '@/shared/lib/test';
 
 describe('test fetch login by username', () => {
   test('should work when user is logged in', async () => {
     const authData: User = { id: 1, username: 'User', password: 'Password' };
-    const { api, dispatch, callThunk } = testAsyncThunk(fetchLoginByUsername);
+    const { api, dispatch, callThunk } = testAsyncThunk(fetchUserByUsername);
 
     api.post.mockReturnValue(Promise.resolve({ data: authData }));
     const action = await callThunk({ username: 'User', password: 'Password' });
@@ -17,7 +17,7 @@ describe('test fetch login by username', () => {
   });
 
   test('should rejected a request', async () => {
-    const { api, dispatch, callThunk } = testAsyncThunk(fetchLoginByUsername);
+    const { api, dispatch, callThunk } = testAsyncThunk(fetchUserByUsername);
 
     api.post.mockReturnValue(Promise.resolve({ status: 403 }));
     const action = await callThunk({ username: 'User', password: 'Password' });

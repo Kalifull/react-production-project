@@ -8,8 +8,6 @@ import { Avatar, Skeleton, Text, Icon } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
-import { withAsyncReducers } from '@/shared/lib/hoc';
-
 import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
 
 import EyeIcon from '@/shared/assets/icons/eye.svg';
@@ -20,7 +18,7 @@ import {
   selectArticleError,
   selectArticleIsLoading,
 } from '../../model/selectors/select-article-state';
-import { articleReducer } from '../../model/slice/article-slice';
+
 import type { ArticleBlock } from '../../model/types/article.interface';
 
 import { mappingArticlesBlock } from '../article-block';
@@ -42,7 +40,7 @@ const ArticleDetails: FC<ArticleDetailsProps> = memo(({ className }) => {
   const { fetchArticleById } = useActionCreators(allActions);
 
   useEffect(() => {
-    if (id && __PROJECT__ !== 'storybook') {
+    if (__PROJECT__ !== 'storybook') {
       fetchArticleById(id);
     }
   }, [fetchArticleById, id]);
@@ -103,4 +101,4 @@ const ArticleDetails: FC<ArticleDetailsProps> = memo(({ className }) => {
   );
 });
 
-export default withAsyncReducers(ArticleDetails, { reducers: { articleInfo: articleReducer } });
+export default ArticleDetails;

@@ -2,6 +2,7 @@ export interface User {
   id: number;
   username: string;
   password: string;
+  avatar?: string;
 }
 
 export interface UserSchema {
@@ -10,4 +11,4 @@ export interface UserSchema {
   error?: string | null;
 }
 
-export type PayloadFetchLogin = string | undefined;
+export type PayloadFetchUserError = string | undefined;

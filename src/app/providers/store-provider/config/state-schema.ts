@@ -12,12 +12,14 @@ import type { LoginSchema } from '@/features/user-auth';
 
 import type { UserSchema } from '@/entities/user';
 import type { ArticleSchema } from '@/entities/article';
+import type { CommentsSchema } from '@/entities/comment';
 import type { ProfileSchema } from '@/entities/profile';
 
 export interface StateSchema {
   userInfo: UserSchema & PersistPartial;
   loginFormInfo?: LoginSchema;
   articleInfo?: ArticleSchema;
+  commentsInfo?: CommentsSchema;
   profileInfo?: ProfileSchema;
 }
 

@@ -18,13 +18,13 @@ export const saveProfileData = createAsyncThunk<Profile, void, ThunkConfig<Profi
     }
 
     try {
-      const { data } = await extra.api.put<Profile>('/profile', formData);
+      const { data: profile } = await extra.api.put<Profile>('/profile', formData);
 
-      if (!data) {
+      if (!profile) {
         throw new Error();
       }
 
-      return data;
+      return profile;
     } catch (error) {
       return rejectWithValue([ProfileErrorsEnum.SERVER_ERROR]);
     }

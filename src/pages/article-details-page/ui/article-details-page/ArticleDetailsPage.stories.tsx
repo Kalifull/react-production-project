@@ -89,6 +89,43 @@ const meta = {
         isLoading: false,
         error: null,
       },
+      commentsInfo: {
+        ids: ['1', '2', '3'],
+        entities: {
+          '1': {
+            id: '1',
+            text: 'some comment',
+            user: {
+              id: 1,
+              username: 'admin',
+              password: 'admin',
+              avatar: 'https://cs14.pikabu.ru/post_img/big/2023/02/13/8/1676295806139337963.png',
+            },
+          },
+          '2': {
+            id: '2',
+            text: 'some comment 2',
+            user: {
+              id: 1,
+              username: 'admin',
+              password: 'admin',
+              avatar: 'https://cs14.pikabu.ru/post_img/big/2023/02/13/8/1676295806139337963.png',
+            },
+          },
+          '3': {
+            id: '3',
+            text: 'some comment 3',
+            user: {
+              id: 1,
+              username: 'admin',
+              password: 'admin',
+              avatar: 'https://cs14.pikabu.ru/post_img/big/2023/02/13/8/1676295806139337963.png',
+            },
+          },
+        },
+        isLoading: false,
+        error: null,
+      },
     }),
   ],
 } satisfies Meta<typeof ArticleDetailsPage>;
@@ -112,3 +149,28 @@ export const Violet: Story = {
 };
 
 Violet.decorators = [ThemeDecorator(ThemeEnum.VIOLET)];
+
+export const Loading: Story = {
+  args: {},
+};
+
+Loading.decorators = [
+  StoreDecorator({
+    articleInfo: { isLoading: true },
+    commentsInfo: { ids: [], entities: {}, isLoading: true },
+  }),
+];
+
+export const Error: Story = {
+  args: {},
+};
+
+Error.decorators = [
+  StoreDecorator({
+    articleInfo: {
+      isLoading: false,
+      error: 'Статья устарела, была удалена или не существовала вовсе.',
+    },
+    commentsInfo: { ids: [], entities: {}, isLoading: false, error: 'Error' },
+  }),
+];

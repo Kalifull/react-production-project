@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ArticleBlockTypeEnum, ArticleTypeEnum } from '@/entities/article';
-
 import { ThemeEnum } from '@/shared/api';
 
 import { ThemeDecorator } from '@/shared/config/storybook/theme-decorator';
 import { StoreDecorator } from '@/shared/config/storybook/store-decorator';
+
+import { ArticleBlockTypeEnum, ArticleTypeEnum } from '../../model/types/article.interface';
 
 import ArticleDetails from './ArticleDetails';
 
@@ -126,8 +126,8 @@ export const ServerError: Story = {
 ServerError.decorators = [
   StoreDecorator({
     articleInfo: {
-      error: 'Статья устарела, была удалена или не существовала вовсе.',
       isLoading: false,
+      error: 'Статья устарела, была удалена или не существовала вовсе.',
     },
   }),
 ];

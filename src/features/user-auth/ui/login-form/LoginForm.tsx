@@ -35,7 +35,7 @@ const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
   const navigate = useNavigate();
   const { t } = useTranslation(['translation', 'auth']);
 
-  const { setUsername, setPassword, fetchLoginByUsername } = useActionCreators(allActions);
+  const { setUsername, setPassword, fetchUserByUsername } = useActionCreators(allActions);
 
   const isLoading = useAppSelector(selectUserIsLoading);
   const error = useAppSelector(selectUserError);
@@ -60,12 +60,12 @@ const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
   );
 
   const handleLoginClick = useCallback(async () => {
-    const result = await fetchLoginByUsername({ username, password });
+    const result = await fetchUserByUsername({ username, password });
 
     if (result.meta.requestStatus === 'fulfilled') {
       navigate(routesPaths.main);
     }
-  }, [fetchLoginByUsername, navigate, password, username]);
+  }, [fetchUserByUsername, navigate, password, username]);
 
   return (
     <FocusLock>

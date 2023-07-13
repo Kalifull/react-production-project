@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { fetchLoginByUsername } from '../service/fetch-login-by-username';
+import { fetchUserByUsername } from '../service/fetch-user-by-username';
 
-import type { User, UserSchema, PayloadFetchLogin } from '../types/user-schema.interface';
+import type { User, UserSchema, PayloadFetchUserError } from '../types/user-schema.interface';
 
 const initialState: UserSchema = {
   authData: null,
@@ -20,17 +20,17 @@ export const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchLoginByUsername.pending, (state) => {
+      .addCase(fetchUserByUsername.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(fetchLoginByUsername.fulfilled, (state, { payload }: PayloadAction<User>) => {
+      .addCase(fetchUserByUsername.fulfilled, (state, { payload }: PayloadAction<User>) => {
         state.authData = payload;
         state.isLoading = false;
       })
       .addCase(
-        fetchLoginByUsername.rejected,
-        (state, { payload }: PayloadAction<PayloadFetchLogin>) => {
+        fetchUserByUsername.rejected,
+        (state, { payload }: PayloadAction<PayloadFetchUserError>) => {
           state.isLoading = false;
           state.error = payload;
         }
