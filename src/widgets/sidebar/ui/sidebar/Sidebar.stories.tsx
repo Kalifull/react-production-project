@@ -8,7 +8,7 @@ import { ThemeEnum } from '@/shared/api';
 import Sidebar from './Sidebar';
 
 const meta = {
-  title: 'widget/Sidebar',
+  title: 'widgets/Sidebar',
   component: Sidebar,
   argTypes: {},
   decorators: [

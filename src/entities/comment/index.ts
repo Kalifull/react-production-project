@@ -1,3 +1,4 @@
+export { sendCommentForArticle } from './model/service/send-comment-for-article';
 export { fetchCommentsByArticleId } from './model/service/fetch-comments-by-article-id';
 export { commentsActions, commentsReducer } from './model/slice/comment-slice';
 export {

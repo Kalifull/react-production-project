@@ -1,12 +1,12 @@
 .header {
   display: flex;
   align-items: center;
-  
-  .button {
-    margin-left: auto;
-  }
 
-  .button-save {
-    margin-left: 10px;
+  .button-wrapper{
+    margin-left: auto;
+  
+    .button-save {
+      margin-left: 10px;
+    }
   }
 }

@@ -16,7 +16,7 @@ export enum RoutesEnum {
 export const routesPaths: Record<RoutesEnum, string> = {
   [RoutesEnum.MAIN]: '/',
   [RoutesEnum.ABOUT]: '/about',
-  [RoutesEnum.PROFILE]: '/profile',
+  [RoutesEnum.PROFILE]: '/profile/',
   [RoutesEnum.ARTICLES]: '/articles',
   [RoutesEnum.ARTICLE_DETAILS]: '/articles/',
   [RoutesEnum.NOT_FOUND]: '*',

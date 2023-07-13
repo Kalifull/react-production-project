@@ -19,7 +19,7 @@ export const routesConfig: Record<RoutesEnum, AppRoutesProps> = {
   },
 
   [RoutesEnum.PROFILE]: {
-    path: routesPaths[RoutesEnum.PROFILE],
+    path: `${routesPaths[RoutesEnum.PROFILE]}:id`,
     element: <ProfilePage />,
     authOnly: true,
   },

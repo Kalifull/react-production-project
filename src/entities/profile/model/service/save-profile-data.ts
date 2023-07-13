@@ -18,7 +18,7 @@ export const saveProfileData = createAsyncThunk<Profile, void, ThunkConfig<Profi
     }
 
     try {
-      const { data: profile } = await extra.api.put<Profile>('/profile', formData);
+      const { data: profile } = await extra.api.put<Profile>(`/profile/${formData?.id}`, formData);
 
       if (!profile) {
         throw new Error();

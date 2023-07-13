@@ -7,7 +7,7 @@ import { ThemeEnum } from '@/shared/api';
 import PageError from './PageError';
 
 const meta = {
-  title: 'widget/PageError',
+  title: 'widgets/PageError',
   component: PageError,
   argTypes: {},
 } satisfies Meta<typeof PageError>;

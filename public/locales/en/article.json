@@ -4,5 +4,7 @@
   "articleNotFound": "Ops! Article not found...",
   "articleError": "The article is outdated, has been deleted or does not exist at all.",
   "comments": "Comments",
-  "noComments": "No comments"
+  "noComments": "No comments",
+  "textComment": "Enter comment text",
+  "send": "Send"
 }

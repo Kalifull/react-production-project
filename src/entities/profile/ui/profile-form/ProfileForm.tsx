@@ -37,7 +37,7 @@ const ProfileForm: FC<ProfileFormProps> = memo((props) => {
       <div className={cn(styles.form, {}, [className])}>
         {formData &&
           Object.entries(formData)
-            .filter(([field]) => field !== 'currency' && field !== 'country')
+            .filter(([field]) => field !== 'id' && field !== 'currency' && field !== 'country')
             .map(([field, value]) => (
               <Input
                 key={field}

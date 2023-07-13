@@ -1,4 +1,5 @@
 import { FC, memo, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { EditableProfileCard } from '@/features/editable-profile-card';
@@ -21,14 +22,21 @@ import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hook
 
 import { ProfilePageHeader } from '../profile-page-header/ProfilePageHeader';
 
+import styles from './ProfilePage.module.scss';
+
 interface ProfilePageProps {
   className?: string;
 }
 
-const ProfilePage: FC<ProfilePageProps> = memo(({ className }) => {
-  const { fetchProfileData } = useActionCreators(allActions);
+type PageParams = {
+  id: string;
+};
 
+const ProfilePage: FC<ProfilePageProps> = memo(({ className }) => {
   const { t } = useTranslation('profile');
+  const { id } = useParams<PageParams>();
+
+  const { fetchProfileData } = useActionCreators(allActions);
 
   const error = useAppSelector(selectProfileError);
   const readOnly = useAppSelector(selectProfileReadOnly);
@@ -37,17 +45,18 @@ const ProfilePage: FC<ProfilePageProps> = memo(({ className }) => {
 
   useEffect(() => {
     if (__PROJECT__ !== 'storybook') {
-      fetchProfileData();
+      fetchProfileData(id);
     }
-  }, [fetchProfileData]);
+  }, [fetchProfileData, id]);
 
   return (
-    <div className={cn('', {}, [className])}>
+    <div className={cn(styles['profile-page'], {}, [className])}>
       <ProfilePageHeader isLoading={isLoading} readOnly={readOnly} />
       {validationErrors?.length &&
         validationErrors.map((validateError) => (
           <Text
             key={validateError}
+            className={cn(styles.error)}
             variant={TextVariantEnum.ERROR}
             text={t(validateErrorTranslation[validateError])}
           />

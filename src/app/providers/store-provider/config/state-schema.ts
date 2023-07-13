@@ -9,6 +9,7 @@ import { AxiosInstance } from 'axios';
 import { PersistPartial } from 'redux-persist/es/persistReducer';
 
 import type { LoginSchema } from '@/features/user-auth';
+import type { FormCommentSchema } from '@/features/send-form-comment';
 
 import type { UserSchema } from '@/entities/user';
 import type { ArticleSchema } from '@/entities/article';
@@ -17,6 +18,7 @@ import type { ProfileSchema } from '@/entities/profile';
 
 export interface StateSchema {
   userInfo: UserSchema & PersistPartial;
+  formCommentInfo?: FormCommentSchema;
   loginFormInfo?: LoginSchema;
   articleInfo?: ArticleSchema;
   commentsInfo?: CommentsSchema;

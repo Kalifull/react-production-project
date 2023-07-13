@@ -8,7 +8,7 @@ import { ThemeEnum } from '@/shared/api';
 import Navbar from './Navbar';
 
 const meta = {
-  title: 'widget/Navbar',
+  title: 'widgets/Navbar',
   component: Navbar,
   argTypes: {},
   decorators: [StoreDecorator({ loginFormInfo: { username: '', password: '' } })],

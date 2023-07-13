@@ -2,9 +2,11 @@ import { FC, memo } from 'react';
 
 import { TextAlignEnum } from '@/shared/api';
 
-import { Avatar, Skeleton, Text } from '@/shared/ui';
+import { AppLink, Avatar, Skeleton, Text } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
+
+import { routesPaths } from '@/shared/config';
 
 import type { Comment } from '../../model/types/comment.interface';
 
@@ -33,10 +35,10 @@ export const CommentCard: FC<CommentCardProps> = memo((props) => {
 
   return comment ? (
     <div className={cn(styles['comment-card'], {}, [className])}>
-      <div className={cn(styles.header)}>
+      <AppLink className={cn(styles.header)} to={`${routesPaths.profile}${comment.user.id}`}>
         {comment.user.avatar && <Avatar src={comment.user.avatar} size={60} />}
         <Text className={cn(styles.username)} title={comment.user.username} />
-      </div>
+      </AppLink>
       <Text className={cn(styles.text)} text={comment.text} align={TextAlignEnum.LEFT} />
     </div>
   ) : null;
