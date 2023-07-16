@@ -18,6 +18,11 @@ const meta = {
       articleInfo: {
         article: {
           id: '1',
+          user: {
+            id: 1,
+            username: 'admin',
+            password: 'password',
+          },
           title: 'Javascript news СВЕЖАЯ',
           subtitle: 'Что нового в JS за 2022 год?',
           img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',

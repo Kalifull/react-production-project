@@ -1,21 +1,15 @@
 import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import {
-  SendFormComment,
-  formCommentReducer,
-  selectFormCommentError,
-} from '@/features/send-form-comment';
+import { SendFormComment, selectFormCommentError } from '@/features/send-form-comment';
 
-import { CommentList, commentsReducer } from '@/entities/comment';
+import { CommentList } from '@/entities/comment';
 
 import { TextVariantEnum } from '@/shared/api';
 
 import { Text } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
-
-import { withAsyncReducers } from '@/shared/lib/hoc';
 
 import { useAppSelector } from '@/shared/lib/hooks';
 
@@ -38,6 +32,4 @@ const CommentsDetails: FC = memo(() => {
   );
 });
 
-export default withAsyncReducers(CommentsDetails, {
-  reducers: { formCommentInfo: formCommentReducer, commentsInfo: commentsReducer },
-});
+export default CommentsDetails;

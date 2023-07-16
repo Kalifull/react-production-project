@@ -1,14 +1,15 @@
 import { FC, memo } from 'react';
-import { useTranslation } from 'react-i18next';
+
+import { ArticleList, ArticleViewEnum } from '@/entities/article';
 
 import { cn } from '@/shared/lib';
 
 import styles from './ArticlesPage.module.scss';
 
-const ArticlePage: FC = memo(() => {
-  const { t } = useTranslation('article');
-
-  return <div className={cn(styles['article-page'])}>{t('articlesPage')}</div>;
-});
+const ArticlePage: FC = memo(() => (
+  <div className={cn(styles['article-page'])}>
+    <ArticleList articles={[]} isLoading={false} view={ArticleViewEnum.TILE} />
+  </div>
+));
 
 export default ArticlePage;

@@ -1,23 +1,27 @@
 import { FC, memo, useCallback, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { TextAlignEnum, TextSizeEnum, TextVariantEnum } from '@/shared/api';
 
-import { Avatar, Skeleton, Text, Icon } from '@/shared/ui';
+import { Avatar, Skeleton, Text, Icon, Button } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
+
+import { withAsyncReducers } from '@/shared/lib/hoc';
 
 import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
 
 import EyeIcon from '@/shared/assets/icons/eye.svg';
 import CalendarIcon from '@/shared/assets/icons/calendar.svg';
 
+import { routesPaths } from '@/shared/config';
 import {
   selectArticleData,
   selectArticleError,
   selectArticleIsLoading,
 } from '../../model/selectors/select-article-state';
+import { articleReducer } from '../../model/slice/article-slice';
 
 import type { ArticleBlock } from '../../model/types/article.interface';
 
@@ -34,6 +38,7 @@ type PageParams = {
 };
 
 const ArticleDetails: FC<ArticleDetailsProps> = memo(({ className }) => {
+  const navigate = useNavigate();
   const { t } = useTranslation('article');
   const { id } = useParams<PageParams>();
 
@@ -48,6 +53,10 @@ const ArticleDetails: FC<ArticleDetailsProps> = memo(({ className }) => {
   const article = useAppSelector(selectArticleData);
   const isLoading = useAppSelector(selectArticleIsLoading);
   const error = useAppSelector(selectArticleError);
+
+  const handleBackClick = useCallback(() => {
+    navigate(routesPaths.articles);
+  }, [navigate]);
 
   const renderArticlesBlock = useCallback((block: ArticleBlock) => {
     return mappingArticlesBlock(block)[block.type];
@@ -75,6 +84,8 @@ const ArticleDetails: FC<ArticleDetailsProps> = memo(({ className }) => {
 
   return (
     <div className={cn(styles['article-details'])}>
+      <Button onClick={handleBackClick}>{t('back')}</Button>
+
       <div className={cn(styles['avatar-wrapper'])}>
         <Avatar className={cn(styles.avatar)} src={article?.img} size={200} alt={article?.title} />
       </div>
@@ -101,4 +112,6 @@ const ArticleDetails: FC<ArticleDetailsProps> = memo(({ className }) => {
   );
 });
 
-export default ArticleDetails;
+export default withAsyncReducers(ArticleDetails, {
+  reducers: { articleInfo: articleReducer },
+});

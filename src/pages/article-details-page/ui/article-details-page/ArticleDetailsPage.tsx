@@ -2,21 +2,23 @@ import { FC, memo } from 'react';
 
 import { CommentsDetails } from '@/widgets/comments-details';
 
-import { ArticleDetails, articleReducer } from '@/entities/article';
+import { ArticleDetails, selectArticleError } from '@/entities/article';
 
 import { cn } from '@/shared/lib';
 
-import { withAsyncReducers } from '@/shared/lib/hoc';
+import { useAppSelector } from '@/shared/lib/hooks';
 
 import styles from './ArticleDetailsPage.module.scss';
 
-const ArticleDetailsPage: FC = memo(() => (
-  <div className={cn(styles.article)}>
-    <ArticleDetails />
-    <CommentsDetails />
-  </div>
-));
+const ArticleDetailsPage: FC = memo(() => {
+  const error = useAppSelector(selectArticleError);
 
-export default withAsyncReducers(ArticleDetailsPage, {
-  reducers: { articleInfo: articleReducer },
+  return (
+    <div className={cn(styles.article)}>
+      <ArticleDetails />
+      {!error && <CommentsDetails />}
+    </div>
+  );
 });
+
+export default ArticleDetailsPage;

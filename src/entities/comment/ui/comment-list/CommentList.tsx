@@ -8,13 +8,15 @@ import { Text } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
+import { withAsyncReducers } from '@/shared/lib/hoc';
+
 import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
 
 import {
   selectCommentsInfo,
   selectCommentsIsLoading,
 } from '../../model/selectors/select-comments-state';
-
+import { commentsReducer } from '../../model/slice/comment-slice';
 import { CommentCard } from '../comment-card/CommentCard';
 
 import styles from './CommentList.module.scss';
@@ -65,4 +67,6 @@ const CommentList: FC<CommentListProps> = memo(({ className }) => {
   );
 });
 
-export default CommentList;
+export default withAsyncReducers(CommentList, {
+  reducers: { commentsInfo: commentsReducer },
+});

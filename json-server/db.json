@@ -529,6 +529,12 @@
       "userId": 1,
       "articleId": "1",
       "id": 2
+    },
+    {
+      "text": "Проверка работоспособности =)",
+      "userId": 1,
+      "articleId": "3",
+      "id": 3
     }
   ],
   "users": [

@@ -8,12 +8,15 @@ import { Button, Input } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
+import { withAsyncReducers } from '@/shared/lib/hoc';
+
 import { useActionCreators, allActions, useAppSelector } from '@/shared/lib/hooks';
 
 import {
   selectFormCommentText,
   selectFormCommentIsLoading,
 } from '../../model/selectors/select-form-comment-state';
+import { formCommentReducer } from '../../model/slice/form-comment-slice';
 
 import styles from './SendFormComment.module.scss';
 
@@ -57,4 +60,6 @@ const SendFormComment: FC<SendFormCommentProps> = memo(({ className }) => {
   );
 });
 
-export default SendFormComment;
+export default withAsyncReducers(SendFormComment, {
+  reducers: { formCommentInfo: formCommentReducer },
+});

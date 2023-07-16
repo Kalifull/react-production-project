@@ -7,6 +7,8 @@ import { ThemeEnum } from '@/shared/api';
 import { ThemeDecorator } from '@/shared/config/storybook/theme-decorator';
 import { StoreDecorator } from '@/shared/config/storybook/store-decorator';
 
+import Avatar from '@/shared/assets/test/storybook-avatar.png';
+
 import ArticleDetailsPage from './ArticleDetailsPage';
 
 const meta = {
@@ -18,6 +20,12 @@ const meta = {
       articleInfo: {
         article: {
           id: '1',
+          user: {
+            id: 1,
+            username: 'admin',
+            password: 'password',
+            avatar: Avatar,
+          },
           title: 'Javascript news СВЕЖАЯ',
           subtitle: 'Что нового в JS за 2022 год?',
           img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',

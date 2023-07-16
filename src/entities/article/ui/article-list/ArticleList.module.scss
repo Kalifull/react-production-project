@@ -1,0 +1,17 @@
+.list {
+
+  .item {
+    margin-bottom: 30px;
+  }
+}
+
+.tile {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .item {
+    margin-right: 30px;
+    margin-bottom: 30px;
+  }
+}

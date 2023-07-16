@@ -1,5 +1,5 @@
 import { useStore } from 'react-redux';
-import { ElementType, useEffect } from 'react';
+import { ElementType, useLayoutEffect } from 'react';
 import { DeepPartial, Reducer } from '@reduxjs/toolkit';
 
 import type { StateSchemaKey, StoreWithReducerManager } from '@/app/providers/store-provider';
@@ -21,7 +21,7 @@ const withAsyncReducers = (Component: ElementType, config: AsyncReducersConfig) 
   const dispatch = useAppDispatch();
   const store = useStore() as StoreWithReducerManager;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     Object.entries(reducers).forEach(([keyReducer, reducer]) => {
       if (!store.getState()[keyReducer as StateSchemaKey]) {
         store.reducerManager.add(keyReducer as StateSchemaKey, reducer as Reducer);

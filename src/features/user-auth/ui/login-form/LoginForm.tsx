@@ -111,4 +111,6 @@ const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
   );
 });
 
-export default withAsyncReducers(LoginForm, { reducers: { loginFormInfo: loginReducer } });
+export default withAsyncReducers(LoginForm, {
+  reducers: { loginFormInfo: loginReducer },
+});

@@ -9,12 +9,12 @@ import type { ImageBlock } from '../../../model/types/article.interface';
 import styles from './ArticleImageBlock.module.scss';
 
 interface ArticleImageBlockProps {
-  children?: string;
+  className?: string;
   block: ImageBlock;
 }
 
-export const ArticleImageBlock: FC<ArticleImageBlockProps> = memo(({ children, block }) => (
-  <div className={cn(styles['image-block'], {}, [children])}>
+export const ArticleImageBlock: FC<ArticleImageBlockProps> = memo(({ className, block }) => (
+  <div className={cn(styles['image-block'], {}, [className])}>
     <img className={cn(styles.image)} src={block.src} alt={block.title} />
     <Text text={block.title} />
   </div>

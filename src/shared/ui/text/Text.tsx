@@ -28,7 +28,7 @@ const Text: FC<TextProps> = memo((props) => {
   return (
     <div className={cn('', {}, [className, styles[variant], styles[align], styles[size]])}>
       {title && <p className={cn(styles.title)}>{title}</p>}
-      {text && <span className={cn(styles.text)}>{text}</span>}
+      {text && <p className={cn(styles.text)}>{text}</p>}
     </div>
   );
 });

@@ -1,6 +1,7 @@
 export { default as AppLink } from './app-link/AppLink';
 export { default as Avatar } from './avatar/Avatar';
 export { default as Button } from './button/Button';
+export { default as Card } from './card/Card';
 export { default as Code } from './code/Code';
 export { default as Icon } from './icon/Icon';
 export { default as Input } from './input/Input';
