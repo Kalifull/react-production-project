@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { DeepPartial } from '@reduxjs/toolkit';
 
-import { UserSchema, userReducer, userActions, fetchUserByUsername, User } from '@/entities/user';
+import { UserSchema, fetchUserByUsername, userActions, userReducer, User } from '@/entities/user';
 
 import { testAsyncThunk } from '@/shared/lib/test';
 

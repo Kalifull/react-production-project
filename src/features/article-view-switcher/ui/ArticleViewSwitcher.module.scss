@@ -1,0 +1,9 @@
+.view-switch-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  .selected {
+    fill: var(--secondary-color);
+  }
+}

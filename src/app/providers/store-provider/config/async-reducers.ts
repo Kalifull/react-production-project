@@ -7,6 +7,8 @@ import { articleReducer } from '@/entities/article';
 import { commentsReducer } from '@/entities/comment';
 import { profileReducer } from '@/entities/profile';
 
+import { articlesPageReducer } from '@/pages/articles-page';
+
 import type { StateSchema } from './state-schema';
 
 export const asyncReducers: DeepPartial<Reducer<StateSchema>> = {
@@ -14,5 +16,6 @@ export const asyncReducers: DeepPartial<Reducer<StateSchema>> = {
   formCommentInfo: formCommentReducer,
   articleInfo: articleReducer,
   commentsInfo: commentsReducer,
+  articlesPageInfo: articlesPageReducer,
   profileInfo: profileReducer,
 };

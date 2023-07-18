@@ -26,7 +26,7 @@ const meta = {
             password: 'password',
             avatar: Avatar,
           },
-          title: 'Javascript news СВЕЖАЯ',
+          title: 'Javascript news',
           subtitle: 'Что нового в JS за 2022 год?',
           img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
           views: 1022,

@@ -12,7 +12,7 @@ interface LoginModalProps {
   onClose: () => void;
 }
 
-const LoginModal: FC<LoginModalProps> = ({ isOpen, onClose, className }) => (
+const LoginModal: FC<LoginModalProps> = ({ className, isOpen, onClose }) => (
   <Modal className={cn('', {}, [className])} isOpen={isOpen} onClose={onClose}>
     <Suspense fallback={<Loader />}>
       <LoginForm />

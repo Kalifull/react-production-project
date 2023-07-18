@@ -14,7 +14,7 @@ interface ArticleListProps {
   className?: string;
   articles: Article[];
   isLoading?: boolean;
-  view?: ArticleViewEnum;
+  view: ArticleViewEnum;
 }
 
 const SKELETON_LIST_COUNT = 3;
@@ -26,7 +26,7 @@ const getSkeletonList = (view: ArticleViewEnum) =>
   );
 
 const ArticleList: FC<ArticleListProps> = memo((props) => {
-  const { className, articles, isLoading, view = ArticleViewEnum.TILE } = props;
+  const { className, articles, isLoading, view } = props;
 
   const renderArticle = (article: Article) => {
     return (
