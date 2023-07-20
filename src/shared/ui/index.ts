@@ -7,6 +7,7 @@ export { default as Icon } from './icon/Icon';
 export { default as Input } from './input/Input';
 export { default as Loader } from './loader/Loader';
 export { default as Modal } from './modal/Modal';
+export { default as Page } from './page/Page';
 export { default as Portal } from './portal/Portal';
 export { default as Select } from './select/Select';
 export { default as Skeleton } from './skeleton/Skeleton';

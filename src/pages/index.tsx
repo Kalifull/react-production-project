@@ -10,11 +10,7 @@ import { routesConfig } from './routes';
 
 export const Routing: FC = memo(() => {
   const renderWithWrapper = useCallback(({ path, element, authOnly }: AppRoutesProps) => {
-    const route = (
-      <Suspense fallback={<PageLoader />}>
-        <div className="page-wrapper">{element}</div>
-      </Suspense>
-    );
+    const route = <Suspense fallback={<PageLoader />}>{element}</Suspense>;
 
     return (
       <Route

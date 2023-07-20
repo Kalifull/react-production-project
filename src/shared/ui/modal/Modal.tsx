@@ -35,8 +35,8 @@ const Modal: FC<ModalProps> = ({ className, children, isOpen, onClose }) => {
 
   return hasTransitioned ? (
     <div className={cn(styles.modal, mods, [className])}>
-      <div className={styles.overlay} onClick={onClose}>
-        <div className={styles.content} onClick={handleClose}>
+      <div className={cn(styles.overlay)} onClick={onClose}>
+        <div className={cn(styles.content)} onClick={handleClose}>
           {children}
         </div>
       </div>

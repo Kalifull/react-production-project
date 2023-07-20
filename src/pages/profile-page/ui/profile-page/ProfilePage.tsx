@@ -14,7 +14,7 @@ import {
 
 import { TextVariantEnum } from '@/shared/api';
 
-import { Text } from '@/shared/ui';
+import { Page, Text } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -50,7 +50,7 @@ const ProfilePage: FC<ProfilePageProps> = memo(({ className }) => {
   }, [fetchProfileData, id]);
 
   return (
-    <div className={cn(styles['profile-page'], {}, [className])}>
+    <Page className={cn(styles['profile-page'], {}, [className])}>
       <ProfilePageHeader isLoading={isLoading} readOnly={readOnly} />
       {validationErrors?.length &&
         validationErrors.map((validateError) => (
@@ -62,7 +62,7 @@ const ProfilePage: FC<ProfilePageProps> = memo(({ className }) => {
           />
         ))}
       <EditableProfileCard isLoading={isLoading} error={error} readOnly={readOnly} />
-    </div>
+    </Page>
   );
 });
 

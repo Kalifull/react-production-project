@@ -38,13 +38,7 @@ const ArticleViewSwitcher: FC<ArticleViewSwitcherProps> = memo(({ className, vie
           onClick={handleSwitchView(viewType.view)}
         >
           <Icon
-            className={cn(
-              '',
-              {
-                [styles.selected]: viewType.view !== view,
-              },
-              []
-            )}
+            className={cn('', { [styles['not-selected']]: viewType.view !== view }, [])}
             Svg={viewType.icon}
           />
         </Button>

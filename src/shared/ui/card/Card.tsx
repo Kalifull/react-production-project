@@ -6,8 +6,8 @@ import styles from './Card.module.scss';
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
-  ref?: ForwardedRef<HTMLDivElement>;
   children: ReactNode;
+  ref?: ForwardedRef<HTMLDivElement>;
 }
 
 const Card: FC<CardProps> = memo(

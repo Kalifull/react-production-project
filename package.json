@@ -97,6 +97,7 @@
     "stylelint-config-standard-scss": "^9.0.0",
     "stylelint-order": "^6.0.3",
     "stylelint-scss": "^5.0.0",
+    "ts-jest": "^29.1.1",
     "ts-loader": "^9.2.6",
     "ts-node": "^10.9.1",
     "tsconfig-paths-webpack-plugin": "^4.0.1",

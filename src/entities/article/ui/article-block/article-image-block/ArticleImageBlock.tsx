@@ -14,8 +14,8 @@ interface ArticleImageBlockProps {
 }
 
 export const ArticleImageBlock: FC<ArticleImageBlockProps> = memo(({ className, block }) => (
-  <div className={cn(styles['image-block'], {}, [className])}>
+  <figure className={cn(styles['image-block'], {}, [className])}>
     <img className={cn(styles.image)} src={block.src} alt={block.title} />
     <Text text={block.title} />
-  </div>
+  </figure>
 ));

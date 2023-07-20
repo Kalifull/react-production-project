@@ -1,6 +1,9 @@
 import path from 'path';
+import { JestConfigWithTsJest, pathsToModuleNameMapper } from 'ts-jest';
 
-export default {
+import { compilerOptions } from '../../tsconfig.json';
+
+const jestConfig: JestConfigWithTsJest = {
   // Automatically clear mock calls, instances and results before every test
   clearMocks: true,
 
@@ -27,7 +30,9 @@ export default {
     '\\.(scss|less|css|png)$': 'identity-obj-proxy',
     '\\.svg': path.resolve(__dirname, 'JestEmptyComponent.tsx'),
     axios: 'axios/dist/node/axios.cjs',
-    '^@/(.*)$': '<rootDir>/src/$1',
+    ...pathsToModuleNameMapper(compilerOptions.paths, {
+      prefix: '<rootDir>src',
+    }),
   },
 
   // A set of global variables that need to be available in all test environments
@@ -183,3 +188,5 @@ export default {
   // Whether to use watchman for file crawling
   // watchman: true,
 };
+
+export default jestConfig;

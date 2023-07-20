@@ -1,8 +1,11 @@
 import { useCallback, useEffect, useRef, useState, MutableRefObject } from 'react';
 
-type UseHoverResult = [MutableRefObject<HTMLDivElement | null>, boolean];
+interface UseHoverResponse {
+  ref: MutableRefObject<HTMLDivElement | null>;
+  isHover: boolean;
+}
 
-const useHover = (): UseHoverResult => {
+const useHover = (): UseHoverResponse => {
   const [isHover, setIsHover] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -30,7 +33,7 @@ const useHover = (): UseHoverResult => {
     };
   }, [handleMouseEnter, handleMouseLeave]);
 
-  return [ref, isHover];
+  return { ref, isHover };
 };
 
 export default useHover;

@@ -28,13 +28,11 @@ export const profileSlice = createSlice({
     setReadOnly(state, { payload: { readOnly } }: PayloadAction<PayloadReadOnly>) {
       state.readOnly = readOnly;
     },
-
     setCancelEdit(state, { payload: { readOnly } }: PayloadAction<PayloadReadOnly>) {
       state.readOnly = readOnly;
       state.formData = state.profileData;
       state.validationErrors = null;
     },
-
     updateProfileForm(state, { payload: { value, field } }: PayloadAction<PayloadProfileForm>) {
       state.formData = { ...state.formData, [field]: value };
     },

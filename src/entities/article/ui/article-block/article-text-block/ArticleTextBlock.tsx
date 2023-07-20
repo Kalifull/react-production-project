@@ -16,7 +16,7 @@ interface ArticleTextBlockProps {
 }
 
 export const ArticleTextBlock: FC<ArticleTextBlockProps> = memo(({ className, block }) => (
-  <div className={cn(styles['text-block'], {}, [className])}>
+  <section className={cn(styles['text-block'], {}, [className])}>
     {block?.title && (
       <Text className={cn(styles.title)} title={block.title} align={TextAlignEnum.LEFT} />
     )}
@@ -28,5 +28,5 @@ export const ArticleTextBlock: FC<ArticleTextBlockProps> = memo(({ className, bl
         align={TextAlignEnum.LEFT}
       />
     ))}
-  </div>
+  </section>
 ));

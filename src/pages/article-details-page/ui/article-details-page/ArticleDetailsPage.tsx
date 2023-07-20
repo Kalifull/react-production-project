@@ -4,6 +4,8 @@ import { CommentsDetails } from '@/widgets/comments-details';
 
 import { ArticleDetails, selectArticleError } from '@/entities/article';
 
+import { Page } from '@/shared/ui';
+
 import { cn } from '@/shared/lib';
 
 import { useAppSelector } from '@/shared/lib/hooks';
@@ -14,10 +16,10 @@ const ArticleDetailsPage: FC = memo(() => {
   const error = useAppSelector(selectArticleError);
 
   return (
-    <div className={cn(styles.article)}>
+    <Page className={cn(styles.article)}>
       <ArticleDetails />
       {!error && <CommentsDetails />}
-    </div>
+    </Page>
   );
 });
 

@@ -70,7 +70,7 @@ const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
   return (
     <FocusLock>
       <div className={cn(styles.form, {}, [className])}>
-        <Text title={t('authForm', { ns: 'auth' })} className={styles.text} />
+        <Text title={t('authForm', { ns: 'auth' })} className={cn(styles.text)} />
 
         <Input
           className={cn(styles.input)}

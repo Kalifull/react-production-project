@@ -14,7 +14,7 @@ interface ArticleCodeBlockProps {
 }
 
 export const ArticleCodeBlock: FC<ArticleCodeBlockProps> = memo(({ className, block }) => (
-  <div className={cn(styles['code-block'], {}, [className])}>
+  <section className={cn(styles['code-block'], {}, [className])}>
     <Code text={block.code} />
-  </div>
+  </section>
 ));

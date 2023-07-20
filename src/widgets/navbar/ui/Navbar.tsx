@@ -42,11 +42,11 @@ const Navbar: FC<NavbarProps> = memo(({ className }) => {
   }, [logout]);
 
   return (
-    <div className={cn(styles.navbar, {}, [className])}>
+    <header className={cn(styles.navbar, {}, [className])}>
       {authData ? (
         <Button
           variant={ButtonVariantEnum.BACKGROUND_INVERTED}
-          className={styles.links}
+          className={cn(styles.links)}
           onClick={handleLogout}
         >
           {t('logout')}
@@ -55,7 +55,7 @@ const Navbar: FC<NavbarProps> = memo(({ className }) => {
         <>
           <Button
             variant={ButtonVariantEnum.BACKGROUND_INVERTED}
-            className={styles.links}
+            className={cn(styles.links)}
             onClick={handleOpen}
           >
             {t('login')}
@@ -66,7 +66,7 @@ const Navbar: FC<NavbarProps> = memo(({ className }) => {
           </Portal>
         </>
       )}
-    </div>
+    </header>
   );
 });
 

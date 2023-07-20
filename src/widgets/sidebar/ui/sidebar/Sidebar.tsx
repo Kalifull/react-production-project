@@ -31,13 +31,13 @@ const Sidebar: FC<SidebarProps> = memo(({ className }) => {
   }, []);
 
   return (
-    <div
+    <menu
       className={cn(styles.sidebar, { [styles.collapsed]: isCollapsed }, [className])}
       data-testid="sidebar"
     >
       <Button
         type="button"
-        className={styles.button}
+        className={cn(styles.button)}
         variant={ButtonVariantEnum.BACKGROUND_INVERTED}
         square
         size={ButtonSizeEnum.L}
@@ -47,17 +47,17 @@ const Sidebar: FC<SidebarProps> = memo(({ className }) => {
         {isCollapsed ? '>' : '<'}
       </Button>
 
-      <div className={styles.links}>
+      <nav className={cn(styles.links)}>
         {sidebarItemsList.map((item) => (
           <SidebarItem key={item.id} {...item} isCollapsed={isCollapsed} />
         ))}
-      </div>
+      </nav>
 
-      <div className={styles.switchers}>
+      <div className={cn(styles.switchers)}>
         <ThemeSwitcher />
-        <LanguageSwitcher className={styles.lang} isCollapsed={isCollapsed} />
+        <LanguageSwitcher className={cn(styles.lang)} isCollapsed={isCollapsed} />
       </div>
-    </div>
+    </menu>
   );
 });
 

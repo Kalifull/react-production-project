@@ -1,4 +1,8 @@
-import { fetchArticlesList, articlesPageActions } from '@/pages/articles-page';
+import {
+  fetchArticlesList,
+  fetchNextArticlesPage,
+  articlesPageActions,
+} from '@/pages/articles-page';
 
 import { loginActions } from '@/features/user-auth';
 import { formCommentActions } from '@/features/send-form-comment';
@@ -10,6 +14,7 @@ import { fetchUserByUsername, userActions } from '@/entities/user';
 
 const allActions = {
   fetchArticlesList,
+  fetchNextArticlesPage,
   fetchArticleById,
   fetchCommentsByArticleId,
   sendCommentForArticle,
