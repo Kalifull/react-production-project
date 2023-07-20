@@ -99,6 +99,8 @@ const meta = {
         },
         isLoading: false,
         view: ArticleViewEnum.TILE,
+        page: 1,
+        hasMore: false,
       },
     }),
   ],
@@ -136,6 +138,8 @@ IsLoading.decorators = [
       isLoading: true,
       error: null,
       view: ArticleViewEnum.LIST,
+      page: 1,
+      hasMore: false,
     },
   }),
 ];
@@ -152,6 +156,8 @@ Error.decorators = [
       isLoading: false,
       error: 'Проверьте подключение к сети.',
       view: ArticleViewEnum.LIST,
+      page: 1,
+      hasMore: false,
     },
   }),
 ];
