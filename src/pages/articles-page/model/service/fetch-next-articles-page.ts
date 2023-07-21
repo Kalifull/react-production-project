@@ -12,7 +12,7 @@ import {
 import { articlesPageActions } from '../slice/articles-page-slice';
 
 export const fetchNextArticlesPage = createAsyncThunk<void, void, ThunkConfig<string>>(
-  'articlesPage/fetchNextArticlesPage',
+  'articlesPageInfo/fetchNextArticlesPage',
   async (_, { getState, dispatch }) => {
     const page = selectArticlesPage(getState());
     const hasMore = selectArticlesHasMore(getState());

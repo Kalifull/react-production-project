@@ -22,8 +22,12 @@ const withAsyncReducers = (Component: ElementType, config: AsyncReducersConfig) 
   const store = useStore() as StoreWithReducerManager;
 
   useLayoutEffect(() => {
+    const mountedReducers = store.reducerManager.getReducerMap();
+
     Object.entries(reducers).forEach(([keyReducer, reducer]) => {
-      if (!store.getState()[keyReducer as StateSchemaKey]) {
+      const isMounted = mountedReducers[keyReducer as StateSchemaKey];
+
+      if (!isMounted) {
         store.reducerManager.add(keyReducer as StateSchemaKey, reducer as Reducer);
         dispatch({ type: `@INIT/${keyReducer} reducer` });
       }

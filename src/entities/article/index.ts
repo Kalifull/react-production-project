@@ -8,10 +8,10 @@ export {
 } from './model/selectors/select-article-state';
 export { default as ArticleDetails } from './ui/article-details/ArticleDetails';
 export { default as ArticleList } from './ui/article-list/ArticleList';
-export type { Article } from './model/types/article.interface';
 export {
   ArticleViewEnum,
   ArticleTypeEnum,
   ArticleBlockTypeEnum,
 } from './model/types/article.interface';
+export type { Article } from './model/types/article.interface';
 export type { ArticleSchema } from './model/types/article-schema.interface';

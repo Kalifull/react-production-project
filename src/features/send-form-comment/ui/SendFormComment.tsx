@@ -15,8 +15,8 @@ import { useActionCreators, allActions, useAppSelector } from '@/shared/lib/hook
 import {
   selectFormCommentText,
   selectFormCommentIsLoading,
-} from '../../model/selectors/select-form-comment-state';
-import { formCommentReducer } from '../../model/slice/form-comment-slice';
+} from '../model/selectors/select-form-comment-state';
+import { formCommentReducer } from '../model/slice/form-comment-slice';
 
 import styles from './SendFormComment.module.scss';
 

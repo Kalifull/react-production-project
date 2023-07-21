@@ -12,7 +12,7 @@ const initialState: LoginSchema = {
 };
 
 export const loginSlice = createSlice({
-  name: 'login',
+  name: 'login-form-info',
   initialState,
   reducers: {
     setUsername(state, { payload: { username } }: PayloadAction<PayloadUsername>) {

@@ -15,11 +15,11 @@ const extraArgument: ThunkExtraArgs = {
 
 export const createReduxStore = (
   initialState?: StateSchema,
-  asyncReducers?: Reducer<StateSchema>
+  asyncReducers?: ReducersMapObject<StateSchema>
 ) => {
   const rootReducer: ReducersMapObject<StateSchema> = {
-    ...asyncReducers,
     ...syncReducers,
+    ...asyncReducers,
   };
 
   const reducerManager = createReducerManager(rootReducer);

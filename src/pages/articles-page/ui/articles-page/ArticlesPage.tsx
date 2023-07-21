@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { FC, memo, useCallback, useEffect } from 'react';
 
-import { ArticleViewSwitcher } from '@/features/article-view-switcher';
+import { ArticleViewSwitcher, selectArticleView } from '@/features/article-view-switcher';
 
 import { ArticleList } from '@/entities/article';
 
@@ -15,33 +15,30 @@ import { withAsyncReducers } from '@/shared/lib/hoc';
 
 import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
 
-import { articlesPageReducer } from '../../model/slice/articles-page-slice';
-
 import {
   selectArticlesPageInfo,
   selectArticlesPageIsLoading,
   selectArticlesPageError,
-  selectArticlesPageView,
 } from '../../model/selectors/select-articles-page-state';
+import { articlesPageReducer } from '../../model/slice/articles-page-slice';
 
 import styles from './ArticlesPage.module.scss';
 
 const ArticlePage: FC = memo(() => {
   const { t } = useTranslation('article');
 
-  const { initState, fetchArticlesList, fetchNextArticlesPage } = useActionCreators(allActions);
-
-  useEffect(() => {
-    if (__PROJECT__ !== 'storybook') {
-      initState();
-      fetchArticlesList({ page: 1 });
-    }
-  }, [fetchArticlesList, initState]);
+  const { initArticlesListData, fetchNextArticlesPage } = useActionCreators(allActions);
 
   const articles = useAppSelector(selectArticlesPageInfo.selectAll);
   const isLoading = useAppSelector(selectArticlesPageIsLoading);
   const error = useAppSelector(selectArticlesPageError);
-  const view = useAppSelector(selectArticlesPageView);
+  const view = useAppSelector(selectArticleView);
+
+  useEffect(() => {
+    if (__PROJECT__ !== 'storybook') {
+      initArticlesListData();
+    }
+  }, [initArticlesListData]);
 
   const handleLoadNextPage = useCallback(() => {
     fetchNextArticlesPage();
@@ -57,7 +54,7 @@ const ArticlePage: FC = memo(() => {
 
   return (
     <Page className={cn(styles['article-page'])}>
-      <ArticleViewSwitcher view={view} />
+      <ArticleViewSwitcher />
       <ArticleList
         articles={articles}
         view={view}
@@ -70,4 +67,5 @@ const ArticlePage: FC = memo(() => {
 
 export default withAsyncReducers(ArticlePage, {
   reducers: { articlesPageInfo: articlesPageReducer },
+  removeAfterUnmount: false,
 });

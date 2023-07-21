@@ -13,7 +13,7 @@ import { cn } from '@/shared/lib';
 
 import { useAppSelector } from '@/shared/lib/hooks';
 
-import styles from './CommentsDetails.module.scss';
+import styles from './FormComments.module.scss';
 
 const CommentsDetails: FC = memo(() => {
   const { t } = useTranslation('article');

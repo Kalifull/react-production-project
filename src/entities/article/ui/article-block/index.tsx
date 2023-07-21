@@ -1,3 +1,7 @@
+import { ArticleTextBlock } from './article-text-block/ArticleTextBlock';
+import { ArticleCodeBlock } from './article-code-block/ArticleCodeBlock';
+import { ArticleImageBlock } from './article-image-block/ArticleImageBlock';
+
 import {
   TextBlock,
   CodeBlock,
@@ -5,10 +9,6 @@ import {
   ArticleBlock,
   ArticleBlockTypeEnum,
 } from '../../model/types/article.interface';
-
-import { ArticleTextBlock } from './article-text-block/ArticleTextBlock';
-import { ArticleCodeBlock } from './article-code-block/ArticleCodeBlock';
-import { ArticleImageBlock } from './article-image-block/ArticleImageBlock';
 
 export const mappingArticlesBlock = (block: ArticleBlock) => {
   return {

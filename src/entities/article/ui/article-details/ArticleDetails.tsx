@@ -22,7 +22,6 @@ import {
   selectArticleIsLoading,
 } from '../../model/selectors/select-article-state';
 import { articleReducer } from '../../model/slice/article-slice';
-
 import type { ArticleBlock } from '../../model/types/article.interface';
 
 import { mappingArticlesBlock } from '../article-block';

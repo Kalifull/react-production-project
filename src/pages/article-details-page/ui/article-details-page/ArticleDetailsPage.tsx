@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 
-import { CommentsDetails } from '@/widgets/comments-details';
+import { FormComments } from '@/widgets/form-comments';
 
 import { ArticleDetails, selectArticleError } from '@/entities/article';
 
@@ -18,7 +18,7 @@ const ArticleDetailsPage: FC = memo(() => {
   return (
     <Page className={cn(styles.article)}>
       <ArticleDetails />
-      {!error && <CommentsDetails />}
+      {!error && <FormComments />}
     </Page>
   );
 });

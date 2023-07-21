@@ -9,7 +9,7 @@ import { selectAuthData } from '@/entities/user';
 import type { Comment } from '@/entities/comment';
 
 export const sendCommentForArticle = createAsyncThunk<Comment, string, ThunkConfig<string>>(
-  'comment/sendCommentForArticle',
+  'commentsInfo/sendCommentForArticle',
   async (text, { rejectWithValue, extra, getState }) => {
     try {
       const authData = selectAuthData(getState());

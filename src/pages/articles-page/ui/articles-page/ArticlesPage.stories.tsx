@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ArticleBlockTypeEnum, ArticleTypeEnum, ArticleViewEnum } from '@/entities/article';
+import { ArticleBlockTypeEnum, ArticleTypeEnum } from '@/entities/article';
 
 import { ThemeEnum } from '@/shared/api';
 
@@ -98,7 +98,6 @@ const meta = {
           },
         },
         isLoading: false,
-        view: ArticleViewEnum.TILE,
         page: 1,
         hasMore: false,
       },
@@ -137,7 +136,6 @@ IsLoading.decorators = [
       entities: {},
       isLoading: true,
       error: null,
-      view: ArticleViewEnum.LIST,
       page: 1,
       hasMore: false,
     },
@@ -155,7 +153,6 @@ Error.decorators = [
       entities: {},
       isLoading: false,
       error: 'Проверьте подключение к сети.',
-      view: ArticleViewEnum.LIST,
       page: 1,
       hasMore: false,
     },

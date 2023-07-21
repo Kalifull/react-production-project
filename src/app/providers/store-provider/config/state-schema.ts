@@ -10,22 +10,24 @@ import { PersistPartial } from 'redux-persist/es/persistReducer';
 
 import type { ArticlesPageSchema } from '@/pages/articles-page';
 
-import type { LoginSchema } from '@/features/user-auth';
+import type { ArticleViewSchema } from '@/features/article-view-switcher';
 import type { FormCommentSchema } from '@/features/send-form-comment';
+import type { LoginSchema } from '@/features/user-auth';
 
-import type { UserSchema } from '@/entities/user';
 import type { ArticleSchema } from '@/entities/article';
 import type { CommentsSchema } from '@/entities/comment';
 import type { ProfileSchema } from '@/entities/profile';
+import type { UserSchema } from '@/entities/user';
 
 export interface StateSchema {
-  userInfo: UserSchema & PersistPartial;
   articlesPageInfo?: ArticlesPageSchema;
+  articleViewInfo?: ArticleViewSchema;
   formCommentInfo?: FormCommentSchema;
   loginFormInfo?: LoginSchema;
   articleInfo?: ArticleSchema;
   commentsInfo?: CommentsSchema;
   profileInfo?: ProfileSchema;
+  userInfo: UserSchema & PersistPartial;
 }
 
 export type StateSchemaKey = keyof StateSchema;

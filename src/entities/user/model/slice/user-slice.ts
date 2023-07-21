@@ -11,7 +11,7 @@ const initialState: UserSchema = {
 };
 
 export const userSlice = createSlice({
-  name: 'user',
+  name: 'user-info',
   initialState,
   reducers: {
     logout(state) {

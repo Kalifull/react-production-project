@@ -8,9 +8,7 @@ import { ArticleSkeletonList } from './ArticleSkeletonList';
 
 import { ArticleItem } from '../article-item/ArticleItem';
 
-import type { Article } from '../../model/types/article.interface';
-
-import { ArticleViewEnum } from '../../model/types/article.interface';
+import type { Article, ArticleViewEnum } from '../../model/types/article.interface';
 
 import styles from './ArticleList.module.scss';
 

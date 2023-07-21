@@ -1,18 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { ArticleViewEnum } from '@/entities/article';
+
 import { ThemeEnum } from '@/shared/api';
 
 import { ThemeDecorator } from '@/shared/config/storybook/theme-decorator';
 import { StoreDecorator } from '@/shared/config/storybook/store-decorator';
 
-import { ArticleViewEnum } from '@/entities/article';
 import ArticleViewSwitcher from './ArticleViewSwitcher';
 
 const meta = {
   title: 'features/ArticleViewSwitcher',
   component: ArticleViewSwitcher,
   argTypes: {},
-  decorators: [StoreDecorator({})],
+  decorators: [
+    StoreDecorator({ articleViewInfo: { view: ArticleViewEnum.TILE, _isInitialized: false } }),
+  ],
 } satisfies Meta<typeof ArticleViewSwitcher>;
 
 export default meta;
@@ -20,15 +23,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Light: Story = {
-  args: {
-    view: ArticleViewEnum.LIST,
-  },
+  args: {},
 };
 
 export const Dark: Story = {
-  args: {
-    view: ArticleViewEnum.LIST,
-  },
+  args: {},
 };
 
 Dark.decorators = [ThemeDecorator(ThemeEnum.DARK)];

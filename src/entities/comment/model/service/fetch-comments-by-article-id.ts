@@ -8,7 +8,7 @@ export const fetchCommentsByArticleId = createAsyncThunk<
   Comment[],
   string | undefined,
   ThunkConfig<string>
->('comments/fetchCommentsByArticleId', async (articleId, { rejectWithValue, extra }) => {
+>('commentsInfo/fetchCommentsByArticleId', async (articleId, { rejectWithValue, extra }) => {
   try {
     if (!articleId) {
       return rejectWithValue('commentsError');

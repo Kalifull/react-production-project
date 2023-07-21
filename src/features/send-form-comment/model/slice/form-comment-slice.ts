@@ -15,7 +15,7 @@ const initialState: FormCommentSchema = {
 };
 
 export const formCommentSlice = createSlice({
-  name: 'comment-form',
+  name: 'form-comment-info',
   initialState,
   reducers: {
     setText(state, { payload: { text } }: PayloadAction<PayloadText>) {

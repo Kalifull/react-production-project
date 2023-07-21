@@ -19,7 +19,7 @@ export const commentsAdapter = createEntityAdapter<Comment>({
 });
 
 export const commentsSlice = createSlice({
-  name: 'comments',
+  name: 'comments-info',
   initialState: commentsAdapter.getInitialState<CommentsSchema>(initialState),
   reducers: {},
   extraReducers: (builder) => {

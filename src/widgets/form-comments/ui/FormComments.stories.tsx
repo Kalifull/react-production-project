@@ -5,11 +5,11 @@ import { ThemeEnum } from '@/shared/api';
 import { ThemeDecorator } from '@/shared/config/storybook/theme-decorator';
 import { StoreDecorator } from '@/shared/config/storybook/store-decorator';
 
-import CommentsDetails from './CommentsDetails';
+import FormComments from './FormComments';
 
 const meta = {
-  title: 'widgets/CommentsDetails',
-  component: CommentsDetails,
+  title: 'widgets/FormComments',
+  component: FormComments,
   argTypes: {},
   decorators: [
     StoreDecorator({
@@ -52,7 +52,7 @@ const meta = {
       },
     }),
   ],
-} satisfies Meta<typeof CommentsDetails>;
+} satisfies Meta<typeof FormComments>;
 
 export default meta;
 

@@ -8,19 +8,24 @@ import { Button, Icon } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
-import { allActions, useActionCreators } from '@/shared/lib/hooks';
+import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
 
-import { viewTypes } from '../model/types/article-view-switcher.interface';
+import { withAsyncReducers } from '@/shared/lib/hoc';
+
+import { selectArticleView } from '../model/selectors/select-article-view-state';
+import { articleViewReducer } from '../model/slice/article-view-switcher-slice';
+import { viewTypes } from '../model/types/article-view.interface';
 
 import styles from './ArticleViewSwitcher.module.scss';
 
 interface ArticleViewSwitcherProps {
   className?: string;
-  view: ArticleViewEnum;
 }
 
-const ArticleViewSwitcher: FC<ArticleViewSwitcherProps> = memo(({ className, view }) => {
+const ArticleViewSwitcher: FC<ArticleViewSwitcherProps> = memo(({ className }) => {
   const { setView } = useActionCreators(allActions);
+
+  const view = useAppSelector(selectArticleView);
 
   const handleSwitchView = useCallback(
     (articleView: ArticleViewEnum) => () => {
@@ -47,4 +52,7 @@ const ArticleViewSwitcher: FC<ArticleViewSwitcherProps> = memo(({ className, vie
   );
 });
 
-export default ArticleViewSwitcher;
+export default withAsyncReducers(ArticleViewSwitcher, {
+  reducers: { articleViewInfo: articleViewReducer },
+  removeAfterUnmount: false,
+});

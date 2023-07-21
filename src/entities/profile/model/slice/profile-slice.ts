@@ -22,7 +22,7 @@ const initialState: ProfileSchema = {
 };
 
 export const profileSlice = createSlice({
-  name: 'profile',
+  name: 'profile-info',
   initialState,
   reducers: {
     setReadOnly(state, { payload: { readOnly } }: PayloadAction<PayloadReadOnly>) {

@@ -13,7 +13,7 @@ export const fetchUserByUsername = createAsyncThunk<
   User,
   FetchUserByUsernameParams,
   ThunkConfig<string>
->('user/fetchUserByUsername', async (authData, { rejectWithValue, extra }) => {
+>('userInfo/fetchUserByUsername', async (authData, { rejectWithValue, extra }) => {
   try {
     const { data: user } = await extra.api.post<User>('/login', authData);
 

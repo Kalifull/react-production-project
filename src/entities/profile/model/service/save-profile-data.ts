@@ -8,7 +8,7 @@ import { selectFormData } from '../selectors/select-profile-state';
 import { Profile, ProfileErrorsEnum } from '../types/profile-schema.interface';
 
 export const saveProfileData = createAsyncThunk<Profile, void, ThunkConfig<ProfileErrorsEnum[]>>(
-  'profile/saveProfileData',
+  'profileInfo/saveProfileData',
   async (_, { rejectWithValue, extra, getState }) => {
     const formData = selectFormData(getState());
     const errors = validateProfileData(formData);
