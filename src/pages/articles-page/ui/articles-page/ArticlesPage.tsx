@@ -1,13 +1,15 @@
 import { useTranslation } from 'react-i18next';
 import { FC, memo, useCallback, useEffect } from 'react';
 
+import { Page } from '@/widgets/page';
+
 import { ArticleViewSwitcher, selectArticleView } from '@/features/article-view-switcher';
 
 import { ArticleList } from '@/entities/article';
 
 import { TextVariantEnum } from '@/shared/api';
 
-import { Page, Text } from '@/shared/ui';
+import { Text } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 

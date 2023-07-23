@@ -2,26 +2,23 @@ import { useEffect, useRef, useState, useCallback, MutableRefObject } from 'reac
 
 import useEvent from '../use-event';
 
-interface useInfiniteScrollProps {
+interface useInfiniteScrollOptions {
   triggerOnce?: boolean;
   callback?: () => void;
-  wrapperRef?: MutableRefObject<Element | null>;
   options?: IntersectionObserverInit;
 }
 
-type InViewHookResponse = [MutableRefObject<HTMLDivElement | null>, boolean] & {
-  ref: MutableRefObject<HTMLDivElement | null>;
+type InViewHookResponse<T> = [MutableRefObject<T | null>, boolean] & {
+  ref: MutableRefObject<T | null>;
   inView: boolean;
 };
 
-const useInView = ({
-  callback,
-  triggerOnce,
-  wrapperRef,
-  options,
-}: useInfiniteScrollProps = {}): InViewHookResponse => {
-  const [inView, setInView] = useState(false);
-  const targetRef = useRef<HTMLDivElement | null>(null);
+const useInView = <T extends HTMLElement>(
+  { triggerOnce = false, callback, options }: useInfiniteScrollOptions = {},
+  wrapperRef?: MutableRefObject<T | null>
+): InViewHookResponse<T> => {
+  const [isInView, setIsInView] = useState(false);
+  const targetRef = useRef<T | null>(null);
 
   const memoizedCallback = useEvent(callback);
 
@@ -35,7 +32,7 @@ const useInView = ({
         }
       }
 
-      setInView(entry.isIntersecting);
+      setIsInView(entry.isIntersecting);
     },
     [memoizedCallback, triggerOnce]
   );
@@ -60,7 +57,7 @@ const useInView = ({
     }
   }, [handleIntersect, options, wrapperRef]);
 
-  const result = [targetRef, inView] as InViewHookResponse;
+  const result = [targetRef, isInView] as InViewHookResponse<T>;
   result.ref = result[0];
   result.inView = result[1];
 

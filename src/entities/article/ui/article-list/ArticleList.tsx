@@ -23,7 +23,7 @@ interface ArticleListProps {
 const ArticleList: FC<ArticleListProps> = memo((props) => {
   const { className, articles, view, isLoading, onIntersect } = props;
 
-  const { ref } = useInView({
+  const { ref } = useInView<HTMLDivElement>({
     triggerOnce: true,
     callback: onIntersect,
     options: {

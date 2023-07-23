@@ -6,7 +6,7 @@ export const selectFormCommentState = (state: RootState) => state?.formCommentIn
 
 export const selectFormCommentText = createSelector(
   [selectFormCommentState],
-  (commentFormState) => commentFormState?.text || ''
+  (commentFormState) => commentFormState?.text ?? ''
 );
 
 export const selectFormCommentIsLoading = createSelector(

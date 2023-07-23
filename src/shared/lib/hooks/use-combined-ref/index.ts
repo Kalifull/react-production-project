@@ -1,8 +1,8 @@
-import { ForwardedRef, MutableRefObject, RefCallback, useCallback } from 'react';
+import { useCallback, MutableRefObject, RefCallback } from 'react';
 
-const useCombinedRef = <T = any>(
-  ...refs: Array<MutableRefObject<T> | ForwardedRef<T>>
-): RefCallback<T> => {
+type Ref<T> = ((element: T | null) => void) | MutableRefObject<T | null> | null | undefined;
+
+const useCombinedRef = <T>(...refs: Ref<T>[]): RefCallback<T> => {
   const combinedRef = useCallback(
     (element: T) => {
       refs.forEach((ref) => {
@@ -12,7 +12,7 @@ const useCombinedRef = <T = any>(
 
         if (typeof ref === 'function') {
           ref(element);
-        } else if (ref) {
+        } else if (Object.prototype.hasOwnProperty.call(ref, 'current')) {
           ref.current = element;
         }
       });

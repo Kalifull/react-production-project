@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useRef, useState, MutableRefObject } from 'react';
 
-interface UseHoverResponse {
-  ref: MutableRefObject<HTMLDivElement | null>;
+interface UseHoverResponse<T> {
+  ref: MutableRefObject<T | null>;
   isHover: boolean;
 }
 
-const useHover = (): UseHoverResponse => {
+const useHover = <T extends HTMLElement>(): UseHoverResponse<T> => {
   const [isHover, setIsHover] = useState(false);
-  const ref = useRef<HTMLDivElement | null>(null);
+  const targetRef = useRef<T | null>(null);
 
   const handleMouseEnter = useCallback(() => {
     setIsHover(true);
@@ -18,22 +18,22 @@ const useHover = (): UseHoverResponse => {
   }, []);
 
   useEffect(() => {
-    const node = ref.current;
+    const targetElement = targetRef.current;
 
-    if (!node) {
+    if (!targetElement) {
       return;
     }
 
-    node.addEventListener('mouseenter', handleMouseEnter);
-    node.addEventListener('mouseleave', handleMouseLeave);
+    targetElement.addEventListener('mouseenter', handleMouseEnter);
+    targetElement.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
-      node.removeEventListener('mouseenter', handleMouseEnter);
-      node.removeEventListener('mouseleave', handleMouseLeave);
+      targetElement.removeEventListener('mouseenter', handleMouseEnter);
+      targetElement.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, [handleMouseEnter, handleMouseLeave]);
 
-  return { ref, isHover };
+  return { ref: targetRef, isHover };
 };
 
 export default useHover;

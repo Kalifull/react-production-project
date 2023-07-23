@@ -38,7 +38,7 @@ export const ArticleItem: FC<ArticleItemProps> = memo(
     const navigate = useNavigate();
     const { t } = useTranslation('article');
 
-    const { ref: localRef } = useHover();
+    const { ref: localRef } = useHover<HTMLDivElement>();
     const combinedRef = useCombinedRef(ref, localRef);
 
     const handleOpenArticle = useCallback(() => {

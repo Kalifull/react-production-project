@@ -2,6 +2,8 @@ import { FC, memo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+import { Page } from '@/widgets/page';
+
 import { EditableProfileCard } from '@/features/editable-profile-card';
 
 import {
@@ -14,7 +16,7 @@ import {
 
 import { TextVariantEnum } from '@/shared/api';
 
-import { Page, Text } from '@/shared/ui';
+import { Text } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 

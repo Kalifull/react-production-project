@@ -1,10 +1,9 @@
 import { FC, memo } from 'react';
 
 import { FormComments } from '@/widgets/form-comments';
+import { Page } from '@/widgets/page';
 
 import { ArticleDetails, selectArticleError } from '@/entities/article';
-
-import { Page } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 

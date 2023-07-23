@@ -6,6 +6,7 @@ import {
 } from '@/pages/articles-page';
 
 import { articleViewActions } from '@/features/article-view-switcher';
+import { scrollRecoveryActions } from '@/features/scroll-recovery';
 import { formCommentActions } from '@/features/send-form-comment';
 import { loginActions } from '@/features/user-auth';
 
@@ -26,6 +27,7 @@ const allActions = {
   fetchUserByUsername,
   ...articlesPageActions,
   ...articleViewActions,
+  ...scrollRecoveryActions,
   ...formCommentActions,
   ...loginActions,
   ...articleActions,

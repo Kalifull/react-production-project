@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, FC, memo } from 'react';
+import { ButtonHTMLAttributes, FC, ForwardedRef, forwardRef, memo } from 'react';
 
 import { ButtonSizeEnum, ButtonVariantEnum } from '../../api';
 
@@ -12,34 +12,38 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   square?: boolean;
   size?: ButtonSizeEnum;
   disabled?: boolean;
+  ref?: ForwardedRef<HTMLButtonElement>;
 }
 
-const Button: FC<ButtonProps> = memo((props) => {
-  const {
-    className,
-    variant = ButtonVariantEnum.OUTLINE,
-    square,
-    size = ButtonSizeEnum.M,
-    disabled,
-    children,
-    ...restProps
-  } = props;
+const Button: FC<ButtonProps> = memo(
+  forwardRef((props, ref) => {
+    const {
+      className,
+      variant = ButtonVariantEnum.OUTLINE,
+      square,
+      size = ButtonSizeEnum.M,
+      disabled,
+      children,
+      ...restProps
+    } = props;
 
-  const mods: Mods = {
-    [styles.square]: square,
-    [styles.disabled]: disabled,
-  };
+    const mods: Mods = {
+      [styles.square]: square,
+      [styles.disabled]: disabled,
+    };
 
-  return (
-    <button
-      type="button"
-      className={cn(styles.button, mods, [className, styles[variant], styles[size]])}
-      disabled={disabled}
-      {...restProps}
-    >
-      {children}
-    </button>
-  );
-});
+    return (
+      <button
+        ref={ref}
+        type="button"
+        className={cn(styles.button, mods, [className, styles[variant], styles[size]])}
+        disabled={disabled}
+        {...restProps}
+      >
+        {children}
+      </button>
+    );
+  })
+);
 
 export default Button;

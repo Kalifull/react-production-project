@@ -1,21 +1,37 @@
 import { useEffect, useState } from 'react';
 
-const useMountTransition = (isMounted: boolean, unmountDelay: number) => {
-  const [hasTransitioned, setHasTransitioned] = useState(false);
+interface useMountTransitionOptions {
+  isMounted: boolean;
+  unmountDelay?: number;
+}
+
+interface useMountTransitionResponse {
+  isTransitioned: boolean;
+}
+
+const useMountTransition = ({
+  isMounted,
+  unmountDelay = 1000,
+}: useMountTransitionOptions): useMountTransitionResponse => {
+  const [isTransitioned, setIsTransitioned] = useState(false);
 
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout>;
 
-    if (isMounted && !hasTransitioned) {
-      setHasTransitioned(true);
-    } else if (!isMounted && hasTransitioned) {
-      timeoutId = setTimeout(() => setHasTransitioned(false), unmountDelay);
+    if (isMounted && !isTransitioned) {
+      setIsTransitioned(true);
+    } else if (!isMounted && isTransitioned) {
+      timeoutId = setTimeout(() => setIsTransitioned(false), unmountDelay);
     }
 
-    return () => clearTimeout(timeoutId);
-  }, [isMounted, hasTransitioned, unmountDelay]);
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [isMounted, isTransitioned, unmountDelay]);
 
-  return hasTransitioned;
+  return { isTransitioned };
 };
 
 export default useMountTransition;

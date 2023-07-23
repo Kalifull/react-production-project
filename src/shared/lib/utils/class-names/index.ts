@@ -1,6 +1,6 @@
 export type Mods = Record<string, boolean | string | undefined>;
 
-const classNames = (
+export const cn = (
   styles: string,
   mods: Mods = {},
   additions: Array<string | undefined> = []
@@ -10,5 +10,3 @@ const classNames = (
 
   return [styles, ...filtratedMods, ...filtratedAdditions].join(' ');
 };
-
-export default classNames;

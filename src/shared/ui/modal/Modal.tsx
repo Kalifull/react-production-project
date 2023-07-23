@@ -15,7 +15,7 @@ interface ModalProps {
 
 const Modal: FC<ModalProps> = ({ className, children, isOpen, onClose }) => {
   const [isMounted, setIsMounted] = useState(false);
-  const hasTransitioned = useMountTransition(isMounted, 300);
+  const { isTransitioned } = useMountTransition({ isMounted, unmountDelay: 300 });
 
   const mods: Mods = {
     [styles.opened]: isOpen,
@@ -33,7 +33,7 @@ const Modal: FC<ModalProps> = ({ className, children, isOpen, onClose }) => {
     event.stopPropagation();
   };
 
-  return hasTransitioned ? (
+  return isTransitioned ? (
     <div className={cn(styles.modal, mods, [className])}>
       <div className={cn(styles.overlay)} onClick={onClose}>
         <div className={cn(styles.content)} onClick={handleClose}>
