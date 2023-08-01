@@ -5,6 +5,8 @@ import type { ThunkConfig } from '@/app/providers/store-provider';
 import { ArticleSortEnum, ArticleOrderEnum, articleFilterActions } from '@/features/article-filter';
 import { articleViewActions, selectArticleIsInit } from '@/features/article-view-switcher';
 
+import { ArticleTypeEnum } from '@/entities/article';
+
 import { fetchArticlesList } from './fetch-articles-list-data';
 
 export const initArticlesListData = createAsyncThunk<void, URLSearchParams, ThunkConfig<string>>(
@@ -16,6 +18,7 @@ export const initArticlesListData = createAsyncThunk<void, URLSearchParams, Thun
       const sortFromUrl = searchParams.get('sort') as ArticleSortEnum;
       const orderFromUrl = searchParams.get('order') as ArticleOrderEnum;
       const searchFromUrl = searchParams.get('search');
+      const typeFromUrl = searchParams.get('type') as ArticleTypeEnum;
 
       if (sortFromUrl) {
         dispatch(articleFilterActions.setArticleSort({ sort: sortFromUrl }));
@@ -27,6 +30,10 @@ export const initArticlesListData = createAsyncThunk<void, URLSearchParams, Thun
 
       if (searchFromUrl) {
         dispatch(articleFilterActions.setArticleSearch({ search: searchFromUrl }));
+      }
+
+      if (typeFromUrl) {
+        dispatch(articleFilterActions.setArticleType({ type: typeFromUrl }));
       }
 
       dispatch(articleViewActions.initState());
