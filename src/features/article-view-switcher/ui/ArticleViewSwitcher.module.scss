@@ -3,6 +3,12 @@
   align-items: center;
   justify-content: flex-end;
 
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
   .not-selected {
     fill: var(--secondary-color);
   }

@@ -1,4 +1,9 @@
 import { FC, memo, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { TextSizeEnum } from '@/shared/api';
+
+import { Text } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -23,6 +28,8 @@ interface ArticleListProps {
 const ArticleList: FC<ArticleListProps> = memo((props) => {
   const { className, articles, view, isLoading, onIntersect } = props;
 
+  const { t } = useTranslation('article');
+
   const { ref } = useInView<HTMLDivElement>({
     triggerOnce: true,
     callback: onIntersect,
@@ -46,9 +53,13 @@ const ArticleList: FC<ArticleListProps> = memo((props) => {
     [ref, view]
   );
 
+  if (!isLoading && !articles.length) {
+    return <Text size={TextSizeEnum.L} title={t('articlesNotFound')} />;
+  }
+
   return (
     <div className={cn('', {}, [className, styles[view]])}>
-      {articles.length ? articles.map(renderArticle) : null}
+      {articles.map(renderArticle)}
       {isLoading && <ArticleSkeletonList className={cn(styles.item)} view={view} />}
     </div>
   );

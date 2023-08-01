@@ -1,9 +1,18 @@
+import qs from 'qs';
 import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
 import { FC, memo, useCallback, useEffect } from 'react';
 
 import { Page } from '@/widgets/page';
+import { ArticleSortingPanel } from '@/widgets/article-sorting-panel';
 
-import { ArticleViewSwitcher, selectArticleView } from '@/features/article-view-switcher';
+import {
+  selectArticleOrder,
+  selectArticleSearch,
+  selectArticleSort,
+  selectArticleType,
+} from '@/features/article-filter';
+import { selectArticleView } from '@/features/article-view-switcher';
 
 import { ArticleList } from '@/entities/article';
 
@@ -28,8 +37,20 @@ import styles from './ArticlesPage.module.scss';
 
 const ArticlePage: FC = memo(() => {
   const { t } = useTranslation('article');
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const { initArticlesListData, fetchNextArticlesPage } = useActionCreators(allActions);
+
+  const sort = useAppSelector(selectArticleSort);
+  const order = useAppSelector(selectArticleOrder);
+  const search = useAppSelector(selectArticleSearch);
+  const type = useAppSelector(selectArticleType);
+
+  const queryString = qs.stringify({ sort, order, search, type });
+
+  useEffect(() => {
+    setSearchParams(queryString);
+  }, [queryString, setSearchParams]);
 
   const articles = useAppSelector(selectArticlesPageInfo.selectAll);
   const isLoading = useAppSelector(selectArticlesPageIsLoading);
@@ -38,9 +59,9 @@ const ArticlePage: FC = memo(() => {
 
   useEffect(() => {
     if (__PROJECT__ !== 'storybook') {
-      initArticlesListData();
+      initArticlesListData(searchParams);
     }
-  }, [initArticlesListData]);
+  }, [initArticlesListData, searchParams]);
 
   const handleLoadNextPage = useCallback(() => {
     fetchNextArticlesPage();
@@ -56,7 +77,7 @@ const ArticlePage: FC = memo(() => {
 
   return (
     <Page className={cn(styles['article-page'])}>
-      <ArticleViewSwitcher />
+      <ArticleSortingPanel />
       <ArticleList
         articles={articles}
         view={view}

@@ -4,6 +4,7 @@ export { default as useAppDispatch } from './use-app-dispatch';
 export { default as useAppSelector } from './use-app-selector';
 export { default as useClipboard } from './use-clipboard';
 export { default as useCombinedRef } from './use-combined-ref';
+export { default as useDebounceFn } from './use-debounce-fn';
 export { default as useEvent } from './use-event';
 export { default as useHover } from './use-hover';
 export { default as useInView } from './use-in-view';

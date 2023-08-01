@@ -4,11 +4,11 @@ import { useEvent } from '..';
 
 import { throttle } from '../../utils';
 
-export interface useDebounceOptions {
+export interface useThrottleOptions {
   ms?: number;
 }
 
-const useThrottleFn = <T extends (...args: any[]) => any>(fn: T, options?: useDebounceOptions) => {
+const useThrottleFn = <T extends (...args: any[]) => any>(fn: T, options?: useThrottleOptions) => {
   const memoizedFn = useEvent(fn);
 
   const ms = options?.ms ?? 1000;

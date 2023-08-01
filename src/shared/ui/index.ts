@@ -10,4 +10,5 @@ export { default as Modal } from './modal/Modal';
 export { default as Portal } from './portal/Portal';
 export { default as Select } from './select/Select';
 export { default as Skeleton } from './skeleton/Skeleton';
+export { default as Tabs } from './tabs/Tabs';
 export { default as Text } from './text/Text';

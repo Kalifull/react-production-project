@@ -10,6 +10,7 @@ import { PersistPartial } from 'redux-persist/es/persistReducer';
 
 import type { ArticlesPageSchema } from '@/pages/articles-page';
 
+import type { ArticleFilterSchema } from '@/features/article-filter';
 import type { ArticleViewSchema } from '@/features/article-view-switcher';
 import type { ScrollSchema } from '@/features/scroll-recovery';
 import type { FormCommentSchema } from '@/features/send-form-comment';
@@ -22,6 +23,7 @@ import type { UserSchema } from '@/entities/user';
 
 export interface StateSchema {
   articlesPageInfo?: ArticlesPageSchema;
+  articleFilterInfo?: ArticleFilterSchema;
   articleViewInfo?: ArticleViewSchema;
   scrollRecoveryInfo: ScrollSchema & PersistPartial;
   formCommentInfo?: FormCommentSchema;

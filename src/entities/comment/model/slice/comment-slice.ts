@@ -4,7 +4,6 @@ import { fetchCommentsByArticleId } from '../service/fetch-comments-by-article-i
 import { sendCommentForArticle } from '../service/send-comment-for-article';
 
 import type { Comment } from '../types/comment.interface';
-
 import type { CommentsSchema, PayloadFetchCommentsError } from '../types/comments-schema.interface';
 
 const initialState: CommentsSchema = {

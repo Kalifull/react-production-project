@@ -1,4 +1,9 @@
-export { articleViewActions, articleViewReducer } from './model/slice/article-view-switcher-slice';
+export {
+  articleViewActions,
+  articleViewReducer,
+  PAGE_LIMIT_TILE,
+  PAGE_LIMIT_LIST,
+} from './model/slice/article-view-switcher-slice';
 export {
   selectArticleViewState,
   selectArticleView,

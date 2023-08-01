@@ -1,21 +1,27 @@
 import { FC, ForwardedRef, HTMLAttributes, ReactNode, forwardRef, memo } from 'react';
 
+import { CardVariantEnum } from '../../api';
 import { cn } from '../../lib';
 
 import styles from './Card.module.scss';
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
-  children: ReactNode;
+  variant?: CardVariantEnum;
   ref?: ForwardedRef<HTMLDivElement>;
+  children: ReactNode;
 }
 
 const Card: FC<CardProps> = memo(
-  forwardRef(({ className, children, ...restProps }, ref) => (
-    <div ref={ref} className={cn(styles.card, {}, [className])} {...restProps}>
-      {children}
-    </div>
-  ))
+  forwardRef((props, ref) => {
+    const { className, variant = CardVariantEnum.PRIMARY, children, ...restProps } = props;
+
+    return (
+      <div ref={ref} className={cn(styles.card, {}, [className, styles[variant]])} {...restProps}>
+        {children}
+      </div>
+    );
+  })
 );
 
 export default Card;

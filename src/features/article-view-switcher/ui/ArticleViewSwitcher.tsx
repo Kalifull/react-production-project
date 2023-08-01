@@ -39,6 +39,7 @@ const ArticleViewSwitcher: FC<ArticleViewSwitcherProps> = memo(({ className }) =
       {viewTypes.map((viewType) => (
         <Button
           key={viewType.view}
+          className={cn(styles.button)}
           variant={ButtonVariantEnum.CLEAR}
           onClick={handleSwitchView(viewType.view)}
         >

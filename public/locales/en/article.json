@@ -12,5 +12,17 @@
   "read": "Read more...",
   "back": "Back",
   "copied": "Copied!",
-  "copy": "Copy"
+  "copy": "Copy",
+  "sortBy": "Sort by",
+  "search": "Search",
+  "asc": "ascending",
+  "desc": "descending",
+  "title": "name",
+  "views": "views",
+  "createdAt": "date",
+  "all": "All",
+  "it": "It",
+  "science": "Science",
+  "economics": "Economics",
+  "articlesNotFound": "Articles not found!"
 }

@@ -21,9 +21,10 @@ const CountrySelect: FC<CountrySelectProps> = memo((props) => {
 
   const { t } = useTranslation('profile');
 
-  const countryOptions = useMemo(() => {
-    return Object.entries(CountryEnum).map(([optionValue, content]) => ({ optionValue, content }));
-  }, []);
+  const countryOptions = useMemo(
+    () => Object.entries(CountryEnum).map(([optionValue, content]) => ({ optionValue, content })),
+    []
+  );
 
   const handleChangeCountry = useCallback(
     (valueCountry: string) => {

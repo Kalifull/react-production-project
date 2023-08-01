@@ -1,6 +1,7 @@
 import { DeepPartial, Reducer } from '@reduxjs/toolkit';
 
 import { loginReducer } from '@/features/user-auth';
+import { articleFilterReducer } from '@/features/article-filter';
 import { articleViewReducer } from '@/features/article-view-switcher';
 import { formCommentReducer } from '@/features/send-form-comment';
 
@@ -14,6 +15,7 @@ import type { StateSchema } from './state-schema';
 
 export const asyncReducers: DeepPartial<Reducer<StateSchema>> = {
   articlesPageInfo: articlesPageReducer,
+  articleFilterInfo: articleFilterReducer,
   articleViewInfo: articleViewReducer,
   formCommentInfo: formCommentReducer,
   loginFormInfo: loginReducer,

@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export enum ThemeEnum {
   LIGHT = 'app-light-theme',
   DARK = 'app-dark-theme',
@@ -37,4 +39,19 @@ export enum TextAlignEnum {
 export enum TextSizeEnum {
   M = 'size-m',
   L = 'size-l',
+}
+
+export enum CardVariantEnum {
+  PRIMARY = 'primary',
+  OUTLINE = 'outline',
+}
+
+export interface SelectOptions<T extends string> {
+  optionValue: T;
+  content: string;
+}
+
+export interface TabsOptions<T extends string> {
+  value: T;
+  content: ReactNode;
 }

@@ -8,10 +8,6 @@
 .tile {
   display: flex;
   flex-wrap: wrap;
+  gap: 30px;
   justify-content: center;
-
-  .item {
-    margin-right: 30px;
-    margin-bottom: 30px;
-  }
 }

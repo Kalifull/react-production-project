@@ -1,0 +1,15 @@
+.filters {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .select-wrapper {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .search {
+    margin-bottom: 16px;
+  }
+}

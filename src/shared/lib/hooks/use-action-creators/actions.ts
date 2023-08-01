@@ -5,6 +5,7 @@ import {
   articlesPageActions,
 } from '@/pages/articles-page';
 
+import { articleFilterActions } from '@/features/article-filter';
 import { articleViewActions } from '@/features/article-view-switcher';
 import { scrollRecoveryActions } from '@/features/scroll-recovery';
 import { formCommentActions } from '@/features/send-form-comment';
@@ -26,6 +27,7 @@ const allActions = {
   saveProfileData,
   fetchUserByUsername,
   ...articlesPageActions,
+  ...articleFilterActions,
   ...articleViewActions,
   ...scrollRecoveryActions,
   ...formCommentActions,

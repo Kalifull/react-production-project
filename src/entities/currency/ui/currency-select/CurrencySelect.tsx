@@ -21,9 +21,10 @@ const CurrencySelect: FC<CurrencySelectProps> = memo((props) => {
 
   const { t } = useTranslation('profile');
 
-  const currencyOptions = useMemo(() => {
-    return Object.entries(CurrencyEnum).map(([optionValue, content]) => ({ optionValue, content }));
-  }, []);
+  const currencyOptions = useMemo(
+    () => Object.entries(CurrencyEnum).map(([optionValue, content]) => ({ optionValue, content })),
+    []
+  );
 
   const handleChangeCurrency = useCallback(
     (valueCurrency: string) => {
