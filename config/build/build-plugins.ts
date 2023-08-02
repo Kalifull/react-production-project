@@ -1,3 +1,4 @@
+import CopyPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
@@ -34,6 +35,9 @@ export const buildPlugins = ({
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: analyze ? 'server' : 'disabled',
+    }),
+    new CopyPlugin({
+      patterns: [{ from: paths.locales, to: paths.buildLocales }],
     }),
   ];
 

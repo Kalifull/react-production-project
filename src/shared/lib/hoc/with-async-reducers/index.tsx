@@ -2,12 +2,16 @@ import { useStore } from 'react-redux';
 import { ElementType, useLayoutEffect } from 'react';
 import { DeepPartial, Reducer } from '@reduxjs/toolkit';
 
-import type { StateSchemaKey, StoreWithReducerManager } from '@/app/providers/store-provider';
+import type {
+  StateSchema,
+  StateSchemaKey,
+  StoreWithReducerManager,
+} from '@/app/providers/store-provider';
 
 import { useAppDispatch } from '@/shared/lib/hooks';
 
 type InitialReducers = {
-  [k in StateSchemaKey]: Reducer;
+  [key in StateSchemaKey]: Reducer<NonNullable<StateSchema[key]>>;
 };
 
 interface AsyncReducersConfig {
