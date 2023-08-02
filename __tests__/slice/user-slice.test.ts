@@ -1,13 +1,8 @@
-import axios from 'axios';
 import { DeepPartial } from '@reduxjs/toolkit';
 
 import { UserSchema, fetchUserByUsername, userActions, userReducer, User } from '@/entities/user';
 
 import { testAsyncThunk } from '@/shared/lib/test';
-
-jest.mock('axios');
-
-const mockedAxios = jest.mocked(axios, true);
 
 describe('test user slice', () => {
   test('test logout', () => {
@@ -34,10 +29,10 @@ describe('test user slice', () => {
 
   test('test fetch login by username with fulfilled', async () => {
     const authData: User = { id: 1, username: 'User', password: 'Password' };
-    mockedAxios.post.mockReturnValue(Promise.resolve({ data: authData }));
+    const { api, callThunk } = testAsyncThunk(fetchUserByUsername);
 
-    const thunk = testAsyncThunk(fetchUserByUsername);
-    const action = await thunk.callThunk({ username: 'User', password: 'Password' });
+    api.post.mockReturnValue(Promise.resolve({ data: authData }));
+    const action = await callThunk({ username: 'User', password: 'Password' });
 
     const state: DeepPartial<UserSchema> = {
       authData: null,
@@ -50,10 +45,10 @@ describe('test user slice', () => {
   });
 
   test('test fetch login by username with rejected', async () => {
-    mockedAxios.post.mockReturnValue(Promise.resolve({ status: 403 }));
+    const { api, callThunk } = testAsyncThunk(fetchUserByUsername);
 
-    const thunk = testAsyncThunk(fetchUserByUsername);
-    const action = await thunk.callThunk({ username: 'User', password: 'Password' });
+    api.post.mockReturnValue(Promise.resolve({ status: 403 }));
+    const action = await callThunk({ username: 'User', password: 'Password' });
 
     const state: DeepPartial<UserSchema> = {
       authData: null,
