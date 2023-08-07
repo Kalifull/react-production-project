@@ -1,11 +1,9 @@
 import { useTranslation } from 'react-i18next';
-import { FC, memo, useCallback, useMemo } from 'react';
+import { FC, memo, useCallback } from 'react';
 
 import { ArticleTypeEnum } from '@/entities/article';
 
-import type { SelectOptions } from '@/shared/api';
-
-import { Card, Input, Select } from '@/shared/ui';
+import { Card, Input } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -13,6 +11,7 @@ import { withAsyncReducers } from '@/shared/lib/hoc';
 
 import { allActions, useActionCreators, useAppSelector, useDebounceFn } from '@/shared/lib/hooks';
 
+import { ArticleSortFilter } from '../article-sort-filter/ArticleSortFilter';
 import { ArticleTypeFilter } from '../article-type-filter/ArticleTypeFilter';
 
 import {
@@ -52,30 +51,6 @@ const ArticleFilter: FC<ArticleFilterProps> = memo(({ className }) => {
   }, [fetchArticlesList]);
 
   const debouncedFetchData = useDebounceFn(fetchData, { delay: 250 });
-
-  const sortOptions = useMemo<SelectOptions<ArticleSortEnum>[]>(
-    () =>
-      Object.values(ArticleSortEnum).reduce(
-        (acc: SelectOptions<ArticleSortEnum>[], value) => [
-          ...acc,
-          { optionValue: value, content: t(value, { ns: 'article' }) },
-        ],
-        []
-      ),
-    [t]
-  );
-
-  const orderOptions = useMemo<SelectOptions<ArticleOrderEnum>[]>(
-    () =>
-      Object.values(ArticleOrderEnum).reduce(
-        (acc: SelectOptions<ArticleOrderEnum>[], value) => [
-          ...acc,
-          { optionValue: value, content: t(value, { ns: 'article' }) },
-        ],
-        []
-      ),
-    [t]
-  );
 
   const handleChangeSort = useCallback(
     (articleSort: ArticleSortEnum) => {
@@ -120,20 +95,12 @@ const ArticleFilter: FC<ArticleFilterProps> = memo(({ className }) => {
       <Card className={cn(styles.search)}>
         <Input placeholder={t('search')} value={search} onChange={handleChangeSearch} />
       </Card>
-      <div className={cn(styles['select-wrapper'])}>
-        <Select<ArticleSortEnum>
-          label={t('sortBy')}
-          options={sortOptions}
-          value={sort}
-          onChange={handleChangeSort}
-        />
-        <Select<ArticleOrderEnum>
-          label={t('sortBy')}
-          options={orderOptions}
-          value={order}
-          onChange={handleChangeOrder}
-        />
-      </div>
+      <ArticleSortFilter
+        sort={sort}
+        order={order}
+        onChangeSort={handleChangeSort}
+        onChangeOrder={handleChangeOrder}
+      />
       <ArticleTypeFilter type={type} onChangeType={handleChangeType} />
     </div>
   );

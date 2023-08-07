@@ -1,10 +1,9 @@
-import { FC, ForwardedRef, forwardRef, memo, useCallback, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { FC, ForwardedRef, HTMLAttributeAnchorTarget, forwardRef, memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { TextAlignEnum } from '@/shared/api';
 
-import { Text, Icon, Card, Avatar, Button } from '@/shared/ui';
+import { Text, Icon, Card, Avatar, Button, AppLink } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -28,22 +27,18 @@ interface ArticleItemProps {
   className?: string;
   article: Article;
   view: ArticleViewEnum;
+  target?: HTMLAttributeAnchorTarget;
   ref?: ForwardedRef<HTMLDivElement>;
 }
 
 export const ArticleItem: FC<ArticleItemProps> = memo(
   forwardRef((props, ref) => {
-    const { className, article, view } = props;
+    const { className, article, view, target } = props;
 
-    const navigate = useNavigate();
     const { t } = useTranslation('article');
 
     const { ref: localRef } = useHover<HTMLDivElement>();
     const combinedRef = useCombinedRef(ref, localRef);
-
-    const handleOpenArticle = useCallback(() => {
-      navigate(`${routesPaths['article-details']}${article.id}`);
-    }, [article.id, navigate]);
 
     const textBlock = useMemo(() => {
       const block = article.blocks.find(
@@ -72,30 +67,30 @@ export const ArticleItem: FC<ArticleItemProps> = memo(
         {textBlock && <ArticleTextBlock className={cn(styles.block)} block={textBlock} />}
 
         <footer className={cn(styles.footer)}>
-          <Button onClick={handleOpenArticle}>{t('read')}</Button>
+          <AppLink to={`${routesPaths['article-details']}${article.id}`}>
+            <Button>{t('read')}</Button>
+          </AppLink>
           <Text className={cn(styles.views)} text={String(article.views)} />
           <Icon className={cn(styles.icon)} Svg={EyeIcon} />
         </footer>
       </Card>
     ) : (
-      <Card
-        ref={combinedRef}
-        onClick={handleOpenArticle}
-        className={cn('', {}, [className, styles[view]])}
-      >
-        <div className={cn(styles['image-wrapper'])}>
-          <img className={cn(styles.image)} src={article.img} alt={article.title} />
-          <Text className={cn(styles.date)} text={article.createdAt} />
-        </div>
+      <AppLink to={`${routesPaths['article-details']}${article.id}`} target={target}>
+        <Card ref={combinedRef} className={cn('', {}, [className, styles[view]])}>
+          <div className={cn(styles['image-wrapper'])}>
+            <img className={cn(styles.image)} src={article.img} alt={article.title} />
+            <Text className={cn(styles.date)} text={article.createdAt} />
+          </div>
 
-        <div className={cn(styles['info-wrapper'])}>
-          <Text className={cn(styles.types)} text={article.type.join(', ')} />
-          <Text className={cn(styles.views)} text={String(article.views)} />
-          <Icon Svg={EyeIcon} />
-        </div>
+          <div className={cn(styles['info-wrapper'])}>
+            <Text className={cn(styles.types)} text={article.type.join(', ')} />
+            <Text className={cn(styles.views)} text={String(article.views)} />
+            <Icon Svg={EyeIcon} />
+          </div>
 
-        <Text className={cn(styles.title)} text={article.title} />
-      </Card>
+          <Text className={cn(styles.title)} text={article.title} />
+        </Card>
+      </AppLink>
     );
   })
 );

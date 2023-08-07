@@ -1,4 +1,4 @@
-import { FC, memo, useCallback } from 'react';
+import { FC, HTMLAttributeAnchorTarget, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { TextSizeEnum } from '@/shared/api';
@@ -22,11 +22,12 @@ interface ArticleListProps {
   articles: Article[];
   view: ArticleViewEnum;
   isLoading?: boolean;
+  target?: HTMLAttributeAnchorTarget;
   onIntersect?: () => void;
 }
 
 const ArticleList: FC<ArticleListProps> = memo((props) => {
-  const { className, articles, view, isLoading, onIntersect } = props;
+  const { className, articles, view, isLoading, target, onIntersect } = props;
 
   const { t } = useTranslation('article');
 
@@ -47,10 +48,11 @@ const ArticleList: FC<ArticleListProps> = memo((props) => {
           key={article.id}
           article={article}
           view={view}
+          target={target}
         />
       );
     },
-    [ref, view]
+    [ref, view, target]
   );
 
   if (!isLoading && !articles.length) {

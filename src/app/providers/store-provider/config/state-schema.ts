@@ -19,6 +19,7 @@ import type { LoginSchema } from '@/features/user-auth';
 import type { ArticleSchema } from '@/entities/article';
 import type { CommentsSchema } from '@/entities/comment';
 import type { ProfileSchema } from '@/entities/profile';
+import type { RecommendationsSchema } from '@/entities/recommendation';
 import type { UserSchema } from '@/entities/user';
 
 export interface StateSchema {
@@ -31,6 +32,7 @@ export interface StateSchema {
   articleInfo?: ArticleSchema;
   commentsInfo?: CommentsSchema;
   profileInfo?: ProfileSchema;
+  recommendationsInfo?: RecommendationsSchema;
   userInfo: UserSchema & PersistPartial;
 }
 

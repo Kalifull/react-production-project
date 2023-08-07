@@ -4,6 +4,7 @@ import { FormComments } from '@/widgets/form-comments';
 import { Page } from '@/widgets/page';
 
 import { ArticleDetails, selectArticleError } from '@/entities/article';
+import { RecommendationsList } from '@/entities/recommendation';
 
 import { cn } from '@/shared/lib';
 
@@ -17,6 +18,7 @@ const ArticleDetailsPage: FC = memo(() => {
   return (
     <Page className={cn(styles.article)}>
       <ArticleDetails />
+      <RecommendationsList />
       {!error && <FormComments />}
     </Page>
   );

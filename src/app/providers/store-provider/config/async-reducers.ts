@@ -10,6 +10,7 @@ import { articlesPageReducer } from '@/pages/articles-page';
 import { articleReducer } from '@/entities/article';
 import { commentsReducer } from '@/entities/comment';
 import { profileReducer } from '@/entities/profile';
+import { recommendationsReducer } from '@/entities/recommendation';
 
 import type { StateSchema } from './state-schema';
 
@@ -22,4 +23,5 @@ export const asyncReducers: DeepPartial<Reducer<StateSchema>> = {
   articleInfo: articleReducer,
   commentsInfo: commentsReducer,
   profileInfo: profileReducer,
+  recommendationsInfo: recommendationsReducer,
 };

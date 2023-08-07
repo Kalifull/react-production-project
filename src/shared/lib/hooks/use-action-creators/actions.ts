@@ -14,6 +14,7 @@ import { loginActions } from '@/features/user-auth';
 import { fetchArticleById, articleActions } from '@/entities/article';
 import { fetchCommentsByArticleId, sendCommentForArticle } from '@/entities/comment';
 import { fetchProfileData, saveProfileData, profileActions } from '@/entities/profile';
+import { fetchRecommendations } from '@/entities/recommendation';
 import { fetchUserByUsername, userActions } from '@/entities/user';
 
 const allActions = {
@@ -25,6 +26,7 @@ const allActions = {
   sendCommentForArticle,
   fetchProfileData,
   saveProfileData,
+  fetchRecommendations,
   fetchUserByUsername,
   ...articlesPageActions,
   ...articleFilterActions,
