@@ -10,10 +10,7 @@ import { cn } from '@/shared/lib';
 
 import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
 
-import { withAsyncReducers } from '@/shared/lib/hoc';
-
 import { selectArticleView } from '../model/selectors/select-article-view-state';
-import { articleViewReducer } from '../model/slice/article-view-switcher-slice';
 import { viewTypes } from '../model/types/article-view.interface';
 
 import styles from './ArticleViewSwitcher.module.scss';
@@ -53,7 +50,4 @@ const ArticleViewSwitcher: FC<ArticleViewSwitcherProps> = memo(({ className }) =
   );
 });
 
-export default withAsyncReducers(ArticleViewSwitcher, {
-  reducers: { articleViewInfo: articleViewReducer },
-  removeAfterUnmount: false,
-});
+export default ArticleViewSwitcher;

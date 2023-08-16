@@ -48,6 +48,7 @@ const RecommendationsList: FC<RecommendationsListProps> = memo(({ className }) =
         view={ArticleViewEnum.TILE}
         isLoading={isLoading}
         target="_blank"
+        virtualized={false}
       />
     </div>
   );

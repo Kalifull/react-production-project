@@ -11,8 +11,8 @@ const initialState: ArticleViewSchema = {
   _isInitialized: false,
 };
 
-export const PAGE_LIMIT_TILE = 9;
-export const PAGE_LIMIT_LIST = 3;
+export const PAGE_LIMIT_TILE = 12;
+export const PAGE_LIMIT_LIST = 8;
 
 export const articleViewSlice = createSlice({
   name: 'article-view-info',

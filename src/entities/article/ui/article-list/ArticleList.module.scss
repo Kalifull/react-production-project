@@ -1,13 +1,21 @@
+.article-wrapper {
+  flex-grow: 1;
+  height: calc(100vh - var(--navbar-height));
+}
+
 .list {
 
-  .item {
-    margin-bottom: 30px;
+  .list-wrapper {
+    margin: 20px 20px 20px 45px;
   }
 }
 
 .tile {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: center;
+
+  .tile-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 30px;
+    justify-content: center;
+  }
 }

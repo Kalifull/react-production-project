@@ -40,13 +40,10 @@ export const ArticleItem: FC<ArticleItemProps> = memo(
     const { ref: localRef } = useHover<HTMLDivElement>();
     const combinedRef = useCombinedRef(ref, localRef);
 
-    const textBlock = useMemo(() => {
-      const block = article.blocks.find(
-        ({ type }) => type === ArticleBlockTypeEnum.TEXT
-      ) as TextBlock;
-
-      return block;
-    }, [article.blocks]);
+    const textBlock = useMemo(
+      () => article.blocks.find(({ type }) => type === ArticleBlockTypeEnum.TEXT) as TextBlock,
+      [article.blocks]
+    );
 
     return view === ArticleViewEnum.LIST ? (
       <Card ref={combinedRef} className={cn('', {}, [className, styles[view]])}>

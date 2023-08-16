@@ -9,6 +9,7 @@
   "rules": {
     "rule-empty-line-before": "always",
     "at-rule-empty-line-before": "always",
-    "scss/at-import-partial-extension": "always"
+    "scss/at-import-partial-extension": "always",
+    "media-feature-range-notation": "prefix"
   }
 }

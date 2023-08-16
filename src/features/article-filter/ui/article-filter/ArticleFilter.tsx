@@ -7,8 +7,6 @@ import { Card, Input } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
-import { withAsyncReducers } from '@/shared/lib/hoc';
-
 import { allActions, useActionCreators, useAppSelector, useDebounceFn } from '@/shared/lib/hooks';
 
 import { ArticleSortFilter } from '../article-sort-filter/ArticleSortFilter';
@@ -20,7 +18,6 @@ import {
   selectArticleSearch,
   selectArticleType,
 } from '../../model/selectors/select-article-filter-state';
-import { articleFilterReducer } from '../../model/slice/article-filter-slice';
 import { ArticleSortEnum, ArticleOrderEnum } from '../../model/types/article-filter.interface';
 
 import styles from './ArticleFilter.module.scss';
@@ -106,6 +103,4 @@ const ArticleFilter: FC<ArticleFilterProps> = memo(({ className }) => {
   );
 });
 
-export default withAsyncReducers(ArticleFilter, {
-  reducers: { articleFilterInfo: articleFilterReducer },
-});
+export default ArticleFilter;

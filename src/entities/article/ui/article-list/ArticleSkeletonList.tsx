@@ -11,8 +11,8 @@ interface ArticleSkeletonListProps {
   view: ArticleViewEnum;
 }
 
-const SKELETON_LIST_COUNT = 3;
-const SKELETON_TILE_COUNT = 9;
+const SKELETON_LIST_COUNT = 8;
+const SKELETON_TILE_COUNT = 12;
 
 export const ArticleSkeletonList: FC<ArticleSkeletonListProps> = ({ className, view }) => (
   <>

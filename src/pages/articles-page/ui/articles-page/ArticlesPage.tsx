@@ -7,12 +7,13 @@ import { Page } from '@/widgets/page';
 import { ArticleSortingPanel } from '@/widgets/article-sorting-panel';
 
 import {
+  articleFilterReducer,
   selectArticleOrder,
   selectArticleSearch,
   selectArticleSort,
   selectArticleType,
 } from '@/features/article-filter';
-import { selectArticleView } from '@/features/article-view-switcher';
+import { articleViewReducer, selectArticleView } from '@/features/article-view-switcher';
 
 import { ArticleList } from '@/entities/article';
 
@@ -76,19 +77,21 @@ const ArticlePage: FC = memo(() => {
   }
 
   return (
-    <Page className={cn(styles['article-page'])}>
-      <ArticleSortingPanel />
-      <ArticleList
-        articles={articles}
-        view={view}
-        isLoading={isLoading}
-        onIntersect={handleLoadNextPage}
-      />
-    </Page>
+    <ArticleList
+      articles={articles}
+      view={view}
+      Header={ArticleSortingPanel}
+      isLoading={isLoading}
+      onIntersect={handleLoadNextPage}
+    />
   );
 });
 
 export default withAsyncReducers(ArticlePage, {
-  reducers: { articlesPageInfo: articlesPageReducer },
+  reducers: {
+    articlesPageInfo: articlesPageReducer,
+    articleFilterInfo: articleFilterReducer,
+    articleViewInfo: articleViewReducer,
+  },
   removeAfterUnmount: false,
 });
