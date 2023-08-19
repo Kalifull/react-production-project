@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { FC, memo, useMemo } from 'react';
 
-import { ArticleOrderEnum, ArticleSortEnum } from '@/features/article-filter';
-
 import type { SelectOptions } from '@/shared/api';
 
 import { Select } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
+
+import { ArticleOrderEnum, ArticleSortEnum } from '../../model/types/article-filter.interface';
 
 import styles from './ArticleSortFilter.module.scss';
 

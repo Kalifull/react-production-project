@@ -6,7 +6,7 @@ import { selectArticleData } from '@/entities/article';
 
 import { selectAuthData } from '@/entities/user';
 
-import type { Comment } from '@/entities/comment';
+import type { Comment } from '../types/comment.interface';
 
 export const sendCommentForArticle = createAsyncThunk<Comment, string, ThunkConfig<string>>(
   'commentsInfo/sendCommentForArticle',

@@ -8,7 +8,7 @@ import type {
   StoreWithReducerManager,
 } from '@/app/providers/store-provider';
 
-import { useAppDispatch } from '@/shared/lib/hooks';
+import { useAppDispatch } from '../../hooks';
 
 type InitialReducers = {
   [key in StateSchemaKey]: Reducer<NonNullable<StateSchema[key]>>;

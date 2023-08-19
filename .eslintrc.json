@@ -20,7 +20,14 @@
     "plugin:storybook/recommended",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["react", "react-hooks", "@typescript-eslint", "import", "i18next"],
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+    "import",
+    "i18next",
+    "methodology-feature-sliced-design"
+  ],
   "overrides": [
     {
       "files": ["__tests__/**/*.test.{ts,tsx}"],
@@ -102,6 +109,7 @@
       {
         "endOfLine": "auto"
       }
-    ]
+    ],
+    "methodology-feature-sliced-design/feature-sliced-path-checker": ["error", { "alias": "@" }]
   }
 }
