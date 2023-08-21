@@ -1,6 +1,15 @@
-import { FC, ForwardedRef, HTMLAttributes, ReactNode, forwardRef, memo } from 'react';
+import {
+  FC,
+  memo,
+  ReactNode,
+  forwardRef,
+  ForwardedRef,
+  HTMLAttributes,
+  DetailedHTMLProps,
+} from 'react';
 
 import { FlexDirection, FlexJustify, FlexAlign, FlexGap } from '../../../api';
+import { Tag } from '../..';
 import { Mods, cn } from '../../../lib';
 
 import styles from './Flex.module.scss';
@@ -11,16 +20,17 @@ const directionClasses: Record<FlexDirection, string> = {
 };
 
 const justifyClasses: Record<FlexJustify, string> = {
+  center: styles['justify-center'],
   start: styles['justify-start'],
   end: styles['justify-end'],
-  center: styles['justify-center'],
   between: styles['justify-between'],
 };
 
 const alignClasses: Record<FlexAlign, string> = {
+  center: styles['align-center'],
   start: styles['align-start'],
   end: styles['align-end'],
-  center: styles['align-center'],
+  stretch: styles['align-stretch'],
 };
 
 const gapClasses: Record<FlexGap, string> = {
@@ -30,9 +40,12 @@ const gapClasses: Record<FlexGap, string> = {
   32: styles['gap-32'],
 };
 
-export interface FlexProps extends HTMLAttributes<HTMLDivElement> {
+type HTMLProps = DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>;
+
+export interface FlexProps extends HTMLProps {
   className?: string;
-  ref?: ForwardedRef<HTMLDivElement>;
+  tag?: keyof JSX.IntrinsicElements;
+  ref?: ForwardedRef<HTMLElement>;
   direction: FlexDirection;
   justify?: FlexJustify;
   align?: FlexAlign;
@@ -45,12 +58,13 @@ const Flex: FC<FlexProps> = memo(
   forwardRef((props, ref) => {
     const {
       className,
-      children,
+      tag = 'div',
       direction = 'row',
       justify = 'start',
       align = 'center',
       gap,
       stretch,
+      children,
       ...restProps
     } = props;
 
@@ -66,9 +80,14 @@ const Flex: FC<FlexProps> = memo(
     ];
 
     return (
-      <div ref={ref} className={cn(styles.flex, mods, [className, ...classes])} {...restProps}>
+      <Tag
+        className={cn(styles.flex, mods, [className, ...classes])}
+        ref={ref}
+        tag={tag}
+        {...restProps}
+      >
         {children}
-      </div>
+      </Tag>
     );
   })
 );

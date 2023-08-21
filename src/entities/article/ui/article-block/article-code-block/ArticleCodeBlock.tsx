@@ -1,12 +1,10 @@
 import { FC, memo } from 'react';
 
-import { Code } from '@/shared/ui';
+import { Code, VStack } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
 import type { CodeBlock } from '../../../model/types/article.interface';
-
-import styles from './ArticleCodeBlock.module.scss';
 
 interface ArticleCodeBlockProps {
   className?: string;
@@ -14,7 +12,7 @@ interface ArticleCodeBlockProps {
 }
 
 export const ArticleCodeBlock: FC<ArticleCodeBlockProps> = memo(({ className, block }) => (
-  <section className={cn(styles['code-block'], {}, [className])}>
+  <VStack className={cn('', {}, [className])} tag="section" aria-label="code-block" stretch>
     <Code text={block.code} />
-  </section>
+  </VStack>
 ));

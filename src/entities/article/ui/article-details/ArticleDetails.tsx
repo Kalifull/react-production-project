@@ -91,7 +91,13 @@ const ArticleDetails: FC<ArticleDetailsProps> = memo(({ className }) => {
   }
 
   return (
-    <VStack className={cn(styles['article-details'])} gap="16" stretch>
+    <VStack
+      className={cn(styles['article-details'])}
+      tag="section"
+      aria-label="article"
+      gap="16"
+      stretch
+    >
       <Button onClick={handleBackClick}>{t('back')}</Button>
 
       <HStack justify="center" stretch>

@@ -48,9 +48,9 @@ export enum CardVariantEnum {
 
 export type FlexDirection = 'row' | 'column';
 
-export type FlexJustify = 'start' | 'end' | 'center' | 'between';
+export type FlexJustify = 'center' | 'start' | 'end' | 'between';
 
-export type FlexAlign = 'start' | 'end' | 'center';
+export type FlexAlign = 'center' | 'start' | 'end' | 'stretch';
 
 export type FlexGap = '4' | '8' | '16' | '32';
 

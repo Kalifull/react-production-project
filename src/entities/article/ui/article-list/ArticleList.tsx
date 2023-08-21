@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { TextSizeEnum } from '@/shared/api';
 
-import { HStack, Text } from '@/shared/ui';
+import { HStack, Text, VStack } from '@/shared/ui';
 
 import { cn, Mods } from '@/shared/lib';
 
@@ -108,7 +108,11 @@ const ArticleList: FC<ArticleListProps> = memo((props) => {
   }
 
   return (
-    <div className={cn(styles['article-wrapper'], {}, [className, styles[view]])}>
+    <VStack
+      className={cn(styles['article-wrapper'], {}, [className, styles[view]])}
+      tag="article"
+      align="stretch"
+    >
       {view === 'list' ? (
         <Virtuoso
           context={{ view, isLoading }}
@@ -129,7 +133,7 @@ const ArticleList: FC<ArticleListProps> = memo((props) => {
           components={{ Header, Footer }}
         />
       )}
-    </div>
+    </VStack>
   );
 });
 

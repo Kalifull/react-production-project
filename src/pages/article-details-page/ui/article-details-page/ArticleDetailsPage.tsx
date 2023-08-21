@@ -19,7 +19,7 @@ const ArticleDetailsPage: FC = memo(() => {
 
   return (
     <Page className={cn(styles.article)}>
-      <VStack gap="16" stretch>
+      <VStack tag="article" gap="16" stretch>
         <ArticleDetails />
         {!error && <RecommendationsList />}
         {!error && <FormComments />}

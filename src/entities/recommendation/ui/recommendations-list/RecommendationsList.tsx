@@ -40,7 +40,14 @@ const RecommendationsList: FC<RecommendationsListProps> = memo(({ className }) =
   const isLoading = useAppSelector(selectRecommendationsIsLoading);
 
   return (
-    <VStack className={cn('', {}, [className])} align="center" gap="16" stretch>
+    <VStack
+      className={cn('', {}, [className])}
+      tag="section"
+      aria-label="recommendations"
+      align="center"
+      gap="16"
+      stretch
+    >
       <Text size={TextSizeEnum.L} title={t('recommendations')} />
       <ArticleList
         className={cn(styles.recommendation)}

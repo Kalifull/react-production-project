@@ -3,7 +3,7 @@ import { FC, memo, useCallback } from 'react';
 
 import { ArticleTypeEnum } from '@/entities/article';
 
-import { Card, Input } from '@/shared/ui';
+import { Card, Input, VStack, Text } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -88,7 +88,7 @@ const ArticleFilter: FC<ArticleFilterProps> = memo(({ className }) => {
   );
 
   return (
-    <div className={cn(styles.filters, {}, [className])}>
+    <VStack className={cn('', {}, [className])} gap="16" role="search" stretch>
       <Card className={cn(styles.search)}>
         <Input placeholder={t('search')} value={search} onChange={handleChangeSearch} />
       </Card>
@@ -98,8 +98,9 @@ const ArticleFilter: FC<ArticleFilterProps> = memo(({ className }) => {
         onChangeSort={handleChangeSort}
         onChangeOrder={handleChangeOrder}
       />
+      <Text title={t('categories')} id="tabs-label" />
       <ArticleTypeFilter type={type} onChangeType={handleChangeType} />
-    </div>
+    </VStack>
   );
 });
 

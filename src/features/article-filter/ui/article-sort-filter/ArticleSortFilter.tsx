@@ -3,13 +3,11 @@ import { FC, memo, useMemo } from 'react';
 
 import type { SelectOptions } from '@/shared/api';
 
-import { Select } from '@/shared/ui';
+import { HStack, Select } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
 import { ArticleOrderEnum, ArticleSortEnum } from '../../model/types/article-filter.interface';
-
-import styles from './ArticleSortFilter.module.scss';
 
 interface ArticleSortFilterProps {
   className?: string;
@@ -49,7 +47,7 @@ export const ArticleSortFilter: FC<ArticleSortFilterProps> = memo((props) => {
   );
 
   return (
-    <div className={cn(styles['select-wrapper'], {}, [className])}>
+    <HStack className={cn('', {}, [className])} gap="16" stretch>
       <Select<ArticleSortEnum>
         label={t('sortBy')}
         options={sortOptions}
@@ -62,6 +60,6 @@ export const ArticleSortFilter: FC<ArticleSortFilterProps> = memo((props) => {
         value={order}
         onChange={onChangeOrder}
       />
-    </div>
+    </HStack>
   );
 });

@@ -1,9 +1,8 @@
 import { memo, useCallback } from 'react';
 
 import { CardVariantEnum, TabsOptions } from '../../api';
+import { Card, HStack } from '..';
 import { cn } from '../../lib';
-
-import Card from '../card/Card';
 
 import styles from './Tabs.module.scss';
 
@@ -27,17 +26,27 @@ const Tabs = typedMemo(<T extends string>(props: TabsProps<T>) => {
   );
 
   return (
-    <div className={cn(styles.tabs, {}, [className])}>
-      {tabs.map(({ value, content }) => (
+    <HStack
+      className={cn(styles.tabs, {}, [className])}
+      gap="8"
+      role="tablist"
+      aria-labelledby="tabs-label"
+      stretch
+    >
+      {tabs.map(({ value, content }, index) => (
         <Card
           key={value}
+          role="tab"
+          tabIndex={index + 1}
+          aria-selected={value === type ? 'true' : 'false'}
           variant={value === type ? CardVariantEnum.PRIMARY : CardVariantEnum.OUTLINE}
           onClick={handleClick(value)}
+          onFocus={handleClick(value)}
         >
           {content}
         </Card>
       ))}
-    </div>
+    </HStack>
   );
 });
 

@@ -48,6 +48,9 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = memo((props) => {
       {isCanEditProfile && (
         <HStack gap="8">
           <Button
+            type="button"
+            role="switch"
+            aria-checked={!readOnly}
             variant={readOnly ? ButtonVariantEnum.OUTLINE : ButtonVariantEnum.OUTLINE_RED}
             onClick={readOnly ? handleEdit : handleCancelEdit}
             disabled={isLoading}
@@ -56,6 +59,7 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = memo((props) => {
           </Button>
           {!readOnly && (
             <Button
+              type="button"
               variant={ButtonVariantEnum.OUTLINE}
               onClick={handleSaveData}
               disabled={isLoading}

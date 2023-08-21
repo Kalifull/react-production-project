@@ -1,7 +1,6 @@
 import { ButtonHTMLAttributes, FC, ForwardedRef, forwardRef, memo } from 'react';
 
 import { ButtonSizeEnum, ButtonVariantEnum } from '../../api';
-
 import { Mods, cn } from '../../lib';
 
 import styles from './Button.module.scss';

@@ -10,12 +10,12 @@ import { ErrorProvider, withProviders } from './providers';
 const App = () => (
   <div className={cn('app')}>
     <Navbar />
-    <main className={cn('content-page')}>
+    <div className={cn('content-page')}>
       <Sidebar />
       <ErrorProvider>
         <Routing />
       </ErrorProvider>
-    </main>
+    </div>
   </div>
 );
 

@@ -45,6 +45,8 @@ const Navbar: FC<NavbarProps> = memo(({ className }) => {
     <header className={cn(styles.navbar, {}, [className])}>
       {authData ? (
         <Button
+          type="button"
+          role="switch"
           variant={ButtonVariantEnum.BACKGROUND_INVERTED}
           className={cn(styles.links)}
           onClick={handleLogout}
@@ -54,6 +56,9 @@ const Navbar: FC<NavbarProps> = memo(({ className }) => {
       ) : (
         <>
           <Button
+            type="button"
+            role="switch"
+            aria-checked={isAuthModal}
             variant={ButtonVariantEnum.BACKGROUND_INVERTED}
             className={cn(styles.links)}
             onClick={handleOpen}

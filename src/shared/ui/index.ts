@@ -13,4 +13,5 @@ export { default as Skeleton } from './skeleton/Skeleton';
 export { default as HStack } from './stack/h-stack/HStack';
 export { default as VStack } from './stack/v-stack/VStack';
 export { default as Tabs } from './tabs/Tabs';
+export { default as Tag } from './tag/Tag';
 export { default as Text } from './text/Text';

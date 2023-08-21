@@ -5,7 +5,7 @@ import { LanguageSwitcher } from '@/features/language-switcher';
 
 import { ButtonSizeEnum, ButtonVariantEnum } from '@/shared/api';
 
-import { Button, VStack } from '@/shared/ui';
+import { Button, HStack, VStack } from '@/shared/ui';
 
 import { Mods, cn } from '@/shared/lib';
 
@@ -37,27 +37,34 @@ const Sidebar: FC<SidebarProps> = memo(({ className }) => {
   return (
     <menu data-testid="sidebar" className={cn(styles.sidebar, mods, [className])}>
       <Button
-        type="button"
+        data-testid="sidebar-toggle"
         className={cn(styles.button)}
+        type="button"
+        role="switch"
+        aria-checked={!!isCollapsed}
         variant={ButtonVariantEnum.BACKGROUND_INVERTED}
         square
         size={ButtonSizeEnum.L}
-        data-testid="sidebar-toggle"
         onClick={toggleCollapse}
       >
         {isCollapsed ? '>' : '<'}
       </Button>
 
-      <VStack gap="16" className={cn(styles.links)}>
+      <VStack className={cn(styles.links)} gap="16" tag="nav" role="navigation">
         {sidebarItemsList.map((item) => (
           <SidebarItem key={item.id} {...item} isCollapsed={isCollapsed} />
         ))}
       </VStack>
 
-      <div className={cn(styles.switchers)}>
+      <HStack
+        className={cn(styles.switchers)}
+        justify="center"
+        gap={isCollapsed ? '4' : '16'}
+        stretch
+      >
         <ThemeSwitcher />
-        <LanguageSwitcher className={cn(styles.lang)} isCollapsed={isCollapsed} />
-      </div>
+        <LanguageSwitcher isCollapsed={isCollapsed} />
+      </HStack>
     </menu>
   );
 });

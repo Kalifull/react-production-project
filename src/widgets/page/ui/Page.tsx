@@ -37,13 +37,13 @@ const Page: FC<PageProps> = ({ className, children }) => {
   );
 
   return (
-    <article
+    <main
       ref={wrapperRef}
       className={cn(styles['page-wrapper'], {}, [className])}
       onScroll={handleSetScrollPosition}
     >
       {children}
-    </article>
+    </main>
   );
 };
 

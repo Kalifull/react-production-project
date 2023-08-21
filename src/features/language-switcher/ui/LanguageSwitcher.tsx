@@ -24,6 +24,8 @@ const LanguageSwitcher: FC<LanguageSwitcherProps> = memo(({ className, isCollaps
   return (
     <Button
       className={cn('', {}, [className])}
+      role="switch"
+      aria-checked={i18n.language === 'en'}
       variant={ButtonVariantEnum.CLEAR}
       onClick={handleSwitchLanguage}
     >

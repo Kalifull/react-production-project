@@ -9,8 +9,6 @@ import { Tabs } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
-import styles from './ArticleTypeFilter.module.scss';
-
 interface ArticleTypeFilterProps {
   className?: string;
   type: ArticleTypeEnum;
@@ -36,7 +34,7 @@ export const ArticleTypeFilter: FC<ArticleTypeFilterProps> = memo((props) => {
 
   return (
     <Tabs<ArticleTypeEnum>
-      className={cn(styles.tabs, {}, [className])}
+      className={cn('', {}, [className])}
       tabs={typeTabs}
       type={type}
       onClick={onChangeType}

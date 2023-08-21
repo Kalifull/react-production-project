@@ -17,7 +17,7 @@ const CommentsDetails: FC = memo(() => {
   const error = useAppSelector(selectFormCommentError);
 
   return (
-    <VStack align="center" gap="16" stretch>
+    <VStack tag="section" aria-label="comments" align="center" gap="16" stretch>
       <Text size={TextSizeEnum.L} title={t('comments')} />
       <SendFormComment />
       {error && <Text text={t(error)} variant={TextVariantEnum.ERROR} />}
