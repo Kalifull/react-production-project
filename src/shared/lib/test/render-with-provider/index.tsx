@@ -8,12 +8,12 @@ import { StoreProvider, StateSchema } from '@/app/providers/store-provider';
 
 import i18nTest from '../../../config/i18n-test';
 
-interface renderWithComponentOptions {
+interface renderWithProviderOptions {
   route?: string;
   initialState?: DeepPartial<StateSchema>;
 }
 
-const renderWithComponent = (Component: ReactNode, options: renderWithComponentOptions = {}) => {
+const renderWithProvider = (Component: ReactNode, options: renderWithProviderOptions = {}) => {
   const { route = '/', initialState } = options;
 
   return render(
@@ -25,4 +25,4 @@ const renderWithComponent = (Component: ReactNode, options: renderWithComponentO
   );
 };
 
-export default renderWithComponent;
+export default renderWithProvider;

@@ -35,15 +35,13 @@ export const SidebarItem: FC<SidebarItemProps> = memo((props) => {
   }
 
   return (
-    <div className={cn(styles.links)}>
-      <AppLink
-        to={path}
-        className={cn(styles.icons, { [styles.collapsed]: isCollapsed })}
-        variant={AppLinkVariantEnum.PRIMARY}
-      >
-        <Icon className={cn(styles.icon)} />
-        <p className={cn(styles.link)}>{t(text)}</p>
-      </AppLink>
-    </div>
+    <AppLink
+      to={path}
+      className={cn(styles.icons, { [styles.collapsed]: isCollapsed })}
+      variant={AppLinkVariantEnum.PRIMARY}
+    >
+      <Icon className={cn(styles.icon)} />
+      <p className={cn(styles.link)}>{t(text)}</p>
+    </AppLink>
   );
 });

@@ -3,7 +3,7 @@ import { PersistGateProps } from 'redux-persist/integration/react';
 
 import { Sidebar } from '@/widgets/sidebar';
 
-import { renderWithComponent } from '@/shared/lib/test';
+import { renderWithProvider } from '@/shared/lib/test';
 
 jest.mock('redux-persist/integration/react', () => ({
   PersistGate: (props: PersistGateProps) => props.children,
@@ -11,14 +11,14 @@ jest.mock('redux-persist/integration/react', () => ({
 
 describe('test Sidebar', () => {
   test('Sidebar render', () => {
-    renderWithComponent(<Sidebar />);
+    renderWithProvider(<Sidebar />);
 
     const sidebar = screen.getByTestId('sidebar');
     expect(sidebar).toBeInTheDocument();
   });
 
   test('Sidebar test toggles visibility', () => {
-    renderWithComponent(<Sidebar />);
+    renderWithProvider(<Sidebar />);
 
     const sidebar = screen.getByTestId('sidebar');
     expect(sidebar).toBeInTheDocument();

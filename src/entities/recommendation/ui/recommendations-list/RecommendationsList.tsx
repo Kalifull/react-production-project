@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { TextSizeEnum } from '@/shared/api';
 
-import { Text } from '@/shared/ui';
+import { Text, VStack } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -17,7 +17,7 @@ import {
 } from '../../model/selectors/select-recommendations-state';
 import { recommendationsReducer } from '../../model/slice/recommendations-slice';
 
-import { ArticleList, ArticleViewEnum } from '../../../article';
+import { ArticleList } from '../../../article';
 
 import styles from './RecommendationsList.module.scss';
 
@@ -40,17 +40,17 @@ const RecommendationsList: FC<RecommendationsListProps> = memo(({ className }) =
   const isLoading = useAppSelector(selectRecommendationsIsLoading);
 
   return (
-    <div className={cn(styles['recommendation-wrapper'], {}, [className])}>
+    <VStack className={cn('', {}, [className])} align="center" gap="16" stretch>
       <Text size={TextSizeEnum.L} title={t('recommendations')} />
       <ArticleList
         className={cn(styles.recommendation)}
         articles={recommendations}
-        view={ArticleViewEnum.TILE}
+        view="tile"
         isLoading={isLoading}
         target="_blank"
         virtualized={false}
       />
-    </div>
+    </VStack>
   );
 });
 

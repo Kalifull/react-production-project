@@ -1,11 +1,11 @@
-import { ArticleViewEnum } from '@/entities/article';
+import { ArticleViewType } from '@/entities/article';
 
 export interface ArticleViewSchema {
-  view: ArticleViewEnum;
+  view: ArticleViewType;
   limit?: number;
   _isInitialized: boolean;
 }
 
 export interface PayloadView {
-  view: ArticleViewEnum;
+  view: ArticleViewType;
 }

@@ -46,6 +46,14 @@ export enum CardVariantEnum {
   OUTLINE = 'outline',
 }
 
+export type FlexDirection = 'row' | 'column';
+
+export type FlexJustify = 'start' | 'end' | 'center' | 'between';
+
+export type FlexAlign = 'start' | 'end' | 'center';
+
+export type FlexGap = '4' | '8' | '16' | '32';
+
 export interface SelectOptions<T extends string> {
   optionValue: T;
   content: string;

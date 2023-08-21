@@ -37,10 +37,7 @@ export enum ArticleTypeEnum {
   ECONOMICS = 'economics',
 }
 
-export enum ArticleViewEnum {
-  LIST = 'list',
-  TILE = 'tile',
-}
+export type ArticleViewType = 'list' | 'tile';
 
 export interface Article {
   id: string;

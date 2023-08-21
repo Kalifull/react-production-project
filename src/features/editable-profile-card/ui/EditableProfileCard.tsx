@@ -5,7 +5,7 @@ import { ProfileForm, selectFormData, profileReducer, Profile } from '@/entities
 
 import { TextVariantEnum } from '@/shared/api';
 
-import { Text, Loader, Avatar } from '@/shared/ui';
+import { Text, Loader, Avatar, VStack, HStack } from '@/shared/ui';
 
 import { Mods, cn } from '@/shared/lib';
 
@@ -47,31 +47,32 @@ const EditableProfileCard: FC<EditableProfileCardProps> = memo((props) => {
 
   if (isLoading) {
     return (
-      <div className={cn(styles.card, {}, [className, styles.loader])}>
+      <HStack className={cn(styles.card, {}, [className, styles.loader])} justify="center" stretch>
         <Loader />
-      </div>
+      </HStack>
     );
   }
 
   if (error) {
     return (
-      <div className={cn(styles.card, {}, [className, styles.error])}>
+      <HStack className={cn(styles.card, {}, [className, styles.error])} justify="center" stretch>
         <Text variant={TextVariantEnum.ERROR} title={t(error)} text={t('refreshPage')} />
-      </div>
+      </HStack>
     );
   }
 
   return (
-    <div className={cn(styles.card, mods, [className])}>
-      <div className={cn(styles['avatar-wrapper'])}>
+    <VStack className={cn(styles.card, mods, [className])} gap="16" stretch>
+      <HStack justify="center" stretch>
         <Avatar src={formData?.avatar} size={200} alt={t('avatar')} readOnly={readOnly} />
-      </div>
+      </HStack>
+
       <ProfileForm
         formData={formData}
         readOnly={readOnly}
         onChangeProfileForm={handleChangeProfileForm}
       />
-    </div>
+    </VStack>
   );
 });
 

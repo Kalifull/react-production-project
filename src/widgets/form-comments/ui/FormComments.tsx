@@ -5,15 +5,11 @@ import { SendFormComment, selectFormCommentError } from '@/features/send-form-co
 
 import { CommentList } from '@/entities/comment';
 
-import { TextVariantEnum } from '@/shared/api';
+import { TextSizeEnum, TextVariantEnum } from '@/shared/api';
 
-import { Text } from '@/shared/ui';
-
-import { cn } from '@/shared/lib';
+import { Text, VStack } from '@/shared/ui';
 
 import { useAppSelector } from '@/shared/lib/hooks';
-
-import styles from './FormComments.module.scss';
 
 const CommentsDetails: FC = memo(() => {
   const { t } = useTranslation('article');
@@ -21,14 +17,12 @@ const CommentsDetails: FC = memo(() => {
   const error = useAppSelector(selectFormCommentError);
 
   return (
-    <>
-      <Text className={cn(styles.comments)} title={t('comments')} />
-      <SendFormComment className={cn(styles['form-comment'])} />
-      {error && (
-        <Text className={cn(styles.error)} text={t(error)} variant={TextVariantEnum.ERROR} />
-      )}
+    <VStack align="center" gap="16" stretch>
+      <Text size={TextSizeEnum.L} title={t('comments')} />
+      <SendFormComment />
+      {error && <Text text={t(error)} variant={TextVariantEnum.ERROR} />}
       <CommentList />
-    </>
+    </VStack>
   );
 });
 

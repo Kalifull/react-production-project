@@ -2,7 +2,7 @@ import FocusLock from 'react-focus-lock';
 import { FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Input } from '@/shared/ui';
+import { Input, VStack } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -34,14 +34,13 @@ const ProfileForm: FC<ProfileFormProps> = memo((props) => {
 
   return (
     <FocusLock>
-      <div className={cn(styles.form, {}, [className])}>
+      <VStack className={cn(styles.form, {}, [className])} gap="16" stretch>
         {formData &&
           Object.entries(formData)
             .filter(([field]) => field !== 'id' && field !== 'currency' && field !== 'country')
             .map(([field, value]) => (
               <Input
                 key={field}
-                className={cn(styles.input)}
                 type="text"
                 field={field}
                 value={value}
@@ -51,18 +50,16 @@ const ProfileForm: FC<ProfileFormProps> = memo((props) => {
               />
             ))}
         <CurrencySelect
-          className={cn(styles.input)}
           value={formData?.currency}
           readOnly={readOnly}
           onChangeProfileForm={handleChangeProfileForm}
         />
         <CountrySelect
-          className={cn(styles.input)}
           value={formData?.country}
           readOnly={readOnly}
           onChangeProfileForm={handleChangeProfileForm}
         />
-      </div>
+      </VStack>
     </FocusLock>
   );
 });

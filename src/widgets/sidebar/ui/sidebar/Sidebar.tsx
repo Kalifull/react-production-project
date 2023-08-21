@@ -5,9 +5,9 @@ import { LanguageSwitcher } from '@/features/language-switcher';
 
 import { ButtonSizeEnum, ButtonVariantEnum } from '@/shared/api';
 
-import { Button } from '@/shared/ui';
+import { Button, VStack } from '@/shared/ui';
 
-import { cn } from '@/shared/lib';
+import { Mods, cn } from '@/shared/lib';
 
 import { useAppSelector } from '@/shared/lib/hooks';
 
@@ -30,11 +30,12 @@ const Sidebar: FC<SidebarProps> = memo(({ className }) => {
     setIsCollapsed((prev) => !prev);
   }, []);
 
+  const mods: Mods = {
+    [styles.collapsed]: isCollapsed,
+  };
+
   return (
-    <menu
-      className={cn(styles.sidebar, { [styles.collapsed]: isCollapsed }, [className])}
-      data-testid="sidebar"
-    >
+    <menu data-testid="sidebar" className={cn(styles.sidebar, mods, [className])}>
       <Button
         type="button"
         className={cn(styles.button)}
@@ -47,11 +48,11 @@ const Sidebar: FC<SidebarProps> = memo(({ className }) => {
         {isCollapsed ? '>' : '<'}
       </Button>
 
-      <nav className={cn(styles.links)}>
+      <VStack gap="16" className={cn(styles.links)}>
         {sidebarItemsList.map((item) => (
           <SidebarItem key={item.id} {...item} isCollapsed={isCollapsed} />
         ))}
-      </nav>
+      </VStack>
 
       <div className={cn(styles.switchers)}>
         <ThemeSwitcher />

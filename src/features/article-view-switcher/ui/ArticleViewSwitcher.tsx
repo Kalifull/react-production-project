@@ -1,6 +1,6 @@
 import { FC, memo, useCallback } from 'react';
 
-import { ArticleViewEnum } from '@/entities/article';
+import { ArticleViewType } from '@/entities/article';
 
 import { ButtonVariantEnum } from '@/shared/api';
 
@@ -25,7 +25,7 @@ const ArticleViewSwitcher: FC<ArticleViewSwitcherProps> = memo(({ className }) =
   const view = useAppSelector(selectArticleView);
 
   const handleSwitchView = useCallback(
-    (articleView: ArticleViewEnum) => () => {
+    (articleView: ArticleViewType) => () => {
       setView({ view: articleView });
     },
     [setView]

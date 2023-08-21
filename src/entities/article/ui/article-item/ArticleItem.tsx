@@ -17,7 +17,7 @@ import { ArticleTextBlock } from '../article-block/article-text-block/ArticleTex
 import {
   Article,
   TextBlock,
-  ArticleViewEnum,
+  ArticleViewType,
   ArticleBlockTypeEnum,
 } from '../../model/types/article.interface';
 
@@ -26,7 +26,7 @@ import styles from './ArticleItem.module.scss';
 interface ArticleItemProps {
   className?: string;
   article: Article;
-  view: ArticleViewEnum;
+  view: ArticleViewType;
   target?: HTMLAttributeAnchorTarget;
   ref?: ForwardedRef<HTMLDivElement>;
 }
@@ -45,7 +45,7 @@ export const ArticleItem: FC<ArticleItemProps> = memo(
       [article.blocks]
     );
 
-    return view === ArticleViewEnum.LIST ? (
+    return view === 'list' ? (
       <Card ref={combinedRef} className={cn('', {}, [className, styles[view]])}>
         <div className={cn(styles.header)}>
           <Avatar src={article.user.avatar} size={30} />

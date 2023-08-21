@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ArticleViewEnum } from '@/entities/article';
+import { ArticleTypeEnum } from '@/entities/article';
 
 import { ThemeEnum } from '@/shared/api';
 
 import { ThemeDecorator } from '@/shared/config/storybook/theme-decorator';
 import { StoreDecorator } from '@/shared/config/storybook/store-decorator';
+
+import { ArticleOrderEnum, ArticleSortEnum } from '../../article-filter';
 
 import ArticleViewSwitcher from './ArticleViewSwitcher';
 
@@ -14,7 +16,17 @@ const meta = {
   component: ArticleViewSwitcher,
   argTypes: {},
   decorators: [
-    StoreDecorator({ articleViewInfo: { view: ArticleViewEnum.TILE, _isInitialized: false } }),
+    StoreDecorator({
+      articleSortingPanelInfo: {
+        articleViewInfo: { view: 'tile', _isInitialized: false },
+        articleFilterInfo: {
+          order: ArticleOrderEnum.ASC,
+          sort: ArticleSortEnum.VIEWS,
+          search: '',
+          type: ArticleTypeEnum.ALL,
+        },
+      },
+    }),
   ],
 } satisfies Meta<typeof ArticleViewSwitcher>;
 

@@ -2,9 +2,9 @@ import { FC, memo, useCallback, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { TextAlignEnum, TextSizeEnum, TextVariantEnum } from '@/shared/api';
+import { ButtonVariantEnum, TextAlignEnum, TextSizeEnum, TextVariantEnum } from '@/shared/api';
 
-import { Avatar, Skeleton, Text, Icon, Button } from '@/shared/ui';
+import { Avatar, Skeleton, Text, Icon, Button, HStack, VStack } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -63,51 +63,61 @@ const ArticleDetails: FC<ArticleDetailsProps> = memo(({ className }) => {
 
   if (isLoading) {
     return (
-      <div className={cn(styles['article-details'], {}, [className])}>
+      <VStack className={cn(styles['article-details'], {}, [className])} gap="16" stretch>
         <Skeleton className={cn(styles.avatar)} width={200} height={200} border="50%" />
-        <Skeleton className={cn(styles.title)} width={670} height={32} />
-        <Skeleton className={cn(styles.skeleton)} width={400} height={32} />
-        <Skeleton className={cn(styles.skeleton)} width="100%" height={230} />
-        <Skeleton className={cn(styles.skeleton)} width="100%" height={230} />
-      </div>
+        <Skeleton width={670} height={32} />
+        <Skeleton width={400} height={32} />
+        <Skeleton width="100%" height={230} />
+        <Skeleton width="100%" height={230} />
+      </VStack>
     );
   }
 
   if (error) {
     return (
-      <div className={cn(styles['article-details'], {}, [className])}>
+      <VStack
+        className={cn(styles['article-details'], {}, [className])}
+        justify="center"
+        align="center"
+        gap="16"
+        stretch
+      >
         <Text variant={TextVariantEnum.ERROR} title={t('articleNotFound')} text={t(error)} />
-      </div>
+        <Button variant={ButtonVariantEnum.OUTLINE_RED} onClick={handleBackClick}>
+          {t('back')}
+        </Button>
+      </VStack>
     );
   }
 
   return (
-    <div className={cn(styles['article-details'])}>
+    <VStack className={cn(styles['article-details'])} gap="16" stretch>
       <Button onClick={handleBackClick}>{t('back')}</Button>
 
-      <div className={cn(styles['avatar-wrapper'])}>
+      <HStack justify="center" stretch>
         <Avatar className={cn(styles.avatar)} src={article?.img} size={200} alt={article?.title} />
-      </div>
+      </HStack>
 
-      <Text
-        className={cn(styles.title)}
-        title={article?.title}
-        text={article?.subtitle}
-        size={TextSizeEnum.L}
-        align={TextAlignEnum.LEFT}
-      />
+      <VStack gap="4" stretch>
+        <Text
+          title={article?.title}
+          text={article?.subtitle}
+          size={TextSizeEnum.L}
+          align={TextAlignEnum.LEFT}
+        />
 
-      <div className={cn(styles['article-info'])}>
-        <Icon className={cn(styles.icon)} Svg={EyeIcon} />
-        <Text text={String(article?.views)} />
-      </div>
+        <HStack gap="8">
+          <Icon Svg={EyeIcon} />
+          <Text text={String(article?.views)} />
+        </HStack>
 
-      <div className={cn(styles['article-info'])}>
-        <Icon className={cn(styles.icon)} Svg={CalendarIcon} />
-        <Text text={article?.createdAt} />
-      </div>
+        <HStack gap="8">
+          <Icon Svg={CalendarIcon} />
+          <Text text={article?.createdAt} />
+        </HStack>
+      </VStack>
       {article?.blocks.map(renderArticlesBlock)}
-    </div>
+    </VStack>
   );
 });
 

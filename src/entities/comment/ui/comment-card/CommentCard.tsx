@@ -4,7 +4,7 @@ import { TextAlignEnum } from '@/shared/api';
 
 import { routesPaths } from '@/shared/config';
 
-import { AppLink, Avatar, Skeleton, Text } from '@/shared/ui';
+import { AppLink, Avatar, HStack, Skeleton, Text, VStack } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -23,23 +23,23 @@ export const CommentCard: FC<CommentCardProps> = memo((props) => {
 
   if (isLoading) {
     return (
-      <div className={cn(styles['comment-card'], {}, [className])}>
-        <div className={cn(styles.header)}>
+      <VStack className={cn(styles['comment-card'], {}, [className])} gap="8" stretch>
+        <HStack gap="8" stretch>
           <Skeleton width={60} height={60} border="50%" />
           <Skeleton className={cn(styles.username)} width="30%" height={24} />
-        </div>
-        <Skeleton className={cn(styles.text)} width="100%" height={24} />
-      </div>
+        </HStack>
+        <Skeleton width="100%" height={24} />
+      </VStack>
     );
   }
 
   return comment ? (
-    <div className={cn(styles['comment-card'], {}, [className])}>
+    <VStack className={cn(styles['comment-card'], {}, [className])} gap="8" stretch>
       <AppLink className={cn(styles.header)} to={`${routesPaths.profile}${comment.user.id}`}>
         {comment.user.avatar && <Avatar src={comment.user.avatar} size={60} />}
         <Text className={cn(styles.username)} title={comment.user.username} />
       </AppLink>
-      <Text className={cn(styles.text)} text={comment.text} align={TextAlignEnum.LEFT} />
-    </div>
+      <Text text={comment.text} align={TextAlignEnum.LEFT} />
+    </VStack>
   ) : null;
 });

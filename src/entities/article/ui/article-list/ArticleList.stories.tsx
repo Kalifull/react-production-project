@@ -8,9 +8,8 @@ import { ThemeDecorator } from '@/shared/config/storybook/theme-decorator';
 
 import {
   Article,
-  ArticleBlockTypeEnum,
   ArticleTypeEnum,
-  ArticleViewEnum,
+  ArticleBlockTypeEnum,
 } from '../../model/types/article.interface';
 
 import ArticleList from './ArticleList';
@@ -105,7 +104,7 @@ type Story = StoryObj<typeof meta>;
 export const LightList: Story = {
   args: {
     isLoading: false,
-    view: ArticleViewEnum.LIST,
+    view: 'list',
     articles: [...new Array(3)].map((_, index) => ({ ...article, id: String(index) })),
   },
 };
@@ -113,7 +112,7 @@ export const LightList: Story = {
 export const DarkList: Story = {
   args: {
     isLoading: false,
-    view: ArticleViewEnum.LIST,
+    view: 'list',
     articles: [...new Array(3)].map((_, index) => ({ ...article, id: String(index) })),
   },
 };
@@ -123,7 +122,7 @@ DarkList.decorators = [ThemeDecorator(ThemeEnum.DARK)];
 export const VioletList: Story = {
   args: {
     isLoading: false,
-    view: ArticleViewEnum.LIST,
+    view: 'list',
     articles: [...new Array(3)].map((_, index) => ({ ...article, id: String(index) })),
   },
 };
@@ -133,7 +132,7 @@ VioletList.decorators = [ThemeDecorator(ThemeEnum.VIOLET)];
 export const LoadingList: Story = {
   args: {
     isLoading: true,
-    view: ArticleViewEnum.LIST,
+    view: 'list',
     articles: [],
   },
 };
@@ -141,7 +140,7 @@ export const LoadingList: Story = {
 export const LightTile: Story = {
   args: {
     isLoading: false,
-    view: ArticleViewEnum.TILE,
+    view: 'tile',
     articles: [...new Array(8)].map((_, index) => ({ ...article, id: String(index) })),
   },
 };
@@ -149,7 +148,7 @@ export const LightTile: Story = {
 export const DarkTile: Story = {
   args: {
     isLoading: false,
-    view: ArticleViewEnum.TILE,
+    view: 'tile',
     articles: [...new Array(8)].map((_, index) => ({ ...article, id: String(index) })),
   },
 };
@@ -159,7 +158,7 @@ DarkTile.decorators = [ThemeDecorator(ThemeEnum.DARK)];
 export const VioletTile: Story = {
   args: {
     isLoading: false,
-    view: ArticleViewEnum.TILE,
+    view: 'tile',
     articles: [...new Array(8)].map((_, index) => ({ ...article, id: String(index) })),
   },
 };
@@ -169,7 +168,7 @@ VioletTile.decorators = [ThemeDecorator(ThemeEnum.VIOLET)];
 export const LoadingTile: Story = {
   args: {
     isLoading: true,
-    view: ArticleViewEnum.TILE,
+    view: 'tile',
     articles: [],
   },
 };

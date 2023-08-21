@@ -3,17 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import { FC, memo, useCallback, useEffect } from 'react';
 
+import { ArticleSortingPanel, articleSortingPanelReducer } from '@/widgets/article-sorting-panel';
 import { Page } from '@/widgets/page';
-import { ArticleSortingPanel } from '@/widgets/article-sorting-panel';
 
 import {
-  articleFilterReducer,
   selectArticleOrder,
   selectArticleSearch,
   selectArticleSort,
   selectArticleType,
 } from '@/features/article-filter';
-import { articleViewReducer, selectArticleView } from '@/features/article-view-switcher';
+import { selectArticleView } from '@/features/article-view-switcher';
 
 import { ArticleList } from '@/entities/article';
 
@@ -90,8 +89,7 @@ const ArticlePage: FC = memo(() => {
 export default withAsyncReducers(ArticlePage, {
   reducers: {
     articlesPageInfo: articlesPageReducer,
-    articleFilterInfo: articleFilterReducer,
-    articleViewInfo: articleViewReducer,
+    articleSortingPanelInfo: articleSortingPanelReducer,
   },
   removeAfterUnmount: false,
 });

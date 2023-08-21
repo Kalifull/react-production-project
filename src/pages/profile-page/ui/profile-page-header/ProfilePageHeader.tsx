@@ -6,13 +6,11 @@ import { selectAuthData } from '@/entities/user';
 
 import { ButtonVariantEnum } from '@/shared/api';
 
-import { Button, Text } from '@/shared/ui';
+import { Button, HStack, Text } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
 import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
-
-import styles from './ProfilePageHeader.module.scss';
 
 interface ProfilePageHeaderProps {
   className?: string;
@@ -45,10 +43,10 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = memo((props) => {
   }, [saveProfileData]);
 
   return (
-    <div className={cn(styles.header, {}, [className])}>
+    <HStack className={cn('', {}, [className])} justify="between" stretch>
       <Text title={t('profileUser')} />
       {isCanEditProfile && (
-        <div className={cn(styles['button-wrapper'])}>
+        <HStack gap="8">
           <Button
             variant={readOnly ? ButtonVariantEnum.OUTLINE : ButtonVariantEnum.OUTLINE_RED}
             onClick={readOnly ? handleEdit : handleCancelEdit}
@@ -58,7 +56,6 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = memo((props) => {
           </Button>
           {!readOnly && (
             <Button
-              className={cn(styles['button-save'])}
               variant={ButtonVariantEnum.OUTLINE}
               onClick={handleSaveData}
               disabled={isLoading}
@@ -66,8 +63,8 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = memo((props) => {
               {t('save')}
             </Button>
           )}
-        </div>
+        </HStack>
       )}
-    </div>
+    </HStack>
   );
 });

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { TextAlignEnum } from '@/shared/api';
 
-import { Text } from '@/shared/ui';
+import { Text, VStack } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -18,8 +18,6 @@ import {
 } from '../../model/selectors/select-comments-state';
 import { commentsReducer } from '../../model/slice/comment-slice';
 import { CommentCard } from '../comment-card/CommentCard';
-
-import styles from './CommentList.module.scss';
 
 interface CommentListProps {
   className?: string;
@@ -46,24 +44,22 @@ const CommentList: FC<CommentListProps> = memo(({ className }) => {
 
   if (isLoading) {
     return (
-      <div className={cn(styles['comments-block'], {}, [className])}>
+      <VStack className={cn('', {}, [className])} gap="8" stretch>
         <CommentCard isLoading />
         <CommentCard isLoading />
         <CommentCard isLoading />
-      </div>
+      </VStack>
     );
   }
 
   return (
-    <div className={cn(styles['comments-block'], {}, [className])}>
+    <VStack className={cn('', {}, [className])} gap="8" stretch>
       {comments?.length ? (
-        comments.map((comment) => (
-          <CommentCard className={cn(styles.comment)} key={comment.id} comment={comment} />
-        ))
+        comments.map((comment) => <CommentCard key={comment.id} comment={comment} />)
       ) : (
         <Text align={TextAlignEnum.LEFT} text={t('noComments')} />
       )}
-    </div>
+    </VStack>
   );
 });
 

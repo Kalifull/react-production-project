@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { ButtonVariantEnum } from '@/shared/api';
 
-import { Button, Input } from '@/shared/ui';
+import { Button, HStack, Input } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -44,9 +44,8 @@ const SendFormComment: FC<SendFormCommentProps> = memo(({ className }) => {
   }, [sendCommentForArticle, text]);
 
   return (
-    <div className={cn(styles.form, {}, [className])}>
+    <HStack className={cn(styles.form, {}, [className])} justify="between" stretch>
       <Input
-        className={cn(styles.input)}
         type="text"
         onChange={handleChangeTextComment}
         value={text}
@@ -56,7 +55,7 @@ const SendFormComment: FC<SendFormCommentProps> = memo(({ className }) => {
       <Button variant={ButtonVariantEnum.OUTLINE} onClick={handleSendComment} disabled={isLoading}>
         {t('send')}
       </Button>
-    </div>
+    </HStack>
   );
 });
 

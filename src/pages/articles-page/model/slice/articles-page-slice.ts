@@ -2,7 +2,7 @@ import { PayloadAction, createEntityAdapter, createSlice } from '@reduxjs/toolki
 
 import { PAGE_LIMIT_LIST, PAGE_LIMIT_TILE } from '@/features/article-view-switcher';
 
-import { Article, ArticleViewEnum } from '@/entities/article';
+import { Article } from '@/entities/article';
 
 import { LOCAL_STORAGE_ARTICLES_VIEW_KEY } from '@/shared/constant';
 
@@ -28,7 +28,7 @@ export const articlesAdapter = createEntityAdapter<Article>({
 });
 
 const limit =
-  localStorage.getItem(LOCAL_STORAGE_ARTICLES_VIEW_KEY) === ArticleViewEnum.TILE
+  localStorage.getItem(LOCAL_STORAGE_ARTICLES_VIEW_KEY) === 'tile'
     ? PAGE_LIMIT_TILE
     : PAGE_LIMIT_LIST;
 

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { TextSizeEnum } from '@/shared/api';
 
-import { Text } from '@/shared/ui';
+import { HStack, Text } from '@/shared/ui';
 
 import { cn, Mods } from '@/shared/lib';
 
@@ -14,13 +14,13 @@ import { ArticleSkeletonList } from './ArticleSkeletonList';
 
 import { ArticleItem } from '../article-item/ArticleItem';
 
-import { Article, ArticleViewEnum } from '../../model/types/article.interface';
+import { Article, ArticleViewType } from '../../model/types/article.interface';
 
 import styles from './ArticleList.module.scss';
 
 interface FooterProps {
   context?: {
-    view: ArticleViewEnum;
+    view: ArticleViewType;
     isLoading?: boolean;
   };
 }
@@ -30,8 +30,8 @@ const Footer: FC<FooterProps> = memo(({ context }) => {
     const { view, isLoading } = context;
 
     const mods: Mods = {
-      [styles['list-wrapper']]: view === ArticleViewEnum.LIST,
-      [styles['tile-wrapper']]: view === ArticleViewEnum.TILE,
+      [styles['list-wrapper']]: view === 'list',
+      [styles['tile-wrapper']]: view === 'tile',
     };
 
     return isLoading ? (
@@ -47,7 +47,7 @@ const Footer: FC<FooterProps> = memo(({ context }) => {
 interface ArticleListProps {
   className?: string;
   articles: Article[];
-  view: ArticleViewEnum;
+  view: ArticleViewType;
   isLoading?: boolean;
   Header?: FC;
   target?: HTMLAttributeAnchorTarget;
@@ -100,16 +100,16 @@ const ArticleList: FC<ArticleListProps> = memo((props) => {
 
   if (!virtualized) {
     return (
-      <div className={cn('', {}, [className, styles[view]])}>
+      <HStack className={cn('', {}, [className, styles[view]])} gap="32" stretch>
         {articles.map((article, index) => renderArticle(index, article))}
         {isLoading && <ArticleSkeletonList view={view} />}
-      </div>
+      </HStack>
     );
   }
 
   return (
     <div className={cn(styles['article-wrapper'], {}, [className, styles[view]])}>
-      {view === ArticleViewEnum.LIST ? (
+      {view === 'list' ? (
         <Virtuoso
           context={{ view, isLoading }}
           data={articles}

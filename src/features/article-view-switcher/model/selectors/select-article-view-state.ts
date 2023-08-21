@@ -2,15 +2,14 @@ import { createSelector } from '@reduxjs/toolkit';
 
 import { RootState } from '@/app/providers/store-provider';
 
-import { ArticleViewEnum } from '@/entities/article';
-
 import { PAGE_LIMIT_TILE } from '../slice/article-view-switcher-slice';
 
-export const selectArticleViewState = (state: RootState) => state?.articleViewInfo;
+export const selectArticleViewState = (state: RootState) =>
+  state.articleSortingPanelInfo?.articleViewInfo;
 
 export const selectArticleView = createSelector(
   [selectArticleViewState],
-  (articleViewState) => articleViewState?.view || ArticleViewEnum.TILE
+  (articleViewState) => articleViewState?.view || 'tile'
 );
 
 export const selectArticleLimit = createSelector(

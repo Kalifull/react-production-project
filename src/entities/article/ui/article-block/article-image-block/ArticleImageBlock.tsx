@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 
-import { Text } from '@/shared/ui';
+import { Text, VStack } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -14,8 +14,8 @@ interface ArticleImageBlockProps {
 }
 
 export const ArticleImageBlock: FC<ArticleImageBlockProps> = memo(({ className, block }) => (
-  <figure className={cn(styles['image-block'], {}, [className])}>
+  <VStack className={cn('', {}, [className])} align="center" gap="8" stretch>
     <img className={cn(styles.image)} src={block.src} alt={block.title} />
     <Text text={block.title} />
-  </figure>
+  </VStack>
 ));

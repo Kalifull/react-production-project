@@ -6,6 +6,8 @@ import { Page } from '@/widgets/page';
 import { ArticleDetails, selectArticleError } from '@/entities/article';
 import { RecommendationsList } from '@/entities/recommendation';
 
+import { VStack } from '@/shared/ui';
+
 import { cn } from '@/shared/lib';
 
 import { useAppSelector } from '@/shared/lib/hooks';
@@ -17,9 +19,11 @@ const ArticleDetailsPage: FC = memo(() => {
 
   return (
     <Page className={cn(styles.article)}>
-      <ArticleDetails />
-      <RecommendationsList />
-      {!error && <FormComments />}
+      <VStack gap="16" stretch>
+        <ArticleDetails />
+        {!error && <RecommendationsList />}
+        {!error && <FormComments />}
+      </VStack>
     </Page>
   );
 });

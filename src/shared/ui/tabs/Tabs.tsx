@@ -1,8 +1,9 @@
 import { memo, useCallback } from 'react';
 
-import { Card } from '..';
 import { CardVariantEnum, TabsOptions } from '../../api';
 import { cn } from '../../lib';
+
+import Card from '../card/Card';
 
 import styles from './Tabs.module.scss';
 

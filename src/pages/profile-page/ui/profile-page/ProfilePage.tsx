@@ -16,7 +16,7 @@ import {
 
 import { TextVariantEnum } from '@/shared/api';
 
-import { Text } from '@/shared/ui';
+import { Text, VStack } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -53,17 +53,19 @@ const ProfilePage: FC<ProfilePageProps> = memo(({ className }) => {
 
   return (
     <Page className={cn(styles['profile-page'], {}, [className])}>
-      <ProfilePageHeader isLoading={isLoading} readOnly={readOnly} />
-      {validationErrors?.length &&
-        validationErrors.map((validateError) => (
-          <Text
-            key={validateError}
-            className={cn(styles.error)}
-            variant={TextVariantEnum.ERROR}
-            text={t(validateErrorTranslation[validateError])}
-          />
-        ))}
-      <EditableProfileCard isLoading={isLoading} error={error} readOnly={readOnly} />
+      <VStack gap="16" stretch>
+        <ProfilePageHeader isLoading={isLoading} readOnly={readOnly} />
+        {validationErrors?.length &&
+          validationErrors.map((validateError) => (
+            <Text
+              key={validateError}
+              className={cn(styles.error)}
+              variant={TextVariantEnum.ERROR}
+              text={t(validateErrorTranslation[validateError])}
+            />
+          ))}
+        <EditableProfileCard isLoading={isLoading} error={error} readOnly={readOnly} />
+      </VStack>
     </Page>
   );
 });

@@ -6,7 +6,8 @@ import { ArticleTypeEnum } from '@/entities/article';
 
 import { ArticleSortEnum, ArticleOrderEnum } from '../types/article-filter.interface';
 
-export const selectArticleFilterState = (state: RootState) => state?.articleFilterInfo;
+export const selectArticleFilterState = (state: RootState) =>
+  state.articleSortingPanelInfo?.articleFilterInfo;
 
 export const selectArticleOrder = createSelector(
   [selectArticleFilterState],

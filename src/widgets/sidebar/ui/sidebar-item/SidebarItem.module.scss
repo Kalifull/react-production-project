@@ -1,33 +1,24 @@
-.links {
+.icons {
   display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  height: 45px;
+  align-items: center;
+  height: 30px;
+}
 
-  
-  .icons {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-  }
+.icon {
+  fill: var(--inverted-primary-color);
+}
 
-  .icon {
-    fill: var(--inverted-primary-color);
-  }
+.link {
+  margin-left: 10px;
+  opacity: 1;
+  transition: 0.3s opacity;
+}
+
+.collapsed {
 
   .link {
-    margin-left: 10px;
-    opacity: 1;
-    transition: 0.3s opacity;
+    width: 0;
+    opacity: 0;
+    transition: 0.15s opacity;
   }
-
-  .collapsed {
-
-    .link {
-      width: 0;
-      opacity: 0;
-      transition: 0.15s opacity;
-    }
-  }
-
 }

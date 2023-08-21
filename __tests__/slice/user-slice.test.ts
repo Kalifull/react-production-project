@@ -1,6 +1,6 @@
 import { DeepPartial } from '@reduxjs/toolkit';
 
-import { UserSchema, fetchUserByUsername, userActions, userReducer, User } from '@/entities/user';
+import { User, UserSchema, userActions, userReducer, fetchUserByUsername } from '@/entities/user';
 
 import { testAsyncThunk } from '@/shared/lib/test';
 

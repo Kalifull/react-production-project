@@ -4,17 +4,17 @@ import { Card, Skeleton } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
-import { ArticleViewEnum } from '../../model/types/article.interface';
+import { ArticleViewType } from '../../model/types/article.interface';
 
 import styles from './ArticleItem.module.scss';
 
 interface ArticleSkeletonItemProps {
   className?: string;
-  view: ArticleViewEnum;
+  view: ArticleViewType;
 }
 
 export const ArticleSkeletonItem: FC<ArticleSkeletonItemProps> = memo(({ className, view }) => {
-  return view === ArticleViewEnum.LIST ? (
+  return view === 'list' ? (
     <Card className={cn('', {}, [className, styles[view]])}>
       <div className={cn(styles.header)}>
         <Skeleton width={30} height={30} border="50%" />
