@@ -33,7 +33,7 @@ const ProfileForm: FC<ProfileFormProps> = memo((props) => {
   );
 
   return (
-    <FocusLock>
+    <FocusLock className={cn(styles.focus)}>
       <VStack className={cn(styles.form, {}, [className])} gap="16" stretch>
         {formData &&
           Object.entries(formData)
