@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { ThemeEnum } from '@/shared/api';
 
+import Avatar from '@/shared/assets/test/storybook-avatar.png';
+
 import { ThemeDecorator } from '@/shared/config/storybook/theme-decorator';
 import { StoreDecorator } from '@/shared/config/storybook/store-decorator';
 
@@ -23,7 +25,7 @@ const meta = {
               id: 1,
               username: 'admin',
               password: 'admin',
-              avatar: 'https://cs14.pikabu.ru/post_img/big/2023/02/13/8/1676295806139337963.png',
+              avatar: Avatar,
             },
           },
           '2': {
@@ -33,7 +35,7 @@ const meta = {
               id: 1,
               username: 'admin',
               password: 'admin',
-              avatar: 'https://cs14.pikabu.ru/post_img/big/2023/02/13/8/1676295806139337963.png',
+              avatar: Avatar,
             },
           },
           '3': {
@@ -43,7 +45,7 @@ const meta = {
               id: 1,
               username: 'admin',
               password: 'admin',
-              avatar: 'https://cs14.pikabu.ru/post_img/big/2023/02/13/8/1676295806139337963.png',
+              avatar: Avatar,
             },
           },
         },
