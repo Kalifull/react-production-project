@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 
 import { TextAlignEnum } from '@/shared/api';
 
+import { routesPaths } from '@/shared/config';
+
 import { Text, Icon, Card, Avatar, Button, AppLink } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
@@ -10,8 +12,6 @@ import { cn } from '@/shared/lib';
 import { useCombinedRef, useHover } from '@/shared/lib/hooks';
 
 import EyeIcon from '@/shared/assets/icons/eye.svg';
-
-import { routesPaths } from '@/shared/config';
 
 import { ArticleTextBlock } from '../article-block/article-text-block/ArticleTextBlock';
 import {
@@ -48,7 +48,7 @@ export const ArticleItem: FC<ArticleItemProps> = memo(
     return view === 'list' ? (
       <Card ref={combinedRef} className={cn('', {}, [className, styles[view]])}>
         <div className={cn(styles.header)}>
-          <Avatar src={article.user.avatar} size={30} />
+          <Avatar src={article.user.avatar} size={30} alt={article.title} />
           <Text className={cn(styles.username)} text={article.user.username} />
           <Text className={cn(styles.date)} text={article.createdAt} />
         </div>

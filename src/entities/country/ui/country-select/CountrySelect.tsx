@@ -1,7 +1,7 @@
 import { FC, memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Select } from '@/shared/ui';
+import { Listbox } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -22,7 +22,12 @@ const CountrySelect: FC<CountrySelectProps> = memo((props) => {
   const { t } = useTranslation('profile');
 
   const countryOptions = useMemo(
-    () => Object.entries(CountryEnum).map(([optionValue, content]) => ({ optionValue, content })),
+    () =>
+      Object.entries(CountryEnum).map(([optionValue, content], index) => ({
+        id: index,
+        optionValue,
+        content,
+      })),
     []
   );
 
@@ -34,12 +39,14 @@ const CountrySelect: FC<CountrySelectProps> = memo((props) => {
   );
 
   return (
-    <Select
+    <Listbox
       className={cn('', {}, [className])}
       label={t('country')}
-      options={countryOptions}
       value={value}
+      defaultValue={t('country')}
+      options={countryOptions}
       readOnly={readOnly}
+      direction="top-right"
       onChange={handleChangeCountry}
     />
   );

@@ -1,4 +1,12 @@
-import { CSSProperties, FC, ImgHTMLAttributes, memo, useMemo } from 'react';
+import {
+  CSSProperties,
+  FC,
+  ForwardedRef,
+  ImgHTMLAttributes,
+  forwardRef,
+  memo,
+  useMemo,
+} from 'react';
 
 import { Mods, cn } from '../../lib';
 
@@ -10,28 +18,32 @@ interface AvatarProps extends ImgHTMLAttributes<HTMLImageElement> {
   size?: number;
   alt?: string;
   readOnly?: boolean;
+  ref?: ForwardedRef<HTMLImageElement>;
 }
 
-const Avatar: FC<AvatarProps> = memo((props) => {
-  const { className, src, size, alt, readOnly, ...restProps } = props;
+const Avatar: FC<AvatarProps> = memo(
+  forwardRef((props, ref) => {
+    const { className, src, size, alt, readOnly, ...restProps } = props;
 
-  const style = useMemo<CSSProperties>(() => {
-    return { width: size || 100, height: size || 100 };
-  }, [size]);
+    const style = useMemo<CSSProperties>(() => {
+      return { width: size || 100, height: size || 100 };
+    }, [size]);
 
-  const mods: Mods = {
-    [styles.editing]: readOnly,
-  };
+    const mods: Mods = {
+      [styles.editing]: readOnly,
+    };
 
-  return (
-    <img
-      className={cn(styles.avatar, mods, [className])}
-      style={style}
-      src={src}
-      alt={alt}
-      {...restProps}
-    />
-  );
-});
+    return (
+      <img
+        ref={ref}
+        className={cn(styles.avatar, mods, [className])}
+        style={style}
+        src={src}
+        alt={alt}
+        {...restProps}
+      />
+    );
+  })
+);
 
 export default Avatar;

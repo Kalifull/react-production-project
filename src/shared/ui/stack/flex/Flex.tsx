@@ -8,7 +8,7 @@ import {
   DetailedHTMLProps,
 } from 'react';
 
-import { FlexDirection, FlexJustify, FlexAlign, FlexGap } from '../../../api';
+import type { FlexDirection, FlexJustify, FlexAlign, FlexGap } from '../../../api';
 import { Tag } from '../..';
 import { Mods, cn } from '../../../lib';
 

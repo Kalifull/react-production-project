@@ -1,12 +1,14 @@
-import { FC, ReactNode, createElement } from 'react';
+import { FC, ForwardedRef, ReactNode, createElement, forwardRef } from 'react';
 
 interface TagProps {
   className?: string;
   tag: keyof JSX.IntrinsicElements;
   children: ReactNode;
+  ref?: ForwardedRef<HTMLElement>;
 }
 
-const Tag: FC<TagProps> = ({ className, tag, children, ...restProps }) =>
-  createElement(tag, { className, ...restProps }, children);
+const Tag: FC<TagProps> = forwardRef(({ className, tag, children, ...restProps }, ref) =>
+  createElement(tag, { className, ref, ...restProps }, children)
+);
 
 export default Tag;

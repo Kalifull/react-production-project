@@ -36,7 +36,9 @@ export const CommentCard: FC<CommentCardProps> = memo((props) => {
   return comment ? (
     <VStack className={cn(styles['comment-card'], {}, [className])} gap="8" stretch>
       <AppLink className={cn(styles.header)} to={`${routesPaths.profile}${comment.user.id}`}>
-        {comment.user.avatar && <Avatar src={comment.user.avatar} size={60} />}
+        {comment.user.avatar && (
+          <Avatar src={comment.user.avatar} size={60} alt={comment.user.username} />
+        )}
         <Text className={cn(styles.username)} title={comment.user.username} />
       </AppLink>
       <Text text={comment.text} align={TextAlignEnum.LEFT} />

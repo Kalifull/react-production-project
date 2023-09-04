@@ -7,7 +7,9 @@ import { selectAuthData } from '@/entities/user';
 
 import { ButtonVariantEnum } from '@/shared/api';
 
-import { Button, Portal } from '@/shared/ui';
+import { routesPaths } from '@/shared/config';
+
+import { Avatar, Button, Dropdown, HStack, Portal } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -42,17 +44,16 @@ const Navbar: FC<NavbarProps> = memo(({ className }) => {
   }, [logout]);
 
   return (
-    <header className={cn(styles.navbar, {}, [className])}>
+    <HStack className={cn(styles.navbar, {}, [className])} tag="header" justify="end" stretch>
       {authData ? (
-        <Button
-          type="button"
-          role="switch"
-          variant={ButtonVariantEnum.BACKGROUND_INVERTED}
-          className={cn(styles.links)}
-          onClick={handleLogout}
-        >
-          {t('logout')}
-        </Button>
+        <Dropdown
+          trigger={<Avatar src={authData.avatar} size={38} alt={authData.username} />}
+          items={[
+            { id: 1, content: t('profilePage'), href: `${routesPaths.profile}${authData.id}` },
+            { id: 2, content: t('logout'), handleClick: handleLogout },
+          ]}
+          direction="bottom-left"
+        />
       ) : (
         <>
           <Button
@@ -60,7 +61,6 @@ const Navbar: FC<NavbarProps> = memo(({ className }) => {
             role="switch"
             aria-checked={isAuthModal}
             variant={ButtonVariantEnum.BACKGROUND_INVERTED}
-            className={cn(styles.links)}
             onClick={handleOpen}
           >
             {t('login')}
@@ -71,7 +71,7 @@ const Navbar: FC<NavbarProps> = memo(({ className }) => {
           </Portal>
         </>
       )}
-    </header>
+    </HStack>
   );
 });
 

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, MouseEventHandler } from 'react';
 
 export enum ThemeEnum {
   LIGHT = 'app-light-theme',
@@ -63,3 +63,22 @@ export interface TabsOptions<T extends string> {
   value: T;
   content: ReactNode;
 }
+
+export interface ListboxOptions<T extends string> {
+  id: number;
+  optionValue: T;
+  content: ReactNode;
+  disabled?: boolean;
+}
+
+export type ListboxDirection = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+
+export interface DropdownOptions<T extends string> {
+  id: number;
+  href?: T;
+  disabled?: boolean;
+  content: ReactNode;
+  handleClick?: MouseEventHandler<HTMLButtonElement>;
+}
+
+export type DropdownDirection = ListboxDirection;

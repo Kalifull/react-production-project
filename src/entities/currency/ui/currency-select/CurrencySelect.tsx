@@ -1,7 +1,7 @@
 import { FC, memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Select } from '@/shared/ui';
+import { Listbox } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -22,7 +22,12 @@ const CurrencySelect: FC<CurrencySelectProps> = memo((props) => {
   const { t } = useTranslation('profile');
 
   const currencyOptions = useMemo(
-    () => Object.entries(CurrencyEnum).map(([optionValue, content]) => ({ optionValue, content })),
+    () =>
+      Object.entries(CurrencyEnum).map(([optionValue, content], index) => ({
+        id: index,
+        optionValue,
+        content,
+      })),
     []
   );
 
@@ -34,12 +39,14 @@ const CurrencySelect: FC<CurrencySelectProps> = memo((props) => {
   );
 
   return (
-    <Select
+    <Listbox
       className={cn('', {}, [className])}
       label={t('currency')}
-      options={currencyOptions}
       value={value}
+      defaultValue={t('currency')}
+      options={currencyOptions}
       readOnly={readOnly}
+      direction="top-left"
       onChange={handleChangeCurrency}
     />
   );

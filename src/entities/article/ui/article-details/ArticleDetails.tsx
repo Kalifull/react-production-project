@@ -4,6 +4,11 @@ import { useTranslation } from 'react-i18next';
 
 import { ButtonVariantEnum, TextAlignEnum, TextSizeEnum, TextVariantEnum } from '@/shared/api';
 
+import EyeIcon from '@/shared/assets/icons/eye.svg';
+import CalendarIcon from '@/shared/assets/icons/calendar.svg';
+
+import { routesPaths } from '@/shared/config';
+
 import { Avatar, Skeleton, Text, Icon, Button, HStack, VStack } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
@@ -12,10 +17,6 @@ import { withAsyncReducers } from '@/shared/lib/hoc';
 
 import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
 
-import EyeIcon from '@/shared/assets/icons/eye.svg';
-import CalendarIcon from '@/shared/assets/icons/calendar.svg';
-
-import { routesPaths } from '@/shared/config';
 import {
   selectArticleData,
   selectArticleError,

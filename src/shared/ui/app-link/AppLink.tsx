@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { FC, ForwardedRef, forwardRef, memo } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
 
 import { AppLinkVariantEnum } from '../../api';
@@ -9,16 +9,24 @@ import styles from './AppLink.module.scss';
 interface AppLinkProps extends LinkProps {
   className?: string;
   variant?: AppLinkVariantEnum;
+  ref?: ForwardedRef<HTMLAnchorElement>;
 }
 
-const AppLink: FC<AppLinkProps> = memo((props) => {
-  const { to, className, variant = AppLinkVariantEnum.PRIMARY, children, ...restProps } = props;
+const AppLink: FC<AppLinkProps> = memo(
+  forwardRef((props, ref) => {
+    const { className, to, variant = AppLinkVariantEnum.PRIMARY, children, ...restProps } = props;
 
-  return (
-    <Link to={to} className={cn(styles.link, {}, [className, styles[variant]])} {...restProps}>
-      {children}
-    </Link>
-  );
-});
+    return (
+      <Link
+        ref={ref}
+        className={cn(styles.link, {}, [className, styles[variant]])}
+        to={to}
+        {...restProps}
+      >
+        {children}
+      </Link>
+    );
+  })
+);
 
 export default AppLink;

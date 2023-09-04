@@ -27,13 +27,15 @@ const Select = typedMemo(<T extends string>(props: SelectProps<T>) => {
     onChange?.(event.target.value as T);
   };
 
-  const OptionsList = useMemo(() => {
-    return options.map(({ optionValue, content }) => (
-      <option key={optionValue} value={optionValue} className={cn(styles.option)}>
-        {content}
-      </option>
-    ));
-  }, [options]);
+  const optionsList = useMemo(
+    () =>
+      options.map(({ optionValue, content }) => (
+        <option key={optionValue} value={optionValue} className={cn(styles.option)}>
+          {content}
+        </option>
+      )),
+    [options]
+  );
 
   return (
     <div className={cn(styles.wrapper, mods, [className])}>
@@ -45,7 +47,7 @@ const Select = typedMemo(<T extends string>(props: SelectProps<T>) => {
         onChange={handleChange}
         disabled={readOnly}
       >
-        {OptionsList}
+        {optionsList}
       </select>
     </div>
   );
