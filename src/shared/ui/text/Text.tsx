@@ -15,7 +15,7 @@ interface TextProps extends HTMLAttributes<HTMLDivElement> {
   size?: TextSizeEnum;
   variant?: TextVariantEnum;
   align?: TextAlignEnum;
-  ref?: ForwardedRef<HTMLDivElement>;
+  ref?: ForwardedRef<HTMLElement>;
 }
 
 const Text: FC<TextProps> = memo(
