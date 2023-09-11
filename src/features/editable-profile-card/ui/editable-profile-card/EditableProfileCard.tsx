@@ -1,7 +1,17 @@
-import { FC, memo, useCallback } from 'react';
+import { FC, memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { ProfileForm, selectFormData, profileReducer, Profile } from '@/entities/profile';
+import {
+  Profile,
+  ProfileForm,
+  profileReducer,
+  selectFormData,
+  selectProfileError,
+  selectProfileReadOnly,
+  selectProfileIsLoading,
+  selectValidationErrors,
+  validateErrorTranslation,
+} from '@/entities/profile';
 
 import { TextVariantEnum } from '@/shared/api';
 
@@ -17,19 +27,27 @@ import styles from './EditableProfileCard.module.scss';
 
 interface EditableProfileCardProps {
   className?: string;
-  isLoading?: boolean;
-  error?: string | null;
-  readOnly?: boolean;
+  id: string;
 }
 
 const EditableProfileCard: FC<EditableProfileCardProps> = memo((props) => {
-  const { className, isLoading, error, readOnly } = props;
+  const { className, id } = props;
 
   const { t } = useTranslation('profile');
 
-  const { updateProfileForm } = useActionCreators(allActions);
+  const { fetchProfileData, updateProfileForm } = useActionCreators(allActions);
+
+  useEffect(() => {
+    if (__PROJECT__ !== 'storybook') {
+      fetchProfileData(id);
+    }
+  }, [fetchProfileData, id]);
 
   const formData = useAppSelector(selectFormData);
+  const error = useAppSelector(selectProfileError);
+  const readOnly = useAppSelector(selectProfileReadOnly);
+  const isLoading = useAppSelector(selectProfileIsLoading);
+  const validationErrors = useAppSelector(selectValidationErrors);
 
   const mods: Mods = {
     [styles.editing]: readOnly,
@@ -62,11 +80,18 @@ const EditableProfileCard: FC<EditableProfileCardProps> = memo((props) => {
   }
 
   return (
-    <VStack className={cn(styles.card, mods, [className])} gap="16" stretch>
+    <VStack className={cn(styles.card, mods, [className])} align="center" gap="16" stretch>
+      {validationErrors?.length &&
+        validationErrors.map((validateError) => (
+          <Text
+            key={validateError}
+            variant={TextVariantEnum.ERROR}
+            text={t(validateErrorTranslation[validateError])}
+          />
+        ))}
       <HStack justify="center" stretch>
         <Avatar src={formData?.avatar} size={200} alt={t('avatar')} readOnly={readOnly} />
       </HStack>
-
       <ProfileForm
         formData={formData}
         readOnly={readOnly}

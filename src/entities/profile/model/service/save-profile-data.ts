@@ -5,7 +5,7 @@ import type { ThunkConfig } from '@/app/providers/store-provider';
 import { validateProfileData } from './validate-profile-data';
 import { selectFormData } from '../selectors/select-profile-state';
 
-import { Profile, ProfileErrorsEnum } from '../types/profile-schema.interface';
+import { Profile, ProfileErrorsEnum } from '../types/profile.interface';
 
 export const saveProfileData = createAsyncThunk<Profile, void, ThunkConfig<ProfileErrorsEnum[]>>(
   'profileInfo/saveProfileData',

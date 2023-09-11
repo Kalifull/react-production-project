@@ -35,7 +35,7 @@ const ArticleFilter: FC<ArticleFilterProps> = memo(({ className }) => {
     setArticleOrder,
     setArticleSearch,
     setArticleType,
-    fetchArticlesList,
+    fetchArticlesListData,
   } = useActionCreators(allActions);
 
   const sort = useAppSelector(selectArticleSort);
@@ -44,8 +44,8 @@ const ArticleFilter: FC<ArticleFilterProps> = memo(({ className }) => {
   const type = useAppSelector(selectArticleType);
 
   const fetchData = useCallback(() => {
-    fetchArticlesList({ replace: true });
-  }, [fetchArticlesList]);
+    fetchArticlesListData({ replace: true });
+  }, [fetchArticlesListData]);
 
   const debouncedFetchData = useDebounceFn(fetchData, { delay: 250 });
 

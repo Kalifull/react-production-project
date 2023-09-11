@@ -2,9 +2,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import type { ThunkConfig } from '@/app/providers/store-provider';
 
-import { selectArticleData } from '@/entities/article';
+import { selectArticleData } from '../../../article';
 
-import { selectAuthData } from '@/entities/user';
+import { selectAuthData } from '../../../user';
 
 import type { Comment } from '../types/comment.interface';
 

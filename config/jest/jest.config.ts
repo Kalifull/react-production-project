@@ -42,6 +42,20 @@ const jestConfig: JestConfigWithTsJest = {
     __PROJECT__: 'jest',
   },
 
+  // Use this configuration option to add custom reporters to Jest
+  reporters: [
+    'default',
+    [
+      'jest-html-reporters',
+      {
+        publicPath: '<rootDir>/reports',
+        filename: 'report.html',
+        openReport: true,
+        inlineSource: true,
+      },
+    ],
+  ],
+
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
   setupFilesAfterEnv: ['<rootDir>config/jest/jest.setup.ts'],
 
@@ -108,9 +122,6 @@ const jestConfig: JestConfigWithTsJest = {
 
   // Run tests from one or more projects
   // projects: undefined,
-
-  // Use this configuration option to add custom reporters to Jest
-  // reporters: undefined,
 
   // Automatically reset mock state before every test
   // resetMocks: false,

@@ -1,4 +1,4 @@
-import { Profile, ProfileErrorsEnum } from '../types/profile-schema.interface';
+import { Profile, ProfileErrorsEnum } from '../types/profile.interface';
 
 export const validateProfileData = (profile?: Profile | null) => {
   const errors: ProfileErrorsEnum[] = [];

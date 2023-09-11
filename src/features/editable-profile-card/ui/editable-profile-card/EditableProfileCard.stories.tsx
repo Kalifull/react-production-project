@@ -46,16 +46,40 @@ export const Light: Story = {
   args: {},
 };
 
-export const ServerError: Story = {
-  args: { error: 'Ошибка при загрузке профиля' },
-};
-
-export const Loading: Story = {
-  args: { isLoading: true },
-};
-
 export const Dark: Story = {
   args: {},
 };
 
 Dark.decorators = [ThemeDecorator(ThemeEnum.DARK)];
+
+export const ServerError: Story = {
+  args: {},
+};
+
+ServerError.decorators = [
+  StoreDecorator({
+    profileInfo: {
+      formData: null,
+      isLoading: false,
+      error: 'Ошибка при загрузке профиля',
+      readOnly: true,
+      validationErrors: null,
+    },
+  }),
+];
+
+export const Loading: Story = {
+  args: {},
+};
+
+Loading.decorators = [
+  StoreDecorator({
+    profileInfo: {
+      formData: null,
+      isLoading: true,
+      error: null,
+      readOnly: true,
+      validationErrors: null,
+    },
+  }),
+];

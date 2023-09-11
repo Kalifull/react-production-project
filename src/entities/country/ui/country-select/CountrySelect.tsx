@@ -7,7 +7,7 @@ import { cn } from '@/shared/lib';
 
 import { CountryEnum } from '../../model/types/country-schema.interface';
 
-import type { Profile } from '../../../profile/model/types/profile-schema.interface';
+import type { Profile } from '../../../profile/model/types/profile.interface';
 
 interface CountrySelectProps {
   className?: string;

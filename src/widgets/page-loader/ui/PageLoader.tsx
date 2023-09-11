@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Loader } from '@/shared/ui';
+import { Loader, VStack } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -10,12 +10,9 @@ interface PageLoaderProps {
   className?: string;
 }
 
-const PageLoader: FC<PageLoaderProps> = ({ className }) => {
-  return (
-    <div className={cn(styles.loader, {}, [className])}>
-      <Loader />
-    </div>
-  );
-};
-
+const PageLoader: FC<PageLoaderProps> = ({ className }) => (
+  <VStack className={cn(styles.loader, {}, [className])} justify="center" align="center">
+    <Loader />
+  </VStack>
+);
 export default PageLoader;

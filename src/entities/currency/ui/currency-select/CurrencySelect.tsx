@@ -7,7 +7,7 @@ import { cn } from '@/shared/lib';
 
 import { CurrencyEnum } from '../../model/types/currency-schema.interface';
 
-import type { Profile } from '../../../profile/model/types/profile-schema.interface';
+import type { Profile } from '../../../profile/model/types/profile.interface';
 
 interface CurrencySelectProps {
   className?: string;

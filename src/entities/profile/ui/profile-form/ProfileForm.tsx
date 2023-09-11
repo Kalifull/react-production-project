@@ -9,7 +9,7 @@ import { cn } from '@/shared/lib';
 import { CurrencySelect } from '../../../currency';
 import { CountrySelect } from '../../../country';
 
-import type { Profile } from '../../model/types/profile-schema.interface';
+import type { Profile } from '../../model/types/profile.interface';
 
 import styles from './ProfileForm.module.scss';
 

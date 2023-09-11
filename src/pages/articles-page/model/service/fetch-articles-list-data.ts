@@ -18,11 +18,11 @@ interface FetchArticlesListProps {
   replace?: boolean;
 }
 
-export const fetchArticlesList = createAsyncThunk<
+export const fetchArticlesListData = createAsyncThunk<
   Article[],
   FetchArticlesListProps,
   ThunkConfig<string>
->('articlesPageInfo/fetchArticlesList', async (_, { rejectWithValue, extra, getState }) => {
+>('articlesPageInfo/fetchArticlesListData', async (_, { rejectWithValue, extra, getState }) => {
   const page = selectArticlesPage(getState());
   const limit = selectArticleLimit(getState());
   const sort = selectArticleSort(getState());

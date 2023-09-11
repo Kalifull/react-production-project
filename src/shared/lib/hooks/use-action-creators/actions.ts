@@ -1,5 +1,5 @@
 import {
-  fetchArticlesList,
+  fetchArticlesListData,
   fetchNextArticlesPage,
   initArticlesListData,
   articlesPageActions,
@@ -18,7 +18,7 @@ import { fetchRecommendations } from '@/entities/recommendation';
 import { fetchUserByUsername, userActions } from '@/entities/user';
 
 const allActions = {
-  fetchArticlesList,
+  fetchArticlesListData,
   fetchNextArticlesPage,
   initArticlesListData,
   fetchArticleById,

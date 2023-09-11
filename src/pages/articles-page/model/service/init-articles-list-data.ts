@@ -7,7 +7,7 @@ import { articleViewActions, selectArticleIsInit } from '@/features/article-view
 
 import { ArticleTypeEnum } from '@/entities/article';
 
-import { fetchArticlesList } from './fetch-articles-list-data';
+import { fetchArticlesListData } from './fetch-articles-list-data';
 
 export const initArticlesListData = createAsyncThunk<void, URLSearchParams, ThunkConfig<string>>(
   'articlesPageInfo/initArticlesListData',
@@ -37,7 +37,7 @@ export const initArticlesListData = createAsyncThunk<void, URLSearchParams, Thun
       }
 
       dispatch(articleViewActions.initState());
-      dispatch(fetchArticlesList({ replace: false }));
+      dispatch(fetchArticlesListData({ replace: false }));
     }
   }
 );

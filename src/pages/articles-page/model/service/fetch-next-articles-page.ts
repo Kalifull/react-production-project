@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import type { ThunkConfig } from '@/app/providers/store-provider';
 
-import { fetchArticlesList } from './fetch-articles-list-data';
+import { fetchArticlesListData } from './fetch-articles-list-data';
 
 import {
   selectArticlesPage,
@@ -20,7 +20,7 @@ export const fetchNextArticlesPage = createAsyncThunk<void, void, ThunkConfig<st
 
     if (hasMore && !isLoading) {
       dispatch(articlesPageActions.setPage({ page: page + 1 }));
-      dispatch(fetchArticlesList({ replace: false }));
+      dispatch(fetchArticlesListData({ replace: false }));
     }
   }
 );

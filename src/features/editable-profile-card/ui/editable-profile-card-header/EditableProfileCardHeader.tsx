@@ -1,7 +1,11 @@
 import { FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { selectProfileData } from '@/entities/profile';
+import {
+  selectProfileData,
+  selectProfileReadOnly,
+  selectProfileIsLoading,
+} from '@/entities/profile';
 import { selectAuthData } from '@/entities/user';
 
 import { ButtonVariantEnum } from '@/shared/api';
@@ -12,21 +16,20 @@ import { cn } from '@/shared/lib';
 
 import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
 
-interface ProfilePageHeaderProps {
+interface EditableProfileCardHeaderProps {
   className?: string;
-  isLoading?: boolean;
-  readOnly?: boolean;
 }
 
-export const ProfilePageHeader: FC<ProfilePageHeaderProps> = memo((props) => {
-  const { className, isLoading, readOnly } = props;
-
+const EditableProfileCardHeader: FC<EditableProfileCardHeaderProps> = memo(({ className }) => {
   const { t } = useTranslation('profile');
 
   const { setReadOnly, setCancelEdit, saveProfileData } = useActionCreators(allActions);
 
-  const authData = useAppSelector(selectAuthData);
   const profileData = useAppSelector(selectProfileData);
+  const readOnly = useAppSelector(selectProfileReadOnly);
+  const isLoading = useAppSelector(selectProfileIsLoading);
+
+  const authData = useAppSelector(selectAuthData);
 
   const isCanEditProfile = authData?.id === profileData?.id;
 
@@ -72,3 +75,5 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = memo((props) => {
     </HStack>
   );
 });
+
+export default EditableProfileCardHeader;

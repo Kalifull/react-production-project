@@ -4,7 +4,7 @@ import { FallbackProps } from 'react-error-boundary';
 
 import { ButtonVariantEnum } from '@/shared/api';
 
-import { Button } from '@/shared/ui';
+import { Button, VStack } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -18,12 +18,18 @@ const PageError: FC<PageErrorProps> = ({ className, resetErrorBoundary }) => {
   const { t } = useTranslation('translation');
 
   return (
-    <div className={cn(styles.error, {}, [className])}>
+    <VStack
+      className={cn(styles.error, {}, [className])}
+      justify="center"
+      align="center"
+      gap="8"
+      stretch
+    >
       <p>{t('errorPage')}</p>
       <Button variant={ButtonVariantEnum.OUTLINE} onClick={resetErrorBoundary}>
         {t('refreshPage')}
       </Button>
-    </div>
+    </VStack>
   );
 };
 

@@ -1,4 +1,4 @@
-export { fetchArticlesList } from './model/service/fetch-articles-list-data';
+export { fetchArticlesListData } from './model/service/fetch-articles-list-data';
 export { fetchNextArticlesPage } from './model/service/fetch-next-articles-page';
 export { initArticlesListData } from './model/service/init-articles-list-data';
 export { articlesPageActions, articlesPageReducer } from './model/slice/articles-page-slice';

@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, InputHTMLAttributes, SyntheticEvent, memo, useState } from 'react';
 
-import { Profile } from '@/entities/profile';
+import type { Profile } from '@/entities/profile';
 
 import { Mods, cn } from '../../lib';
 

@@ -6,7 +6,7 @@ import { Article } from '@/entities/article';
 
 import { LOCAL_STORAGE_ARTICLES_VIEW_KEY } from '@/shared/constant';
 
-import { fetchArticlesList } from '../service/fetch-articles-list-data';
+import { fetchArticlesListData } from '../service/fetch-articles-list-data';
 
 import type {
   ArticlesPageSchema,
@@ -42,7 +42,7 @@ export const articlesPageSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchArticlesList.pending, (state, { meta }) => {
+      .addCase(fetchArticlesListData.pending, (state, { meta }) => {
         const { arg } = meta;
 
         state.isLoading = true;
@@ -52,7 +52,7 @@ export const articlesPageSlice = createSlice({
           articlesAdapter.removeAll(state);
         }
       })
-      .addCase(fetchArticlesList.fulfilled, (state, { payload, meta }) => {
+      .addCase(fetchArticlesListData.fulfilled, (state, { payload, meta }) => {
         const { arg } = meta;
 
         state.isLoading = false;
@@ -65,7 +65,7 @@ export const articlesPageSlice = createSlice({
         }
       })
       .addCase(
-        fetchArticlesList.rejected,
+        fetchArticlesListData.rejected,
         (state, { payload }: PayloadAction<PayloadFetchArticlesError>) => {
           state.isLoading = false;
           state.error = payload;

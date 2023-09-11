@@ -5,12 +5,12 @@ import { saveProfileData } from '../service/save-profile-data';
 
 import type {
   Profile,
-  ProfileSchema,
   PayloadReadOnly,
   PayloadProfileForm,
   PayloadFetchProfileError,
   PayloadSaveProfileErrors,
-} from '../types/profile-schema.interface';
+} from '../types/profile.interface';
+import type { ProfileSchema } from '../types/profile-schema.interface';
 
 const initialState: ProfileSchema = {
   profileData: null,
