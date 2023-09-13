@@ -16,6 +16,7 @@ interface TextProps extends HTMLAttributes<HTMLDivElement> {
   variant?: TextVariantEnum;
   align?: TextAlignEnum;
   ref?: ForwardedRef<HTMLElement>;
+  'data-testid'?: string;
 }
 
 const Text: FC<TextProps> = memo(
@@ -29,6 +30,7 @@ const Text: FC<TextProps> = memo(
       size = TextSizeEnum.M,
       variant = TextVariantEnum.PRIMARY,
       align = TextAlignEnum.CENTER,
+      'data-testid': dataTestId = 'editable-profile-card-error',
       ...restProps
     } = props;
 
@@ -40,11 +42,15 @@ const Text: FC<TextProps> = memo(
         {...restProps}
       >
         {title && (
-          <Tag tag={titleTag} className={cn(styles.title)}>
+          <Tag tag={titleTag} className={cn(styles.title)} data-testid={`${dataTestId}-tag`}>
             {title}
           </Tag>
         )}
-        {text && <p className={cn(styles.text)}>{text}</p>}
+        {text && (
+          <p className={cn(styles.text)} data-testid={`${dataTestId}-paragraph`}>
+            {text}
+          </p>
+        )}
       </Tag>
     );
   })

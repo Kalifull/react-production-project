@@ -9,7 +9,7 @@ jest.mock('redux-persist/integration/react', () => ({
   PersistGate: (props: PersistGateProps) => props.children,
 }));
 
-describe('test Sidebar', () => {
+describe('test widgets/Sidebar', () => {
   test('Sidebar render', () => {
     renderWithProvider(<Sidebar />);
 

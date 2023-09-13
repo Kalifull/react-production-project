@@ -23,6 +23,8 @@ import { withAsyncReducers } from '@/shared/lib/hoc';
 
 import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
 
+import { EditableProfileCardHeader } from '../editable-profile-card-header/EditableProfileCardHeader';
+
 import styles from './EditableProfileCard.module.scss';
 
 interface EditableProfileCardProps {
@@ -38,7 +40,7 @@ const EditableProfileCard: FC<EditableProfileCardProps> = memo((props) => {
   const { fetchProfileData, updateProfileForm } = useActionCreators(allActions);
 
   useEffect(() => {
-    if (__PROJECT__ !== 'storybook') {
+    if (__PROJECT__ !== 'storybook' && __PROJECT__ !== 'jest') {
       fetchProfileData(id);
     }
   }, [fetchProfileData, id]);
@@ -80,23 +82,27 @@ const EditableProfileCard: FC<EditableProfileCardProps> = memo((props) => {
   }
 
   return (
-    <VStack className={cn(styles.card, mods, [className])} align="center" gap="16" stretch>
+    <VStack className={cn('', {}, [className])} align="center" gap="16" stretch>
+      <EditableProfileCardHeader />
       {validationErrors?.length &&
         validationErrors.map((validateError) => (
           <Text
             key={validateError}
             variant={TextVariantEnum.ERROR}
             text={t(validateErrorTranslation[validateError])}
+            data-testid="editable-profile-card-error"
           />
         ))}
-      <HStack justify="center" stretch>
-        <Avatar src={formData?.avatar} size={200} alt={t('avatar')} readOnly={readOnly} />
-      </HStack>
-      <ProfileForm
-        formData={formData}
-        readOnly={readOnly}
-        onChangeProfileForm={handleChangeProfileForm}
-      />
+      <VStack className={cn(styles.card, mods)} align="center" gap="16" stretch>
+        <HStack justify="center" stretch>
+          <Avatar src={formData?.avatar} size={200} alt={t('avatar')} readOnly={readOnly} />
+        </HStack>
+        <ProfileForm
+          formData={formData}
+          readOnly={readOnly}
+          onChangeProfileForm={handleChangeProfileForm}
+        />
+      </VStack>
     </VStack>
   );
 });

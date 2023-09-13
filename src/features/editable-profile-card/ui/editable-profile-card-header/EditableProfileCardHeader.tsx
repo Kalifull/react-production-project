@@ -20,60 +20,66 @@ interface EditableProfileCardHeaderProps {
   className?: string;
 }
 
-const EditableProfileCardHeader: FC<EditableProfileCardHeaderProps> = memo(({ className }) => {
-  const { t } = useTranslation('profile');
+export const EditableProfileCardHeader: FC<EditableProfileCardHeaderProps> = memo(
+  ({ className }) => {
+    const { t } = useTranslation('profile');
 
-  const { setReadOnly, setCancelEdit, saveProfileData } = useActionCreators(allActions);
+    const { setReadOnly, setCancelEdit, saveProfileData } = useActionCreators(allActions);
 
-  const profileData = useAppSelector(selectProfileData);
-  const readOnly = useAppSelector(selectProfileReadOnly);
-  const isLoading = useAppSelector(selectProfileIsLoading);
+    const profileData = useAppSelector(selectProfileData);
+    const readOnly = useAppSelector(selectProfileReadOnly);
+    const isLoading = useAppSelector(selectProfileIsLoading);
 
-  const authData = useAppSelector(selectAuthData);
+    const authData = useAppSelector(selectAuthData);
 
-  const isCanEditProfile = authData?.id === profileData?.id;
+    const isCanEditProfile = authData?.id === profileData?.id;
 
-  const handleEdit = useCallback(() => {
-    setReadOnly({ readOnly: false });
-  }, [setReadOnly]);
+    const handleEdit = useCallback(() => {
+      setReadOnly({ readOnly: false });
+    }, [setReadOnly]);
 
-  const handleCancelEdit = useCallback(() => {
-    setCancelEdit({ readOnly: true });
-  }, [setCancelEdit]);
+    const handleCancelEdit = useCallback(() => {
+      setCancelEdit({ readOnly: true });
+    }, [setCancelEdit]);
 
-  const handleSaveData = useCallback(() => {
-    saveProfileData();
-  }, [saveProfileData]);
+    const handleSaveData = useCallback(() => {
+      saveProfileData();
+    }, [saveProfileData]);
 
-  return (
-    <HStack className={cn('', {}, [className])} justify="between" stretch>
-      <Text title={t('profileUser')} />
-      {isCanEditProfile && (
-        <HStack gap="8">
-          <Button
-            type="button"
-            role="switch"
-            aria-checked={!readOnly}
-            variant={readOnly ? ButtonVariantEnum.OUTLINE : ButtonVariantEnum.OUTLINE_RED}
-            onClick={readOnly ? handleEdit : handleCancelEdit}
-            disabled={isLoading}
-          >
-            {readOnly ? t('edit') : t('cancel')}
-          </Button>
-          {!readOnly && (
+    return (
+      <HStack className={cn('', {}, [className])} justify="between" stretch>
+        <Text title={t('profileUser')} />
+        {isCanEditProfile && (
+          <HStack gap="8">
             <Button
               type="button"
-              variant={ButtonVariantEnum.OUTLINE}
-              onClick={handleSaveData}
+              role="switch"
+              aria-checked={!readOnly}
+              variant={readOnly ? ButtonVariantEnum.OUTLINE : ButtonVariantEnum.OUTLINE_RED}
+              onClick={readOnly ? handleEdit : handleCancelEdit}
               disabled={isLoading}
+              data-testid={
+                readOnly
+                  ? 'editable-profile-card-header-edit'
+                  : 'editable-profile-card-header-cancel'
+              }
             >
-              {t('save')}
+              {readOnly ? t('edit') : t('cancel')}
             </Button>
-          )}
-        </HStack>
-      )}
-    </HStack>
-  );
-});
-
-export default EditableProfileCardHeader;
+            {!readOnly && (
+              <Button
+                type="button"
+                variant={ButtonVariantEnum.OUTLINE}
+                onClick={handleSaveData}
+                disabled={isLoading}
+                data-testid="editable-profile-card-header-save"
+              >
+                {t('save')}
+              </Button>
+            )}
+          </HStack>
+        )}
+      </HStack>
+    );
+  }
+);

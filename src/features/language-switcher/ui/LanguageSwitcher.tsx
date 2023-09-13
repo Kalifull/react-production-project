@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ButtonVariantEnum } from '@/shared/api';
@@ -15,11 +15,11 @@ interface LanguageSwitcherProps {
 const LanguageSwitcher: FC<LanguageSwitcherProps> = memo(({ className, isCollapsed }) => {
   const { t, i18n } = useTranslation('translation');
 
-  const handleSwitchLanguage = () => {
+  const handleSwitchLanguage = useCallback(() => {
     const currentLanguage = i18n.language === 'ru' ? 'en' : 'ru';
 
     i18n.changeLanguage(currentLanguage);
-  };
+  }, [i18n]);
 
   return (
     <Button

@@ -9,7 +9,7 @@ import Avatar from '@/shared/assets/test/storybook-avatar.png';
 describe('test fetch profile data', () => {
   test('should fulfilled a request', async () => {
     const profileData: Profile = {
-      id: '1',
+      id: 1,
       firstName: 'Алексей',
       lastName: 'Соловьев',
       age: 24,

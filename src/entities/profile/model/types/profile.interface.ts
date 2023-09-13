@@ -2,7 +2,7 @@ import { CountryEnum } from '../../../country/model/types/country-schema.interfa
 import { CurrencyEnum } from '../../../currency/model/types/currency-schema.interface';
 
 export interface Profile {
-  id?: string;
+  id?: number;
   firstName?: string;
   lastName?: string;
   age?: number;

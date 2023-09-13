@@ -7,7 +7,7 @@ import Avatar from '@/shared/assets/test/storybook-avatar.png';
 describe('test validate profile data', () => {
   test('with correct profile data', () => {
     const profileData: Profile = {
-      id: '1',
+      id: 1,
       firstName: 'Алексей',
       lastName: 'Соловьев',
       age: 24,
@@ -25,7 +25,7 @@ describe('test validate profile data', () => {
 
   test('without first and last name', () => {
     const profileData: Profile = {
-      id: '1',
+      id: 1,
       firstName: '',
       lastName: '',
       age: 24,
@@ -43,7 +43,7 @@ describe('test validate profile data', () => {
 
   test('without city and firstName', () => {
     const profileData: Profile = {
-      id: '1',
+      id: 1,
       firstName: '',
       lastName: 'Соловьев',
       age: 24,

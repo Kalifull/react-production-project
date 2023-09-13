@@ -47,6 +47,7 @@ const ProfileForm: FC<ProfileFormProps> = memo((props) => {
                 placeholder={t(field)}
                 onChangeProfileForm={handleChangeProfileForm}
                 readOnly={readOnly}
+                data-testid={field}
               />
             ))}
         <CurrencySelect

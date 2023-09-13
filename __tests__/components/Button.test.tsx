@@ -4,7 +4,7 @@ import { ButtonVariantEnum } from '@/shared/api';
 
 import { Button } from '@/shared/ui';
 
-describe('test Button', () => {
+describe('test shared/ui/Button', () => {
   test('Button render test with text', () => {
     render(<Button>TEXT</Button>);
     expect(screen.getByText('TEXT')).toBeInTheDocument();

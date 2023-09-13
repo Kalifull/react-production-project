@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { Page } from '@/widgets/page';
 
-import { EditableProfileCardHeader, EditableProfileCard } from '@/features/editable-profile-card';
+import { EditableProfileCard } from '@/features/editable-profile-card';
 
 import { VStack } from '@/shared/ui';
 
@@ -25,7 +25,6 @@ const ProfilePage: FC<ProfilePageProps> = memo(({ className }) => {
   return (
     <Page className={cn(styles['profile-page'], {}, [className])}>
       <VStack gap="16" stretch>
-        <EditableProfileCardHeader />
         <EditableProfileCard id={id} />
       </VStack>
     </Page>
