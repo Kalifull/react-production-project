@@ -9,5 +9,6 @@
   "errorPage": "Oops! Something went wrong...",
   "refreshPage": "Refresh the page",
   "login": "Login",
-  "logout": "Logout"
+  "logout": "Logout",
+  "hotAccess": "You do not have access to this page"
 }

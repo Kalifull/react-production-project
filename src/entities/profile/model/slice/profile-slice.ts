@@ -3,14 +3,14 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { fetchProfileData } from '../service/fetch-profile-data';
 import { saveProfileData } from '../service/save-profile-data';
 
+import type { Profile } from '../types/profile.interface';
 import type {
-  Profile,
+  ProfileSchema,
   PayloadReadOnly,
   PayloadProfileForm,
   PayloadFetchProfileError,
   PayloadSaveProfileErrors,
-} from '../types/profile.interface';
-import type { ProfileSchema } from '../types/profile-schema.interface';
+} from '../types/profile-schema.interface';
 
 const initialState: ProfileSchema = {
   profileData: null,

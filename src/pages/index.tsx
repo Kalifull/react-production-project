@@ -3,20 +3,20 @@ import { Route, Routes } from 'react-router-dom';
 
 import { PageLoader } from '@/widgets/page-loader';
 
-import { AppRoutesProps } from '@/shared/config';
-
 import { PrivateRoute } from './private-routes';
+
+import type { AppRoutesProps } from './routes';
 import { routesConfig } from './routes';
 
 export const Routing: FC = memo(() => {
-  const renderWithWrapper = useCallback(({ path, element, authOnly }: AppRoutesProps) => {
+  const renderWithWrapper = useCallback(({ path, element, authOnly, roles }: AppRoutesProps) => {
     const route = <Suspense fallback={<PageLoader />}>{element}</Suspense>;
 
     return (
       <Route
         key={path}
         path={path}
-        element={authOnly ? <PrivateRoute>{route}</PrivateRoute> : route}
+        element={authOnly ? <PrivateRoute roles={roles}>{route}</PrivateRoute> : route}
       />
     );
   }, []);

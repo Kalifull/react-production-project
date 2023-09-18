@@ -2,7 +2,8 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { fetchUserByUsername } from '../service/fetch-user-by-username';
 
-import type { User, UserSchema, PayloadFetchUserError } from '../types/user-schema.interface';
+import type { User } from '../types/user.interface';
+import type { UserSchema, PayloadFetchUserError } from '../types/user-schema.interface';
 
 const initialState: UserSchema = {
   authData: null,

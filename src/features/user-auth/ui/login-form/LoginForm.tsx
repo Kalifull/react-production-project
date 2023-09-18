@@ -60,9 +60,9 @@ const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
   );
 
   const handleLoginClick = useCallback(async () => {
-    const result = await fetchUserByUsername({ username, password });
+    const response = await fetchUserByUsername({ username, password });
 
-    if (result.meta.requestStatus === 'fulfilled') {
+    if (response.meta.requestStatus === 'fulfilled') {
       navigate(routesPaths.main);
     }
   }, [fetchUserByUsername, navigate, password, username]);

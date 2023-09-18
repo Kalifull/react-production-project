@@ -1,51 +1,23 @@
-import { RuleSetRule } from 'webpack';
-import ReactRefreshTypeScript from 'react-refresh-typescript';
+import type { RuleSetRule } from 'webpack';
 
+import { buildBabelLoader } from './loaders/build-babel-loader';
 import { buildCssLoader } from './loaders/build-css-loader';
+import { buildFileLoader } from './loaders/build-file-loader';
 import { buildSvgLoader } from './loaders/build-svg-loader';
+import { buildTypeScriptLoader } from './loaders/build-type-script-loader';
 
 import type { BuildOptions } from './types/config';
 
 export const buildLoaders = ({ isDev }: BuildOptions): RuleSetRule[] => {
-  const typescriptLoader = {
-    test: /\.tsx?$/,
-    exclude: /node_modules/,
-    use: [
-      {
-        loader: 'ts-loader',
-        options: {
-          getCustomTransformers: () => ({
-            before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
-          }),
-          transpileOnly: isDev,
-        },
-      },
-    ],
-  };
+  const babelLoader = buildBabelLoader();
 
   const cssLoader = buildCssLoader(isDev);
 
+  const fileLoader = buildFileLoader();
+
   const svgLoader = buildSvgLoader();
 
-  const fileLoader = {
-    test: /\.(png|jpe?g|gif|woff2|woff)$/i,
-    use: [
-      {
-        loader: 'file-loader',
-      },
-    ],
-  };
-
-  const babelLoader = {
-    test: /\.(js|jsx|tsx)$/,
-    exclude: /node_modules/,
-    use: {
-      loader: 'babel-loader',
-      options: {
-        presets: ['@babel/preset-env'],
-      },
-    },
-  };
+  const typescriptLoader = buildTypeScriptLoader(isDev);
 
   return [fileLoader, babelLoader, typescriptLoader, cssLoader, svgLoader];
 };

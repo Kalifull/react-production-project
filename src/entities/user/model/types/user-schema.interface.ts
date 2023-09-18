@@ -1,9 +1,4 @@
-export interface User {
-  id: number;
-  username: string;
-  password: string;
-  avatar?: string;
-}
+import type { User } from './user.interface';
 
 export interface UserSchema {
   authData?: User | null;

@@ -30,16 +30,3 @@ export const validateErrorTranslation: Record<ProfileErrorsEnum, string> = {
   [ProfileErrorsEnum.SERVER_ERROR]: 'serverError',
   [ProfileErrorsEnum.NO_DATA]: 'noData',
 };
-
-export interface PayloadReadOnly {
-  readOnly: boolean;
-}
-
-export interface PayloadProfileForm {
-  value: string | number;
-  field: keyof Profile;
-}
-
-export type PayloadFetchProfileError = string | undefined;
-
-export type PayloadSaveProfileErrors = ProfileErrorsEnum[] | undefined;

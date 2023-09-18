@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { LoginModal } from '@/features/user-auth';
 
-import { selectAuthData } from '@/entities/user';
+import { selectAuthData, selectIsAdmin, selectIsManager } from '@/entities/user';
 
 import { ButtonVariantEnum } from '@/shared/api';
 
@@ -22,13 +22,17 @@ interface NavbarProps {
 }
 
 const Navbar: FC<NavbarProps> = memo(({ className }) => {
-  const { t } = useTranslation('translation');
+  const { t } = useTranslation(['translation', 'admin']);
 
   const [isAuthModal, setIsAuthModal] = useState(false);
 
-  const authData = useAppSelector(selectAuthData);
-
   const { logout } = useActionCreators(allActions);
+
+  const authData = useAppSelector(selectAuthData);
+  const isAdmin = useAppSelector(selectIsAdmin);
+  const isManager = useAppSelector(selectIsManager);
+
+  const isAdminPanelAvailable = isAdmin || isManager;
 
   const handleClose = useCallback(() => {
     setIsAuthModal(false);
@@ -50,7 +54,16 @@ const Navbar: FC<NavbarProps> = memo(({ className }) => {
           trigger={<Avatar src={authData.avatar} size={38} alt={authData.username} />}
           items={[
             { id: 1, content: t('profilePage'), href: `${routesPaths.profile}${authData.id}` },
-            { id: 2, content: t('logout'), handleClick: handleLogout },
+            ...(isAdminPanelAvailable
+              ? [
+                  {
+                    id: 2,
+                    content: t('adminPage', { ns: 'admin' }),
+                    href: routesPaths['admin-panel'],
+                  },
+                ]
+              : []),
+            { id: 3, content: t('logout'), handleClick: handleLogout },
           ]}
           direction="bottom-left"
         />

@@ -1,11 +1,22 @@
-import { RoutesEnum, AppRoutesProps, routesPaths } from '@/shared/config';
+import type { RouteProps } from 'react-router-dom';
+
+import { UserRoleEnum } from '@/entities/user';
+
+import { RoutesEnum, routesPaths } from '@/shared/config';
 
 import { MainPage } from './main-page';
 import { AboutPage } from './about-page';
+import { AdminPanelPage } from './admin-panel-page';
 import { ProfilePage } from './profile-page';
 import { NotFoundPage } from './not-found-page';
 import { ArticlesPage } from './articles-page';
+import { ForbiddenPage } from './forbidden-page';
 import { ArticleDetailsPage } from './article-details-page';
+
+export interface AppRoutesProps extends RouteProps {
+  authOnly?: boolean;
+  roles?: UserRoleEnum[];
+}
 
 export const routesConfig: Record<RoutesEnum, AppRoutesProps> = {
   [RoutesEnum.MAIN]: {
@@ -18,6 +29,13 @@ export const routesConfig: Record<RoutesEnum, AppRoutesProps> = {
     element: <AboutPage />,
   },
 
+  [RoutesEnum.ADMIN_PANEL]: {
+    path: routesPaths[RoutesEnum.ADMIN_PANEL],
+    element: <AdminPanelPage />,
+    authOnly: true,
+    roles: [UserRoleEnum.ADMIN, UserRoleEnum.MANAGER],
+  },
+
   [RoutesEnum.PROFILE]: {
     path: `${routesPaths[RoutesEnum.PROFILE]}:id`,
     element: <ProfilePage />,
@@ -28,6 +46,11 @@ export const routesConfig: Record<RoutesEnum, AppRoutesProps> = {
     path: routesPaths[RoutesEnum.ARTICLES],
     element: <ArticlesPage />,
     authOnly: true,
+  },
+
+  [RoutesEnum.FORBIDDEN]: {
+    path: routesPaths[RoutesEnum.FORBIDDEN],
+    element: <ForbiddenPage />,
   },
 
   [RoutesEnum.ARTICLE_DETAILS]: {
