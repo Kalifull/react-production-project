@@ -1,4 +1,4 @@
-import { DeepPartial } from '@reduxjs/toolkit';
+import type { DeepPartial } from '@reduxjs/toolkit';
 
 import { CountryEnum } from '@/entities/country';
 import { CurrencyEnum } from '@/entities/currency';

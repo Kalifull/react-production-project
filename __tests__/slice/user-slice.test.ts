@@ -1,4 +1,4 @@
-import { DeepPartial } from '@reduxjs/toolkit';
+import type { DeepPartial } from '@reduxjs/toolkit';
 
 import { User, UserSchema, userActions, userReducer, fetchUserByUsername } from '@/entities/user';
 

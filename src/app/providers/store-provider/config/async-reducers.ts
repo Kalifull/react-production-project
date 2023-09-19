@@ -1,4 +1,4 @@
-import { DeepPartial, Reducer } from '@reduxjs/toolkit';
+import type { DeepPartial, Reducer } from '@reduxjs/toolkit';
 
 import { loginReducer } from '@/features/user-auth';
 import { formCommentReducer } from '@/features/send-form-comment';

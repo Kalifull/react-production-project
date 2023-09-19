@@ -1,5 +1,5 @@
-import { StoryFn } from '@storybook/react';
-import { DeepPartial } from '@reduxjs/toolkit';
+import type { StoryFn } from '@storybook/react';
+import type { DeepPartial } from '@reduxjs/toolkit';
 
 import { StateSchema, StoreProvider, asyncReducers } from '@/app/providers/store-provider';
 

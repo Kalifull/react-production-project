@@ -1,12 +1,8 @@
-import { ElementType } from 'react';
+import { ReactNode } from 'react';
 
 import { ThemeProvider } from '@/shared/context';
 
-const withTheme = (Component: ElementType) => () =>
-  (
-    <ThemeProvider>
-      <Component />
-    </ThemeProvider>
-  );
+const withTheme = (component: () => ReactNode) => () =>
+  <ThemeProvider>{component()}</ThemeProvider>;
 
 export default withTheme;

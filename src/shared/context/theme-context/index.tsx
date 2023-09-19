@@ -1,4 +1,13 @@
-import { createContext, Dispatch, FC, SetStateAction, useEffect, useMemo, useState } from 'react';
+import {
+  createContext,
+  Dispatch,
+  FC,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 import { ThemeEnum } from '../../api';
 
@@ -14,7 +23,7 @@ interface ThemeContextProps {
 export const ThemeContext = createContext<ThemeContextProps>({});
 
 interface ThemeProviderProps {
-  children: React.ReactNode;
+  children: ReactNode;
   initialTheme?: ThemeEnum;
 }
 

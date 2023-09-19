@@ -1,7 +1,7 @@
 import axios, { AxiosStatic } from 'axios';
 import { AsyncThunkAction, DeepPartial } from '@reduxjs/toolkit';
 
-import { StateSchema } from '@/app/providers/store-provider';
+import type { StateSchema } from '@/app/providers/store-provider';
 
 jest.mock('axios');
 

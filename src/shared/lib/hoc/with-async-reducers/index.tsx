@@ -1,6 +1,6 @@
 import { useStore } from 'react-redux';
-import { ElementType, useLayoutEffect } from 'react';
-import { DeepPartial, Reducer } from '@reduxjs/toolkit';
+import { FC, useLayoutEffect } from 'react';
+import type { DeepPartial, Reducer } from '@reduxjs/toolkit';
 
 import type {
   StateSchema,
@@ -19,7 +19,7 @@ interface AsyncReducersConfig {
   removeAfterUnmount?: boolean;
 }
 
-const withAsyncReducers = (Component: ElementType, config: AsyncReducersConfig) => (props: any) => {
+const withAsyncReducers = (Component: FC<any>, config: AsyncReducersConfig) => (props: any) => {
   const { reducers, removeAfterUnmount = true } = config;
 
   const dispatch = useAppDispatch();

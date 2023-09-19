@@ -1,8 +1,8 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
-import { DeepPartial, Reducer } from '@reduxjs/toolkit';
+import type { DeepPartial, Reducer } from '@reduxjs/toolkit';
 
 import { StoreProvider, StateSchema } from '@/app/providers/store-provider';
 
