@@ -11,14 +11,14 @@ import { cn } from '@/shared/lib';
 
 import { useAppSelector } from '@/shared/lib/hooks';
 
-import type { SidebarItemType } from '../../model/types/sidebar-item.interface';
+import type { SidebarItemList } from '../../model/types/sidebar-item-list.interface';
 
 import styles from './SidebarItem.module.scss';
 
 interface SidebarItemProps {
-  path: SidebarItemType['path'];
-  text: SidebarItemType['text'];
-  Icon: SidebarItemType['Icon'];
+  path: SidebarItemList['path'];
+  text: SidebarItemList['text'];
+  Icon: SidebarItemList['Icon'];
   authOnly?: boolean;
   isCollapsed: boolean;
 }

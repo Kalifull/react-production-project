@@ -1,4 +1,5 @@
-import type { Profile, ProfileErrorsEnum } from './profile.interface';
+import type { Profile } from './profile.interface';
+import { ProfileErrorsEnum } from '../const/const-profile';
 
 export interface ProfileSchema {
   profileData?: Profile | null;

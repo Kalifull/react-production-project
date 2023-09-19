@@ -1,6 +1,6 @@
-import { SVGProps, VFC } from 'react';
+import type { SVGProps, VFC } from 'react';
 
-import { ArticleViewType } from '@/entities/article';
+import type { ArticleViewType } from '@/entities/article';
 
 import ListIcon from '@/shared/assets/icons/list.svg';
 import TileIcon from '@/shared/assets/icons/tile.svg';

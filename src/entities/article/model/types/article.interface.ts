@@ -1,10 +1,5 @@
 import type { User } from '../../../user';
-
-export enum ArticleBlockTypeEnum {
-  TEXT = 'TEXT',
-  CODE = 'CODE',
-  IMAGE = 'IMAGE',
-}
+import { ArticleBlockTypeEnum, ArticleTypeEnum } from '../const/const-article';
 
 interface ArticleBlockBase {
   id: string;
@@ -29,13 +24,6 @@ export interface ImageBlock extends ArticleBlockBase {
 }
 
 export type ArticleBlock = TextBlock | CodeBlock | ImageBlock;
-
-export enum ArticleTypeEnum {
-  ALL = 'all',
-  IT = 'it',
-  SCIENCE = 'science',
-  ECONOMICS = 'economics',
-}
 
 export type ArticleViewType = 'list' | 'tile';
 

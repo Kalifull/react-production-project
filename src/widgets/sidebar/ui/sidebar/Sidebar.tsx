@@ -13,7 +13,7 @@ import { useAppSelector } from '@/shared/lib/hooks';
 
 import { SidebarItem } from '../sidebar-item/SidebarItem';
 
-import { selectSidebarItems } from '../../model/selectors/select-sidebar-items';
+import { selectSidebarItemList } from '../../model/selectors/select-sidebar-item-list';
 
 import styles from './Sidebar.module.scss';
 
@@ -24,7 +24,7 @@ interface SidebarProps {
 const Sidebar: FC<SidebarProps> = memo(({ className }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
-  const sidebarItemsList = useAppSelector(selectSidebarItems);
+  const sidebarItemList = useAppSelector(selectSidebarItemList);
 
   const toggleCollapse = useCallback(() => {
     setIsCollapsed((prev) => !prev);
@@ -51,7 +51,7 @@ const Sidebar: FC<SidebarProps> = memo(({ className }) => {
       </Button>
 
       <VStack className={cn(styles.links)} gap="16" tag="nav" role="navigation">
-        {sidebarItemsList.map((item) => (
+        {sidebarItemList.map((item) => (
           <SidebarItem key={item.id} {...item} isCollapsed={isCollapsed} />
         ))}
       </VStack>

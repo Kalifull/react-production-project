@@ -17,6 +17,8 @@ import { withAsyncReducers } from '@/shared/lib/hoc';
 
 import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
 
+import { mappingArticlesBlock } from '../article-block';
+
 import {
   selectArticleData,
   selectArticleError,
@@ -24,8 +26,6 @@ import {
 } from '../../model/selectors/select-article-state';
 import { articleReducer } from '../../model/slice/article-slice';
 import type { ArticleBlock } from '../../model/types/article.interface';
-
-import { mappingArticlesBlock } from '../article-block';
 
 import styles from './ArticleDetails.module.scss';
 

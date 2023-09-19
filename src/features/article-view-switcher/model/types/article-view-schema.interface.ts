@@ -1,4 +1,4 @@
-import { ArticleViewType } from '@/entities/article';
+import type { ArticleViewType } from '@/entities/article';
 
 export interface ArticleViewSchema {
   view: ArticleViewType;

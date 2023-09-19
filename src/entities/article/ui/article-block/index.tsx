@@ -2,12 +2,12 @@ import { ArticleTextBlock } from './article-text-block/ArticleTextBlock';
 import { ArticleCodeBlock } from './article-code-block/ArticleCodeBlock';
 import { ArticleImageBlock } from './article-image-block/ArticleImageBlock';
 
-import {
+import { ArticleBlockTypeEnum } from '../../model/const/const-article';
+import type {
   TextBlock,
   CodeBlock,
   ImageBlock,
   ArticleBlock,
-  ArticleBlockTypeEnum,
 } from '../../model/types/article.interface';
 
 export const mappingArticlesBlock = (block: ArticleBlock) => {

@@ -1,4 +1,4 @@
-export interface SidebarItemType {
+export interface SidebarItemList {
   id: number;
   path: string;
   text: string;

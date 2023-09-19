@@ -9,16 +9,16 @@ import ArticleIcon from '@/shared/assets/icons/articles.svg';
 
 import { routesPaths } from '@/shared/config';
 
-import { SidebarItemType } from '../types/sidebar-item.interface';
+import type { SidebarItemList } from '../types/sidebar-item-list.interface';
 
-export const selectSidebarItems = createSelector([selectAuthData], (authData) => {
-  const sidebarItemsList: SidebarItemType[] = [
+export const selectSidebarItemList = createSelector([selectAuthData], (authData) => {
+  const sidebarItemList: SidebarItemList[] = [
     { id: 1, path: routesPaths.main, text: 'mainPage', Icon: MainIcon },
     { id: 2, path: routesPaths.about, text: 'aboutPage', Icon: AboutIcon },
   ];
 
   if (authData) {
-    sidebarItemsList.push(
+    sidebarItemList.push(
       {
         id: 3,
         path: `${routesPaths.profile}${authData.id}`,
@@ -36,5 +36,5 @@ export const selectSidebarItems = createSelector([selectAuthData], (authData) =>
     );
   }
 
-  return sidebarItemsList;
+  return sidebarItemList;
 });
