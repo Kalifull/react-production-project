@@ -1,6 +1,10 @@
 import ReactRefreshTypeScript from 'react-refresh-typescript';
 
-export const buildTypeScriptLoader = (isDev: boolean) => ({
+interface BuildTypeScriptLoaderProps {
+  isDev: boolean;
+}
+
+export const buildTypeScriptLoader = ({ isDev }: BuildTypeScriptLoaderProps) => ({
   test: /\.tsx?$/,
   exclude: /node_modules/,
   use: [

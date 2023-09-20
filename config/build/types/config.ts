@@ -1,4 +1,4 @@
-import { Configuration } from 'webpack';
+import type { Configuration } from 'webpack';
 
 export type BuildMode = Configuration['mode'];
 
@@ -22,6 +22,7 @@ export interface BuildOptions {
   mode: BuildMode;
   paths: BuildPaths;
   isDev: boolean;
+  isTsx: boolean;
   port: number;
   analyze: boolean;
   apiUrl: string;

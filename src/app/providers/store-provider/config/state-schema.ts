@@ -1,12 +1,12 @@
-import {
+import type {
   AnyAction,
   CombinedState,
   EnhancedStore,
   Reducer,
   ReducersMapObject,
 } from '@reduxjs/toolkit';
-import { AxiosInstance } from 'axios';
-import { PersistPartial } from 'redux-persist/es/persistReducer';
+import type { AxiosInstance } from 'axios';
+import type { PersistPartial } from 'redux-persist/es/persistReducer';
 
 import type { ArticlesPageSchema } from '@/pages/articles-page';
 

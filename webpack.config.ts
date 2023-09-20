@@ -1,5 +1,5 @@
 import path from 'path';
-import { Configuration } from 'webpack';
+import type { Configuration } from 'webpack';
 
 import { buildWebpackConfig } from './config/build/build-webpack-config';
 
@@ -26,6 +26,7 @@ export default (env: BuildEnv) => {
     mode,
     port,
     isDev,
+    isTsx: true,
     paths,
     analyze,
     apiUrl,

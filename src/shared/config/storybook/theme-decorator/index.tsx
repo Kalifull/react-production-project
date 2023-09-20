@@ -6,12 +6,11 @@ import { ThemeProvider } from '../../../context';
 
 import { cn } from '../../../lib';
 
-export const ThemeDecorator = (theme: ThemeEnum) => (Story: StoryFn) => {
-  return (
+export const ThemeDecorator = (theme: ThemeEnum) => (Story: StoryFn) =>
+  (
     <ThemeProvider initialTheme={theme}>
       <div className={cn('app', {}, [theme])}>
         <Story />
       </div>
     </ThemeProvider>
   );
-};
