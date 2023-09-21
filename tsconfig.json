@@ -23,6 +23,7 @@
     "__tests__/**/*",
     "config/**/*",
     "webpack.config.ts",
+    "vite.config.ts",
     "scripts/**/*",
     "json-server/**/*"
   ],
