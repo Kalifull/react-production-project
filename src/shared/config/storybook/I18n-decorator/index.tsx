@@ -1,4 +1,4 @@
-import { StoryFn } from '@storybook/react';
+import type { StoryFn } from '@storybook/react';
 import { Suspense } from 'react';
 import { I18nextProvider } from 'react-i18next';
 

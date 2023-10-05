@@ -1,7 +1,8 @@
 import { resolve } from 'path';
 import { Configuration, DefinePlugin, RuleSetRule } from 'webpack';
 
-import { BuildPaths } from '../build/types/config';
+import type { BuildPaths } from '../build/types/config';
+
 import { buildCssLoader } from '../build/loaders/build-css-loader';
 import { buildSvgLoader } from '../build/loaders/build-svg-loader';
 
