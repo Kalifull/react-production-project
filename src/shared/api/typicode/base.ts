@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { PERSIST_AUTH_USER_KEY } from '@/shared/constant';
+import { PERSIST_AUTH_USER_KEY } from '../../constant';
 
 const apiInstance = axios.create({
   baseURL: __API__,

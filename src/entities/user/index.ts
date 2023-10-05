@@ -9,6 +9,6 @@ export {
   selectUserIsLoading,
   selectUserError,
 } from './model/selectors/select-user-state';
-export { UserRoleEnum } from './model/const/const-user';
+export { UserRoleEnum } from './model/constants/const-user';
 export type { User } from './model/types/user.interface';
 export type { UserSchema } from './model/types/user-schema.interface';

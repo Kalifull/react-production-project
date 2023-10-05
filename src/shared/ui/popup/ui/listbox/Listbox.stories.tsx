@@ -2,12 +2,13 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import Listbox from './Listbox';
 
-import { ThemeEnum } from '../../api';
+import { ThemeEnum } from '../../../../api';
 
-import { ThemeDecorator } from '../../config/storybook/theme-decorator';
+import { ContextDecorator } from '../../../../config/storybook/context-decorator';
+import { ThemeDecorator } from '../../../../config/storybook/theme-decorator';
 
 const meta = {
-  title: 'shared/Listbox',
+  title: 'shared/popups/Listbox',
   component: Listbox,
   argTypes: {},
   args: {
@@ -29,8 +30,10 @@ export const Light: Story = {
   args: {},
 };
 
+Light.decorators = [ThemeDecorator(ThemeEnum.LIGHT), ContextDecorator];
+
 export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [ThemeDecorator(ThemeEnum.DARK)];
+Dark.decorators = [ThemeDecorator(ThemeEnum.DARK), ContextDecorator];

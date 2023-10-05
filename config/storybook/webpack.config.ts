@@ -1,4 +1,4 @@
-import path from 'path';
+import { resolve } from 'path';
 import { Configuration, DefinePlugin, RuleSetRule } from 'webpack';
 
 import { BuildPaths } from '../build/types/config';
@@ -10,7 +10,7 @@ export default ({ config }: { config: Configuration }) => {
     build: '',
     html: '',
     entry: '',
-    src: path.resolve(__dirname, '..', '..', 'src'),
+    src: resolve(__dirname, '..', '..', 'src'),
     locales: '',
     buildLocales: '',
   };
@@ -27,7 +27,7 @@ export default ({ config }: { config: Configuration }) => {
   config.plugins!.push(
     new DefinePlugin({
       __IS_DEV__: JSON.stringify(true),
-      __API__: JSON.stringify(''),
+      __API__: JSON.stringify('https://testapi.com'),
       __PROJECT__: JSON.stringify('storybook'),
     })
   );

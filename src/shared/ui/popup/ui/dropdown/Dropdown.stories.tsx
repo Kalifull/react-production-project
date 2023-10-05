@@ -2,14 +2,15 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import Dropdown from './Dropdown';
 
-import { ThemeEnum } from '../../api';
-import { Avatar } from '..';
-import AvatarIcon from '../../assets/test/storybook-avatar.png';
+import { ThemeEnum } from '../../../../api';
+import { Avatar } from '../../..';
+import AvatarIcon from '../../../../assets/test/storybook-avatar.png';
 
-import { ThemeDecorator } from '../../config/storybook/theme-decorator';
+import { ContextDecorator } from '../../../../config/storybook/context-decorator';
+import { ThemeDecorator } from '../../../../config/storybook/theme-decorator';
 
 const meta = {
-  title: 'shared/Dropdown',
+  title: 'shared/popups/Dropdown',
   component: Dropdown,
   argTypes: {},
   args: {
@@ -30,8 +31,10 @@ export const Light: Story = {
   args: {},
 };
 
+Light.decorators = [ThemeDecorator(ThemeEnum.LIGHT), ContextDecorator];
+
 export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [ThemeDecorator(ThemeEnum.DARK)];
+Dark.decorators = [ThemeDecorator(ThemeEnum.DARK), ContextDecorator];

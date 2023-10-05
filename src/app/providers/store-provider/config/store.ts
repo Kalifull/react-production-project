@@ -1,7 +1,7 @@
 import { CombinedState, Reducer, ReducersMapObject, configureStore } from '@reduxjs/toolkit';
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 
-import { apiInstance } from '@/shared/api';
+import { api, apiInstance } from '@/shared/api';
 
 import { createReducerManager } from './reducer-manager';
 
@@ -20,6 +20,7 @@ export const createReduxStore = (
   const rootReducer: ReducersMapObject<StateSchema> = {
     ...syncReducers,
     ...asyncReducers,
+    [api.reducerPath]: api.reducer,
   };
 
   const reducerManager = createReducerManager(rootReducer);
@@ -34,7 +35,7 @@ export const createReduxStore = (
         thunk: {
           extraArgument,
         },
-      }),
+      }).concat(api.middleware),
     devTools: __IS_DEV__,
     preloadedState: initialState,
   });

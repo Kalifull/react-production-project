@@ -6,12 +6,12 @@ import { LOCAL_STORAGE_THEME_KEY } from '../../../constant';
 
 import { ThemeContext } from '../../../context';
 
-interface UseThemeResult {
+interface UseThemeResponse {
   theme: ThemeEnum;
   toggledTheme: () => void;
 }
 
-const useTheme = (): UseThemeResult => {
+const useTheme = (): UseThemeResponse => {
   const { theme, setTheme } = useContext(ThemeContext);
 
   const toggledTheme = () => {

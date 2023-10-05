@@ -7,7 +7,7 @@ import { HStack, Select } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
-import { ArticleOrderEnum, ArticleSortEnum } from '../../model/const/const-article-filter';
+import { ArticleOrderEnum, ArticleSortEnum } from '../../model/constants/const-article-filter';
 
 interface ArticleSortFilterProps {
   className?: string;

@@ -8,7 +8,7 @@ import { useTheme } from '@/shared/lib/hooks';
 
 import { cn } from '@/shared/lib';
 
-import SwitcherIcon from '@/shared/assets/icons/switcher-Icon.svg';
+import SwitcherIcon from '@/shared/assets/icons/switcher-icon.svg';
 
 interface ThemeSwitcherProps {
   className?: string;

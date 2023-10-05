@@ -1,11 +1,11 @@
 import { FC, memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Listbox } from '@/shared/ui';
+import { Popup } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
-import { CountryEnum } from '../../model/types/country-schema.interface';
+import { CountryEnum } from '../../model/constants/const-country';
 
 import type { Profile } from '../../../profile/model/types/profile.interface';
 
@@ -39,16 +39,18 @@ const CountrySelect: FC<CountrySelectProps> = memo((props) => {
   );
 
   return (
-    <Listbox
-      className={cn('', {}, [className])}
-      label={t('country')}
-      value={value}
-      defaultValue={t('country')}
-      options={countryOptions}
-      readOnly={readOnly}
-      direction="top-right"
-      onChange={handleChangeCountry}
-    />
+    <Popup>
+      <Popup.Listbox
+        className={cn('', {}, [className])}
+        label={t('country')}
+        value={value}
+        defaultValue={t('country')}
+        options={countryOptions}
+        readOnly={readOnly}
+        direction={__PROJECT__ === 'storybook' ? 'bottom-left' : 'top-left'}
+        onChange={handleChangeCountry}
+      />
+    </Popup>
   );
 });
 

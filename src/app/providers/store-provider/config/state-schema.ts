@@ -22,6 +22,8 @@ import type { ProfileSchema } from '@/entities/profile';
 import type { RecommendationsSchema } from '@/entities/recommendation';
 import type { UserSchema } from '@/entities/user';
 
+import { api } from '@/shared/api';
+
 export interface StateSchema {
   articlesPageInfo?: ArticlesPageSchema;
   articleSortingPanelInfo?: ArticleSortingPanelSchema;
@@ -33,6 +35,7 @@ export interface StateSchema {
   profileInfo?: ProfileSchema;
   recommendationsInfo?: RecommendationsSchema;
   userInfo: UserSchema & PersistPartial;
+  [api.reducerPath]: ReturnType<typeof api.reducer>;
 }
 
 export type StateSchemaKey = keyof StateSchema;

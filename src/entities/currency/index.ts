@@ -1,2 +1,2 @@
 export { default as CurrencySelect } from './ui/currency-select/CurrencySelect';
-export { CurrencyEnum } from './model/types/currency-schema.interface';
+export { CurrencyEnum } from './model/constants/const-currency';

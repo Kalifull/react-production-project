@@ -1,11 +1,11 @@
 import { FC, memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Listbox } from '@/shared/ui';
+import { Popup } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
-import { CurrencyEnum } from '../../model/types/currency-schema.interface';
+import { CurrencyEnum } from '../../model/constants/const-currency';
 
 import type { Profile } from '../../../profile/model/types/profile.interface';
 
@@ -39,16 +39,18 @@ const CurrencySelect: FC<CurrencySelectProps> = memo((props) => {
   );
 
   return (
-    <Listbox
-      className={cn('', {}, [className])}
-      label={t('currency')}
-      value={value}
-      defaultValue={t('currency')}
-      options={currencyOptions}
-      readOnly={readOnly}
-      direction="top-left"
-      onChange={handleChangeCurrency}
-    />
+    <Popup>
+      <Popup.Listbox
+        className={cn('', {}, [className])}
+        label={t('currency')}
+        value={value}
+        defaultValue={t('currency')}
+        options={currencyOptions}
+        readOnly={readOnly}
+        direction={__PROJECT__ === 'storybook' ? 'bottom-left' : 'top-left'}
+        onChange={handleChangeCurrency}
+      />
+    </Popup>
   );
 });
 

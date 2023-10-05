@@ -1,49 +1,14 @@
-.menu {
+.popover {
   position: relative;
+  height: 24px;
   cursor: pointer;
 
-  .items {
+  .panel {
     position: absolute;
     z-index: var(--dropdown-z-index);
-    display: flex;
-    flex-direction: column;
+    padding: 10px 20px;
     background: var(--card-bg);
-    border: 1px solid var(--primary-color);
     border-radius: 12px;
-
-    .item {
-      width: 100%;
-      padding: 10px 20px;
-      color: var(--primary-color);
-      background: none;
-      border: none;
-      opacity: 1;
-    }
-
-    .active {
-      background: var(--inverted-primary-color);
-      border-radius: 12px;
-    }
-  }
-
-  .top-left {
-    right: 0;
-    bottom: 100%;
-  }
-
-  .top-right {
-    bottom: 100%;
-    left: 0;
-  }
-
-  .bottom-left {
-    top: 100%;
-    right: 0;
-  }
-
-  .bottom-right {
-    top: 100%;
-    left: 0;
   }
 }
 

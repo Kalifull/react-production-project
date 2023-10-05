@@ -2,7 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 
 import type { RootState } from '@/app/providers/store-provider';
 
-import { UserRoleEnum } from '../const/const-user';
+import { UserRoleEnum } from '../constants/const-user';
 
 export const selectUserState = (state: RootState) => state.userInfo;
 

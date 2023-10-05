@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { ArticleTypeEnum } from '@/entities/article';
 
-import { ArticleSortEnum, ArticleOrderEnum } from '../const/const-article-filter';
+import { ArticleSortEnum, ArticleOrderEnum } from '../constants/const-article-filter';
 import type {
   ArticleFilterSchema,
   PayloadArticleOrder,

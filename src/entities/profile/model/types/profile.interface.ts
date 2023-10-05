@@ -1,5 +1,5 @@
-import { CountryEnum } from '../../../country/model/types/country-schema.interface';
-import { CurrencyEnum } from '../../../currency/model/types/currency-schema.interface';
+import { CountryEnum } from '../../../country/model/constants/const-country';
+import { CurrencyEnum } from '../../../currency/model/constants/const-currency';
 
 export interface Profile {
   id?: number;

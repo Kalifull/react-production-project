@@ -2,7 +2,7 @@ import { ArticleTextBlock } from './article-text-block/ArticleTextBlock';
 import { ArticleCodeBlock } from './article-code-block/ArticleCodeBlock';
 import { ArticleImageBlock } from './article-image-block/ArticleImageBlock';
 
-import { ArticleBlockTypeEnum } from '../../model/const/const-article';
+import { ArticleBlockTypeEnum } from '../../model/constants/const-article';
 import type {
   TextBlock,
   CodeBlock,

@@ -1,4 +1,4 @@
-import { EntityState } from '@reduxjs/toolkit';
+import type { EntityState } from '@reduxjs/toolkit';
 
 import type { Article } from '@/entities/article';
 

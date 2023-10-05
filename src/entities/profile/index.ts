@@ -12,6 +12,6 @@ export {
   selectValidationErrors,
 } from './model/selectors/select-profile-state';
 export { default as ProfileForm } from './ui/profile-form/ProfileForm';
-export { ProfileErrorsEnum, validateErrorTranslation } from './model/const/const-profile';
+export { ProfileErrorsEnum, validateErrorTranslation } from './model/constants/const-profile';
 export type { Profile } from './model/types/profile.interface';
 export type { ProfileSchema } from './model/types/profile-schema.interface';

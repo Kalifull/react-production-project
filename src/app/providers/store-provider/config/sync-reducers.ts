@@ -6,6 +6,8 @@ import { scrollRecoveryReducer } from '@/features/scroll-recovery';
 
 import { userReducer } from '@/entities/user';
 
+import { api } from '@/shared/api';
+
 import type { StateSchema } from './state-schema';
 
 const authPersistConfig = {
@@ -23,4 +25,5 @@ const scrollPersistConfig = {
 export const syncReducers: ReducersMapObject<StateSchema> = {
   scrollRecoveryInfo: persistReducer(scrollPersistConfig, scrollRecoveryReducer),
   userInfo: persistReducer(authPersistConfig, userReducer),
+  [api.reducerPath]: api.reducer,
 };

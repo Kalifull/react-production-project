@@ -1,5 +1,5 @@
 import type { User } from '../../../user';
-import { ArticleBlockTypeEnum, ArticleTypeEnum } from '../const/const-article';
+import { ArticleBlockTypeEnum, ArticleTypeEnum } from '../constants/const-article';
 
 interface ArticleBlockBase {
   id: string;

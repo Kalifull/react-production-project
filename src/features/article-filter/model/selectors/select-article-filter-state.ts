@@ -4,7 +4,7 @@ import type { RootState } from '@/app/providers/store-provider';
 
 import { ArticleTypeEnum } from '@/entities/article';
 
-import { ArticleSortEnum, ArticleOrderEnum } from '../const/const-article-filter';
+import { ArticleSortEnum, ArticleOrderEnum } from '../constants/const-article-filter';
 
 export const selectArticleFilterState = (state: RootState) =>
   state.articleSortingPanelInfo?.articleFilterInfo;

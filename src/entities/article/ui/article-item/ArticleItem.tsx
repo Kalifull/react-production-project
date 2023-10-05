@@ -15,7 +15,7 @@ import EyeIcon from '@/shared/assets/icons/eye.svg';
 
 import { ArticleTextBlock } from '../article-block/article-text-block/ArticleTextBlock';
 
-import { ArticleBlockTypeEnum } from '../../model/const/const-article';
+import { ArticleBlockTypeEnum } from '../../model/constants/const-article';
 import type { Article, TextBlock, ArticleViewType } from '../../model/types/article.interface';
 
 import styles from './ArticleItem.module.scss';

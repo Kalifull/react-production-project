@@ -18,7 +18,7 @@ import {
   selectArticleSearch,
   selectArticleType,
 } from '../../model/selectors/select-article-filter-state';
-import { ArticleSortEnum, ArticleOrderEnum } from '../../model/const/const-article-filter';
+import { ArticleSortEnum, ArticleOrderEnum } from '../../model/constants/const-article-filter';
 
 import styles from './ArticleFilter.module.scss';
 

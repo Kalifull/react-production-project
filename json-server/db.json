@@ -1,4 +1,38 @@
 {
+  "notifications": [
+    {
+      "id": "1",
+      "title": "У Вас новое уведомление",
+      "description": "Произошло событие",
+      "userId": "1"
+    },
+    {
+      "id": "2",
+      "title": "У Вас новое уведомление",
+      "description": "Произошло событие",
+      "userId": "1",
+      "href": "http://localhost:3000/admin"
+    },
+    {
+      "id": "3",
+      "title": "У Вас новое уведомление",
+      "description": "Произошло событие",
+      "userId": "2"
+    },
+    {
+      "id": "4",
+      "title": "У Вас новое уведомление",
+      "description": "Произошло событие",
+      "userId": "1"
+    },
+    {
+      "id": "5",
+      "title": "У Вас новое уведомление",
+      "description": "Произошло событие",
+      "userId": "1",
+      "href": "http://localhost:3000/admin"
+    }
+  ],
   "posts": [
     {
       "id": 1,

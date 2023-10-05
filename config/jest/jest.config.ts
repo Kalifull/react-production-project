@@ -1,4 +1,4 @@
-import path from 'path';
+import { resolve } from 'path';
 import { JestConfigWithTsJest, pathsToModuleNameMapper } from 'ts-jest';
 
 import { compilerOptions } from '../../tsconfig.json';
@@ -28,7 +28,7 @@ const jestConfig: JestConfigWithTsJest = {
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
     '\\.(scss|less|css|png)$': 'identity-obj-proxy',
-    '\\.svg': path.resolve(__dirname, 'JestEmptyComponent.tsx'),
+    '\\.svg': resolve(__dirname, 'JestEmptyComponent.tsx'),
     axios: 'axios/dist/node/axios.cjs',
     ...pathsToModuleNameMapper(compilerOptions.paths, {
       prefix: '<rootDir>src',

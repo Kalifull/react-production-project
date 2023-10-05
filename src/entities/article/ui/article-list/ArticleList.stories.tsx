@@ -6,7 +6,7 @@ import Avatar from '@/shared/assets/test/storybook-avatar.png';
 
 import { ThemeDecorator } from '@/shared/config/storybook/theme-decorator';
 
-import { ArticleBlockTypeEnum, ArticleTypeEnum } from '../../model/const/const-article';
+import { ArticleBlockTypeEnum, ArticleTypeEnum } from '../../model/constants/const-article';
 import type { Article } from '../../model/types/article.interface';
 
 import ArticleList from './ArticleList';

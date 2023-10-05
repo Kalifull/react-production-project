@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+import { resolve } from 'path';
 import CopyPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
@@ -20,6 +22,9 @@ export const buildPlugins = ({
   apiUrl,
   project,
 }: BuildOptions): WebpackPluginInstance[] => {
+  const envPath = resolve(__dirname, '../../.env.local');
+  const envVars = dotenv.config({ path: envPath }).parsed;
+
   const plugins = [
     new HtmlWebpackPlugin({
       template: paths.html,
@@ -33,6 +38,7 @@ export const buildPlugins = ({
       __IS_DEV__: JSON.stringify(isDev),
       __API__: JSON.stringify(apiUrl),
       __PROJECT__: JSON.stringify(project),
+      'process.env': JSON.stringify(envVars),
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: analyze ? 'server' : 'disabled',

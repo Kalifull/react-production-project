@@ -14,17 +14,13 @@ export interface BuildPaths {
 export interface BuildEnv {
   mode: BuildMode;
   port: number;
-  analyze: boolean;
   apiUrl: string;
+  analyze: boolean;
 }
 
-export interface BuildOptions {
-  mode: BuildMode;
+export interface BuildOptions extends BuildEnv {
   paths: BuildPaths;
   isDev: boolean;
   isTsx: boolean;
-  port: number;
-  analyze: boolean;
-  apiUrl: string;
   project: 'storybook' | 'frontend' | 'jest';
 }

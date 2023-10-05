@@ -6,7 +6,7 @@ interface BuildBabelLoaderProps extends BuildOptions {
   isTsx: boolean;
 }
 
-export const buildBabelLoader = ({ isTsx }: BuildBabelLoaderProps) => ({
+export const buildBabelLoader = ({ isDev, isTsx }: BuildBabelLoaderProps) => ({
   test: isTsx ? /\.(jsx|tsx)$/ : /\.(js|ts)$/,
   exclude: /node_modules/,
   use: {
@@ -25,7 +25,7 @@ export const buildBabelLoader = ({ isTsx }: BuildBabelLoaderProps) => ({
             version: '7.0.0-beta.0',
           },
         ],
-        isTsx && [babelRemovePropsPlugin, { props: ['data-testid'] }],
+        isTsx && !isDev && [babelRemovePropsPlugin, { props: ['data-testid'] }],
       ].filter(Boolean),
     },
   },

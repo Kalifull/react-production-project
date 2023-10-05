@@ -1,20 +1,17 @@
 import { FC, Fragment, memo } from 'react';
 import { Transition, Listbox as UiListbox } from '@headlessui/react';
 
-import type { ListboxOptions, ListboxDirection } from '../../api';
-import { Button, HStack } from '..';
-import { Mods, cn } from '../../lib';
+import type { ListboxOptions, PopupDirection } from '../../../../api';
 
-import CheckMarkIcon from '../../assets/icons/check.svg';
+import { Button, HStack } from '../../..';
+
+import { Mods, cn } from '../../../../lib';
+
+import { usePopup } from '../../../../lib/hooks';
+
+import CheckMarkIcon from '../../../../assets/icons/check.svg';
 
 import styles from './Listbox.module.scss';
-
-const directionClasses: Record<ListboxDirection, string> = {
-  'top-left': styles['top-left'],
-  'top-right': styles['top-right'],
-  'bottom-left': styles['bottom-left'],
-  'bottom-right': styles['bottom-right'],
-};
 
 interface ListboxProps {
   className?: string;
@@ -23,7 +20,7 @@ interface ListboxProps {
   defaultValue: string;
   options: ListboxOptions<string>[];
   readOnly?: boolean;
-  direction?: ListboxDirection;
+  direction?: PopupDirection;
   onChange: (value: string) => void;
 }
 
@@ -39,11 +36,13 @@ const Listbox: FC<ListboxProps> = memo((props) => {
     onChange,
   } = props;
 
+  const directionClasses = usePopup();
+
+  const classes = [directionClasses[direction]];
+
   const mods: Mods = {
     [styles.readonly]: readOnly,
   };
-
-  const classes = [directionClasses[direction]];
 
   return (
     <HStack className={cn(styles.listbox, mods, [className])} gap="8">

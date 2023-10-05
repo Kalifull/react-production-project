@@ -1,5 +1,5 @@
 import axios, { AxiosStatic } from 'axios';
-import { AsyncThunkAction, DeepPartial } from '@reduxjs/toolkit';
+import type { AsyncThunkAction, DeepPartial } from '@reduxjs/toolkit';
 
 import type { StateSchema } from '@/app/providers/store-provider';
 

@@ -1,0 +1,64 @@
+.menu {
+  position: relative;
+  cursor: pointer;
+
+  .items {
+    position: absolute;
+    z-index: var(--dropdown-z-index);
+    display: flex;
+    flex-direction: column;
+    background: var(--card-bg);
+    border: 1px solid var(--primary-color);
+    border-radius: 12px;
+
+    .item {
+      width: 100%;
+      padding: 10px 20px;
+      color: var(--primary-color);
+      background: none;
+      border: none;
+      opacity: 1;
+    }
+
+    .active {
+      background: var(--inverted-primary-color);
+      border-radius: 12px;
+    }
+  }
+}
+
+.enter {
+  transform: scale(0.6);
+  transition: .1s transform;
+  transition-timing-function: ease-out;
+  transition-duration: 100ms;
+  transition-property: all;
+}
+
+.enter-from {
+  transform: scale(0.95);
+  opacity: 0;
+}
+
+.enter-to {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.leave {
+  transform: scale(0.6);
+  transition: .1s transform;
+  transition-timing-function: ease-out;
+  transition-duration: 75ms;
+  transition-property: all;
+}
+
+.leave-from {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.leave-to {
+  transform: scale(0.95);
+  opacity: 0;
+}

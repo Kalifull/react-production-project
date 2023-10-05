@@ -1,28 +1,27 @@
 import { FC, Fragment, ReactNode, memo } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 
-import type { DropdownOptions, DropdownDirection } from '../../api';
-import { AppLink, Button } from '..';
-import { cn } from '../../lib';
+import type { DropdownOptions, PopupDirection } from '../../../../api';
+
+import { AppLink, Button } from '../../..';
+
+import { cn } from '../../../../lib';
+
+import { usePopup } from '../../../../lib/hooks';
 
 import styles from './Dropdown.module.scss';
-
-const directionClasses: Record<DropdownDirection, string> = {
-  'top-left': styles['top-left'],
-  'top-right': styles['top-right'],
-  'bottom-left': styles['bottom-left'],
-  'bottom-right': styles['bottom-right'],
-};
 
 interface DropdownProps {
   className?: string;
   trigger: ReactNode;
   items: DropdownOptions<string>[];
-  direction?: DropdownDirection;
+  direction?: PopupDirection;
 }
 
 const Dropdown: FC<DropdownProps> = memo((props) => {
   const { className, trigger, items, direction = 'bottom-right' } = props;
+
+  const directionClasses = usePopup();
 
   const classes = [directionClasses[direction]];
 
