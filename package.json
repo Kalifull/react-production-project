@@ -158,6 +158,6 @@
         "preset": "iPhone 7"
       }
     },
-    "fetchFailIgnore": "localhost:1234/get"
+    "fetchFailIgnore": "^http(.*)$"
   }
 }
