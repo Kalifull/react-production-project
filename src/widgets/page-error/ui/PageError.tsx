@@ -1,10 +1,10 @@
 import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FallbackProps } from 'react-error-boundary';
+import type { FallbackProps } from 'react-error-boundary';
 
 import { ButtonVariantEnum } from '@/shared/api';
 
-import { Button, VStack } from '@/shared/ui';
+import { Button, Text, VStack } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
@@ -25,7 +25,7 @@ const PageError: FC<PageErrorProps> = ({ className, resetErrorBoundary }) => {
       gap="8"
       stretch
     >
-      <p>{t('errorPage')}</p>
+      <Text title={t('errorPage')} />
       <Button variant={ButtonVariantEnum.OUTLINE} onClick={resetErrorBoundary}>
         {t('refreshPage')}
       </Button>

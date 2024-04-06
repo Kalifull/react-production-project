@@ -1,4 +1,4 @@
-import { FC, memo, useEffect } from 'react';
+import { type FC, memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { TextSizeEnum } from '@/shared/api';
@@ -9,7 +9,7 @@ import { cn } from '@/shared/lib';
 
 import { withAsyncReducers } from '@/shared/lib/hoc';
 
-import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
+import { actionsCreators, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
 
 import {
   selectRecommendationsInfo,
@@ -28,7 +28,7 @@ interface RecommendationsListProps {
 const RecommendationsList: FC<RecommendationsListProps> = memo(({ className }) => {
   const { t } = useTranslation('article');
 
-  const { fetchRecommendations } = useActionCreators(allActions);
+  const { fetchRecommendations } = useActionCreators(actionsCreators);
 
   useEffect(() => {
     if (__PROJECT__ !== 'storybook') {

@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useState } from 'react';
+import { type FC, memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { AvatarDropdown } from '@/features/avatar-dropdown';
@@ -28,13 +28,9 @@ const Navbar: FC<NavbarProps> = memo(({ className }) => {
 
   const authData = useAppSelector(selectAuthData);
 
-  const handleClose = useCallback(() => {
-    setIsAuthModal(false);
-  }, []);
+  const handleOpen = useCallback(() => setIsAuthModal(true), []);
 
-  const handleOpen = useCallback(() => {
-    setIsAuthModal(true);
-  }, []);
+  const handleClose = useCallback(() => setIsAuthModal(false), []);
 
   return (
     <HStack
@@ -49,7 +45,6 @@ const Navbar: FC<NavbarProps> = memo(({ className }) => {
           <Popup>
             <PopoverNotification />
           </Popup>
-
           <Popup>
             <AvatarDropdown authData={authData} onAuthModal={setIsAuthModal} />
           </Popup>
@@ -65,7 +60,6 @@ const Navbar: FC<NavbarProps> = memo(({ className }) => {
           >
             {t('login')}
           </Button>
-
           <Portal>
             <LoginModal isOpen={isAuthModal} onClose={handleClose} />
           </Portal>

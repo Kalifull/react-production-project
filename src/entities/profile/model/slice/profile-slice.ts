@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { fetchProfileData } from '../service/fetch-profile-data';
 import { saveProfileData } from '../service/save-profile-data';
@@ -75,6 +75,4 @@ export const profileSlice = createSlice({
   },
 });
 
-export const { actions: profileActions } = profileSlice;
-
-export const { reducer: profileReducer } = profileSlice;
+export const { actions: profileActions, reducer: profileReducer } = profileSlice;

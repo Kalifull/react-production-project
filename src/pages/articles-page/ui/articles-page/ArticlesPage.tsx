@@ -1,5 +1,5 @@
 import qs from 'qs';
-import { FC, memo, useEffect } from 'react';
+import { type FC, memo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import {
@@ -11,7 +11,7 @@ import {
 
 import { withAsyncReducers } from '@/shared/lib/hoc';
 
-import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
+import { actionsCreators, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
 
 import { articlesPageReducer } from '../../model/slice/articles-page-slice';
 
@@ -20,7 +20,7 @@ import { ArticleInfiniteList } from '../article-infinite-list/ArticleInfiniteLis
 const ArticlePage: FC = memo(() => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const { initArticlesListData } = useActionCreators(allActions);
+  const { initArticlesListData } = useActionCreators(actionsCreators);
 
   const sort = useAppSelector(selectArticleSort);
   const order = useAppSelector(selectArticleOrder);

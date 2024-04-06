@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction, memo, useCallback } from 'react';
+import { type Dispatch, type FC, type SetStateAction, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { User, selectIsAdmin, selectIsManager } from '@/entities/user';
@@ -9,7 +9,7 @@ import { Avatar, Popup } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
-import { useActionCreators, useAppSelector, allActions } from '@/shared/lib/hooks';
+import { actionsCreators, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
 
 interface AvatarDropdownProps {
   className?: string;
@@ -20,7 +20,7 @@ interface AvatarDropdownProps {
 const AvatarDropdown: FC<AvatarDropdownProps> = memo(({ className, authData, onAuthModal }) => {
   const { t } = useTranslation(['translation', 'admin']);
 
-  const { logout } = useActionCreators(allActions);
+  const { logout } = useActionCreators(actionsCreators);
 
   const isAdmin = useAppSelector(selectIsAdmin);
   const isManager = useAppSelector(selectIsManager);

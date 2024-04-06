@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { ArticleTypeEnum } from '@/entities/article';
 
@@ -37,6 +37,4 @@ export const articleFilterSlice = createSlice({
   },
 });
 
-export const { actions: articleFilterActions } = articleFilterSlice;
-
-export const { reducer: articleFilterReducer } = articleFilterSlice;
+export const { actions: articleFilterActions, reducer: articleFilterReducer } = articleFilterSlice;

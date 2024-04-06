@@ -1,6 +1,7 @@
-import { FC, MouseEvent, ReactNode, useEffect, useState } from 'react';
+import { type FC, type MouseEvent, type ReactNode, useEffect, useState, useCallback } from 'react';
 
-import { Mods, cn } from '../../lib';
+import { type Mods, cn } from '../../lib';
+
 import { useMountTransition } from '../../lib/hooks';
 
 import styles from './Modal.module.scss';
@@ -14,6 +15,7 @@ interface ModalProps {
 
 const Modal: FC<ModalProps> = ({ className, children, isOpen, onClose }) => {
   const [isMounted, setIsMounted] = useState(false);
+
   const { isTransitioned } = useMountTransition({ isMounted, unmountDelay: 300 });
 
   const mods: Mods = {
@@ -28,9 +30,7 @@ const Modal: FC<ModalProps> = ({ className, children, isOpen, onClose }) => {
     return () => setIsMounted(false);
   }, [isOpen]);
 
-  const handleClose = (event: MouseEvent) => {
-    event.stopPropagation();
-  };
+  const handleClose = useCallback((event: MouseEvent) => event.stopPropagation(), []);
 
   return isTransitioned ? (
     <div className={cn(styles.modal, mods, [className])}>

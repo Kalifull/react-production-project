@@ -1,4 +1,11 @@
-import { FC, ForwardedRef, HTMLAttributeAnchorTarget, forwardRef, memo, useMemo } from 'react';
+import {
+  type FC,
+  ForwardedRef,
+  type HTMLAttributeAnchorTarget,
+  forwardRef,
+  memo,
+  useMemo,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { TextAlignEnum } from '@/shared/api';
@@ -29,12 +36,11 @@ interface ArticleItemProps {
 }
 
 export const ArticleItem: FC<ArticleItemProps> = memo(
-  forwardRef((props, ref) => {
-    const { className, article, view, target } = props;
-
+  forwardRef(({ className, article, view, target }, ref) => {
     const { t } = useTranslation('article');
 
     const { ref: localRef } = useHover<HTMLDivElement>();
+
     const combinedRef = useCombinedRef(ref, localRef);
 
     const textBlock = useMemo(
@@ -49,7 +55,6 @@ export const ArticleItem: FC<ArticleItemProps> = memo(
           <Text className={cn(styles.username)} text={article.user.username} />
           <Text className={cn(styles.date)} text={article.createdAt} />
         </div>
-
         <Text className={cn(styles.title)} text={article.title} align={TextAlignEnum.LEFT} />
         <Text
           className={cn(styles.types)}
@@ -57,9 +62,7 @@ export const ArticleItem: FC<ArticleItemProps> = memo(
           align={TextAlignEnum.LEFT}
         />
         <img className={cn(styles.image)} src={article.img} alt={article.title} />
-
         {textBlock && <ArticleTextBlock className={cn(styles.block)} block={textBlock} />}
-
         <footer className={cn(styles.footer)}>
           <AppLink to={`${routesPaths['article-details']}${article.id}`}>
             <Button>{t('read')}</Button>
@@ -75,13 +78,11 @@ export const ArticleItem: FC<ArticleItemProps> = memo(
             <img className={cn(styles.image)} src={article.img} alt={article.title} />
             <Text className={cn(styles.date)} text={article.createdAt} />
           </div>
-
           <div className={cn(styles['info-wrapper'])}>
             <Text className={cn(styles.types)} text={article.type.join(', ')} />
             <Text className={cn(styles.views)} text={String(article.views)} />
             <Icon Svg={EyeIcon} />
           </div>
-
           <Text className={cn(styles.title)} text={article.title} />
         </Card>
       </AppLink>

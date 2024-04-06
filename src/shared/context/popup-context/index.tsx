@@ -1,4 +1,4 @@
-import { FC, ReactNode, createContext } from 'react';
+import { type FC, type ReactNode, createContext } from 'react';
 
 import type { PopupDirection } from '../../api';
 

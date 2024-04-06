@@ -1,4 +1,4 @@
-import type { ReactNode, MouseEventHandler } from 'react';
+import type { ReactNode, MouseEventHandler, DetailedHTMLProps, HTMLAttributes } from 'react';
 
 export type FlexDirection = 'row' | 'column';
 
@@ -34,3 +34,5 @@ export interface DropdownOptions<T extends string> {
   content: ReactNode;
   handleClick?: MouseEventHandler<HTMLButtonElement>;
 }
+
+export type HTMLProps = DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>;

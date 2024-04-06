@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useMemo } from 'react';
+import { type FC, memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Popup } from '@/shared/ui';
@@ -21,6 +21,8 @@ const CurrencySelect: FC<CurrencySelectProps> = memo((props) => {
 
   const { t } = useTranslation('profile');
 
+  const direction = __PROJECT__ === 'storybook' ? 'bottom-left' : 'top-left';
+
   const currencyOptions = useMemo(
     () =>
       Object.entries(CurrencyEnum).map(([optionValue, content], index) => ({
@@ -32,9 +34,7 @@ const CurrencySelect: FC<CurrencySelectProps> = memo((props) => {
   );
 
   const handleChangeCurrency = useCallback(
-    (valueCurrency: string) => {
-      onChangeProfileForm?.(valueCurrency as CurrencyEnum, 'currency');
-    },
+    (valueCurrency: string) => onChangeProfileForm?.(valueCurrency as CurrencyEnum, 'currency'),
     [onChangeProfileForm]
   );
 
@@ -47,7 +47,7 @@ const CurrencySelect: FC<CurrencySelectProps> = memo((props) => {
         defaultValue={t('currency')}
         options={currencyOptions}
         readOnly={readOnly}
-        direction={__PROJECT__ === 'storybook' ? 'bottom-left' : 'top-left'}
+        direction={direction}
         onChange={handleChangeCurrency}
       />
     </Popup>

@@ -1,22 +1,22 @@
-import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import type { ReducersMapObject } from '@reduxjs/toolkit';
+import { persistReducer, type PersistConfig } from 'redux-persist';
 
-import { scrollRecoveryReducer } from '@/features/scroll-recovery';
+import { type ScrollSchema, scrollRecoveryReducer } from '@/features/scroll-recovery';
 
-import { userReducer } from '@/entities/user';
+import { type UserSchema, userReducer } from '@/entities/user';
 
 import { api } from '@/shared/api';
 
 import type { StateSchema } from './state-schema';
 
-const authPersistConfig = {
+const authPersistConfig: PersistConfig<UserSchema> = {
   key: 'auth',
   storage,
   whitelist: ['authData'],
 };
 
-const scrollPersistConfig = {
+const scrollPersistConfig: PersistConfig<ScrollSchema> = {
   key: 'scroll',
   storage,
   whitelist: ['scroll'],

@@ -1,6 +1,6 @@
-import { FC, memo, useCallback } from 'react';
+import { type FC, memo, useCallback } from 'react';
 
-import { ArticleViewType } from '@/entities/article';
+import type { ArticleViewType } from '@/entities/article';
 
 import { ButtonVariantEnum } from '@/shared/api';
 
@@ -8,7 +8,7 @@ import { Button, Icon } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
-import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
+import { actionsCreators, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
 
 import { selectArticleView } from '../model/selectors/select-article-view-state';
 import { viewTypes } from '../model/types/article-view.interface';
@@ -20,14 +20,12 @@ interface ArticleViewSwitcherProps {
 }
 
 const ArticleViewSwitcher: FC<ArticleViewSwitcherProps> = memo(({ className }) => {
-  const { setView } = useActionCreators(allActions);
+  const { setView } = useActionCreators(actionsCreators);
 
   const view = useAppSelector(selectArticleView);
 
   const handleSwitchView = useCallback(
-    (articleView: ArticleViewType) => () => {
-      setView({ view: articleView });
-    },
+    (articleView: ArticleViewType) => () => setView({ view: articleView }),
     [setView]
   );
 

@@ -1,4 +1,4 @@
-import { FC, ForwardedRef, forwardRef, memo } from 'react';
+import { type FC, type ForwardedRef, forwardRef, memo } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
 
 import { AppLinkVariantEnum } from '../../api';
@@ -13,10 +13,8 @@ interface AppLinkProps extends LinkProps {
 }
 
 const AppLink: FC<AppLinkProps> = memo(
-  forwardRef((props, ref) => {
-    const { className, to, variant = AppLinkVariantEnum.PRIMARY, children, ...restProps } = props;
-
-    return (
+  forwardRef(
+    ({ className, to, variant = AppLinkVariantEnum.PRIMARY, children, ...restProps }, ref) => (
       <Link
         ref={ref}
         className={cn(styles.link, {}, [className, styles[variant]])}
@@ -25,8 +23,8 @@ const AppLink: FC<AppLinkProps> = memo(
       >
         {children}
       </Link>
-    );
-  })
+    )
+  )
 );
 
 export default AppLink;

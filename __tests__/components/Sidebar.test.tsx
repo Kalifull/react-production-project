@@ -1,5 +1,5 @@
 import { fireEvent, screen } from '@testing-library/react';
-import { PersistGateProps } from 'redux-persist/integration/react';
+import type { PersistGateProps } from 'redux-persist/integration/react';
 
 import { Sidebar } from '@/widgets/sidebar';
 

@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { sendCommentForArticle } from '@/entities/comment';
 
@@ -42,6 +42,4 @@ export const formCommentSlice = createSlice({
   },
 });
 
-export const { actions: formCommentActions } = formCommentSlice;
-
-export const { reducer: formCommentReducer } = formCommentSlice;
+export const { actions: formCommentActions, reducer: formCommentReducer } = formCommentSlice;

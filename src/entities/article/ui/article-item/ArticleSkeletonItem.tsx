@@ -1,10 +1,10 @@
-import { FC, memo } from 'react';
+import { type FC, memo } from 'react';
 
 import { Card, Skeleton } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
-import { ArticleViewType } from '../../model/types/article.interface';
+import type { ArticleViewType } from '../../model/types/article.interface';
 
 import styles from './ArticleItem.module.scss';
 
@@ -21,16 +21,13 @@ export const ArticleSkeletonItem: FC<ArticleSkeletonItemProps> = memo(({ classNa
         <Skeleton className={cn(styles.username)} width={150} height={20} />
         <Skeleton className={cn(styles.date)} width={150} height={20} />
       </div>
-
       <Skeleton className={cn(styles.title)} width={250} height={20} />
       <Skeleton className={cn(styles.types)} width={150} height={20} />
       <Skeleton className={cn(styles.image)} width="100%" height={200} />
-
       <div className={cn(styles['text-block'], {}, [className])}>
         <Skeleton className={cn(styles['text-title'])} width={250} height={28} />
         <Skeleton className={cn(styles.paragraph)} width="100%" height={230} />
       </div>
-
       <div className={cn(styles.footer)}>
         <Skeleton width={200} height={36} />
         <Skeleton className={cn(styles.views)} width={100} height={20} />
@@ -41,11 +38,9 @@ export const ArticleSkeletonItem: FC<ArticleSkeletonItemProps> = memo(({ classNa
       <div className={cn(styles['image-wrapper'])}>
         <Skeleton className={cn(styles.image)} width={200} height={200} />
       </div>
-
       <div className={cn(styles['info-wrapper'])}>
         <Skeleton className={cn(styles.types)} width={120} height={20} />
       </div>
-
       <Skeleton className={cn(styles.title)} width={150} height={20} />
     </Card>
   );

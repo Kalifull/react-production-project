@@ -1,12 +1,12 @@
 import {
-  createContext,
-  Dispatch,
-  FC,
-  ReactNode,
-  SetStateAction,
+  type FC,
+  type Dispatch,
+  type ReactNode,
+  type SetStateAction,
   useEffect,
   useMemo,
   useState,
+  createContext,
 } from 'react';
 
 import { ThemeEnum } from '../../api';
@@ -29,6 +29,7 @@ interface ThemeProviderProps {
 
 const ThemeProvider: FC<ThemeProviderProps> = ({ children, initialTheme }) => {
   const currentTheme = initialTheme || (defaultTheme as ThemeEnum);
+
   const [theme, setTheme] = useState<ThemeEnum>(currentTheme);
 
   useEffect(() => {

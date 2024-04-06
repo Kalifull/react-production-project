@@ -10,7 +10,7 @@ import {
   DefinePlugin,
   HotModuleReplacementPlugin,
   ProgressPlugin,
-  WebpackPluginInstance,
+  type WebpackPluginInstance,
 } from 'webpack';
 
 import type { BuildOptions } from './types/config';

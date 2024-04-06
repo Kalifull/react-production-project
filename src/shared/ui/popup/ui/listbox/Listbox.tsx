@@ -1,11 +1,11 @@
-import { FC, Fragment, memo } from 'react';
+import { type FC, Fragment, memo } from 'react';
 import { Transition, Listbox as UiListbox } from '@headlessui/react';
 
 import type { ListboxOptions, PopupDirection } from '../../../../api';
 
 import { Button, HStack } from '../../..';
 
-import { Mods, cn } from '../../../../lib';
+import { type Mods, cn } from '../../../../lib';
 
 import { usePopup } from '../../../../lib/hooks';
 

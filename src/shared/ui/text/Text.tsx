@@ -1,8 +1,10 @@
-import { FC, ForwardedRef, HTMLAttributes, forwardRef, memo } from 'react';
+import { type FC, type ForwardedRef, type HTMLAttributes, forwardRef, memo } from 'react';
 
 import { TextVariantEnum, TextAlignEnum, TextSizeEnum } from '../../api';
-import { Tag } from '..';
+
 import { cn } from '../../lib';
+
+import { Tag } from '..';
 
 import styles from './Text.module.scss';
 

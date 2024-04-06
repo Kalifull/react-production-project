@@ -1,4 +1,4 @@
-import { ReactNode, Suspense } from 'react';
+import { type ReactNode, Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import { PageLoader } from '@/widgets/page-loader';

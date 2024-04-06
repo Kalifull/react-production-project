@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { fetchArticleById } from '../service/fetch-article-by-id';
 
@@ -35,6 +35,4 @@ export const articleSlice = createSlice({
   },
 });
 
-export const { actions: articleActions } = articleSlice;
-
-export const { reducer: articleReducer } = articleSlice;
+export const { actions: articleActions, reducer: articleReducer } = articleSlice;

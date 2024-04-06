@@ -1,5 +1,5 @@
+import { type FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FC, memo, useCallback } from 'react';
 
 import { ArticleSortingPanel, articleSortingPanelReducer } from '@/widgets/article-sorting-panel';
 import { Page } from '@/widgets/page';
@@ -16,7 +16,7 @@ import { cn } from '@/shared/lib';
 
 import { withAsyncReducers } from '@/shared/lib/hoc';
 
-import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
+import { actionsCreators, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
 
 import {
   selectArticlesPageInfo,
@@ -34,16 +34,14 @@ export const ArticleInfiniteList: FC<ArticleInfiniteListProps> = withAsyncReduce
   memo(({ className }) => {
     const { t } = useTranslation('article');
 
-    const { fetchNextArticlesPage } = useActionCreators(allActions);
+    const { fetchNextArticlesPage } = useActionCreators(actionsCreators);
 
-    const articles = useAppSelector(selectArticlesPageInfo.selectAll);
-    const isLoading = useAppSelector(selectArticlesPageIsLoading);
-    const error = useAppSelector(selectArticlesPageError);
     const view = useAppSelector(selectArticleView);
+    const error = useAppSelector(selectArticlesPageError);
+    const isLoading = useAppSelector(selectArticlesPageIsLoading);
+    const articles = useAppSelector(selectArticlesPageInfo.selectAll);
 
-    const handleLoadNextPage = useCallback(() => {
-      fetchNextArticlesPage();
-    }, [fetchNextArticlesPage]);
+    const handleLoadNextPage = useCallback(() => fetchNextArticlesPage(), [fetchNextArticlesPage]);
 
     if (error) {
       return (

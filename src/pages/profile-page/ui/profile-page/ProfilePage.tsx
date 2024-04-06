@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { type FC, memo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { Page } from '@/widgets/page';

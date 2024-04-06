@@ -2,6 +2,7 @@
   "articlesPage": "Articles page",
   "articleDetailsPage": "Article details",
   "articleNotFound": "Ops! Article not found...",
+  "articlesNotFoundText": "Try changing your search parameters",
   "articleError": "The article is outdated, has been deleted or does not exist at all.",
   "failedLoadArticles": "Oh! Failed to load articles...",
   "articlesPageError": "Check your network connection.",

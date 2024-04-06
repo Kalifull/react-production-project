@@ -1,4 +1,4 @@
-import { PayloadAction, createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import { type PayloadAction, createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 
 import { fetchCommentsByArticleId } from '../service/fetch-comments-by-article-id';
 import { sendCommentForArticle } from '../service/send-comment-for-article';
@@ -59,6 +59,4 @@ export const commentsSlice = createSlice({
   },
 });
 
-export const { actions: commentsActions } = commentsSlice;
-
-export const { reducer: commentsReducer } = commentsSlice;
+export const { actions: commentsActions, reducer: commentsReducer } = commentsSlice;

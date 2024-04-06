@@ -10,10 +10,8 @@ import type {
   ArticleBlock,
 } from '../../model/types/article.interface';
 
-export const mappingArticlesBlock = (block: ArticleBlock) => {
-  return {
-    [ArticleBlockTypeEnum.TEXT]: <ArticleTextBlock key={block.id} block={block as TextBlock} />,
-    [ArticleBlockTypeEnum.CODE]: <ArticleCodeBlock key={block.id} block={block as CodeBlock} />,
-    [ArticleBlockTypeEnum.IMAGE]: <ArticleImageBlock key={block.id} block={block as ImageBlock} />,
-  };
-};
+export const mappingArticlesBlock = (block: ArticleBlock) => ({
+  [ArticleBlockTypeEnum.TEXT]: <ArticleTextBlock key={block.id} block={block as TextBlock} />,
+  [ArticleBlockTypeEnum.CODE]: <ArticleCodeBlock key={block.id} block={block as CodeBlock} />,
+  [ArticleBlockTypeEnum.IMAGE]: <ArticleImageBlock key={block.id} block={block as ImageBlock} />,
+});

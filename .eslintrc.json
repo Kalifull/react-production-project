@@ -60,6 +60,7 @@
     }
   },
   "rules": {
+    "no-new": "off",
     "no-console": "off",
     "import/no-cycle": "off",
     "linebreak-style": "off",

@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import {
-  ActionCreator,
-  ActionCreatorWithPayload,
-  ActionCreatorsMapObject,
+  type ActionCreator,
+  type ActionCreatorWithPayload,
+  type ActionCreatorsMapObject,
   bindActionCreators,
 } from '@reduxjs/toolkit';
 
@@ -17,6 +17,13 @@ type BoundActions<Actions extends ActionCreatorsMapObject> = {
     ? Actions[key]
     : BoundAsyncThunk<Actions[key]>;
 };
+
+/**
+ * Custom hook for binding action creators to the dispatch function.
+ *
+ * @param {Actions} actions The action creators to be bound to dispatch.
+ * @return {BoundActions} The bound action creators.
+ */
 
 const useActionCreators = <Actions extends ActionCreatorsMapObject>(
   actions: Actions

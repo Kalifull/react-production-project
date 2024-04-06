@@ -1,5 +1,5 @@
 import { resolve } from 'path';
-import { Configuration, DefinePlugin, RuleSetRule } from 'webpack';
+import { type Configuration, type RuleSetRule, DefinePlugin } from 'webpack';
 
 import type { BuildPaths } from '../build/types/config';
 

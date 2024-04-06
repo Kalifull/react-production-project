@@ -1,14 +1,14 @@
 import {
-  CSSProperties,
-  FC,
-  ForwardedRef,
-  ImgHTMLAttributes,
+  type FC,
+  type CSSProperties,
+  type ForwardedRef,
+  type ImgHTMLAttributes,
   forwardRef,
   memo,
   useMemo,
 } from 'react';
 
-import { Mods, cn } from '../../lib';
+import { type Mods, cn } from '../../lib';
 
 import styles from './Avatar.module.scss';
 
@@ -22,12 +22,11 @@ interface AvatarProps extends ImgHTMLAttributes<HTMLImageElement> {
 }
 
 const Avatar: FC<AvatarProps> = memo(
-  forwardRef((props, ref) => {
-    const { className, src, size, alt, readOnly, ...restProps } = props;
-
-    const style = useMemo<CSSProperties>(() => {
-      return { width: size || 100, height: size || 100 };
-    }, [size]);
+  forwardRef(({ className, src, size, alt, readOnly, ...restProps }, ref) => {
+    const style = useMemo<CSSProperties>(
+      () => ({ width: size || 100, height: size || 100 }),
+      [size]
+    );
 
     const mods: Mods = {
       [styles.editing]: readOnly,

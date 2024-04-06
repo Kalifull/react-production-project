@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { fetchUserByUsername } from '../service/fetch-user-by-username';
 
@@ -39,6 +39,4 @@ export const userSlice = createSlice({
   },
 });
 
-export const { actions: userActions } = userSlice;
-
-export const { reducer: userReducer } = userSlice;
+export const { actions: userActions, reducer: userReducer } = userSlice;

@@ -1,5 +1,5 @@
 import FocusLock from 'react-focus-lock';
-import { FC, memo, useCallback } from 'react';
+import { type FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Input, VStack } from '@/shared/ui';
@@ -26,9 +26,7 @@ const ProfileForm: FC<ProfileFormProps> = memo((props) => {
   const { t } = useTranslation('profile');
 
   const handleChangeProfileForm = useCallback(
-    (value: string, field: keyof Profile) => {
-      onChangeProfileForm?.(value, field);
-    },
+    (value: string, field: keyof Profile) => onChangeProfileForm?.(value, field),
     [onChangeProfileForm]
   );
 

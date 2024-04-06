@@ -1,8 +1,8 @@
-import { PayloadAction, createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import { type PayloadAction, createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 
 import { PAGE_LIMIT_LIST, PAGE_LIMIT_TILE } from '@/features/article-view-switcher';
 
-import { Article } from '@/entities/article';
+import type { Article } from '@/entities/article';
 
 import { LOCAL_STORAGE_ARTICLES_VIEW_KEY } from '@/shared/constant';
 
@@ -74,6 +74,4 @@ export const articlesPageSlice = createSlice({
   },
 });
 
-export const { actions: articlesPageActions } = articlesPageSlice;
-
-export const { reducer: articlesPageReducer } = articlesPageSlice;
+export const { actions: articlesPageActions, reducer: articlesPageReducer } = articlesPageSlice;

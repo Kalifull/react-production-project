@@ -1,5 +1,4 @@
-import { FC, memo, useCallback } from 'react';
-
+import { type FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ButtonVariantEnum } from '@/shared/api';
@@ -10,7 +9,7 @@ import { cn } from '@/shared/lib';
 
 import { withAsyncReducers } from '@/shared/lib/hoc';
 
-import { useActionCreators, allActions, useAppSelector } from '@/shared/lib/hooks';
+import { actionsCreators, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
 
 import {
   selectFormCommentText,
@@ -27,21 +26,20 @@ interface SendFormCommentProps {
 const SendFormComment: FC<SendFormCommentProps> = memo(({ className }) => {
   const { t } = useTranslation('article');
 
-  const { setText, sendCommentForArticle } = useActionCreators(allActions);
+  const { setText, sendCommentForArticle } = useActionCreators(actionsCreators);
 
   const text = useAppSelector(selectFormCommentText);
   const isLoading = useAppSelector(selectFormCommentIsLoading);
 
   const handleChangeTextComment = useCallback(
-    (value: string) => {
-      setText({ text: value });
-    },
+    (value: string) => setText({ text: value }),
     [setText]
   );
 
-  const handleSendComment = useCallback(() => {
-    sendCommentForArticle(text);
-  }, [sendCommentForArticle, text]);
+  const handleSendComment = useCallback(
+    () => sendCommentForArticle(text),
+    [sendCommentForArticle, text]
+  );
 
   return (
     <HStack className={cn(styles.form, {}, [className])} justify="between" stretch>

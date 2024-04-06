@@ -1,4 +1,4 @@
-import { FC, Fragment, ReactNode, memo } from 'react';
+import { type FC, type ReactNode, Fragment, memo } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 
 import type { DropdownOptions, PopupDirection } from '../../../../api';

@@ -4,7 +4,7 @@ import { cn } from '@/shared/lib';
 
 import { ArticleSkeletonItem } from '../article-item/ArticleSkeletonItem';
 
-import { ArticleViewType } from '../../model/types/article.interface';
+import type { ArticleViewType } from '../../model/types/article.interface';
 
 interface ArticleSkeletonListProps {
   className?: string;

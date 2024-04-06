@@ -1,5 +1,5 @@
+import { type FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FC, memo, useCallback } from 'react';
 
 import { ArticleTypeEnum } from '@/entities/article';
 
@@ -7,7 +7,12 @@ import { Card, Input, VStack, Text } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
-import { allActions, useActionCreators, useAppSelector, useDebounceFn } from '@/shared/lib/hooks';
+import {
+  actionsCreators,
+  useActionCreators,
+  useAppSelector,
+  useDebounceFn,
+} from '@/shared/lib/hooks';
 
 import { ArticleSortFilter } from '../article-sort-filter/ArticleSortFilter';
 import { ArticleTypeFilter } from '../article-type-filter/ArticleTypeFilter';
@@ -36,16 +41,17 @@ const ArticleFilter: FC<ArticleFilterProps> = memo(({ className }) => {
     setArticleSearch,
     setArticleType,
     fetchArticlesListData,
-  } = useActionCreators(allActions);
+  } = useActionCreators(actionsCreators);
 
   const sort = useAppSelector(selectArticleSort);
   const order = useAppSelector(selectArticleOrder);
   const search = useAppSelector(selectArticleSearch);
   const type = useAppSelector(selectArticleType);
 
-  const fetchData = useCallback(() => {
-    fetchArticlesListData({ replace: true });
-  }, [fetchArticlesListData]);
+  const fetchData = useCallback(
+    () => fetchArticlesListData({ replace: true }),
+    [fetchArticlesListData]
+  );
 
   const debouncedFetchData = useDebounceFn(fetchData, { delay: 250 });
 

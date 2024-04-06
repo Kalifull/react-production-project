@@ -2,6 +2,7 @@
   "articlesPage": "Страница статей",
   "articleDetailsPage": "Подробности статьи",
   "articleNotFound": "Ой! Статья не найдена...",
+  "articlesNotFoundText": "Попробуйте изменить параметры поиска",
   "articleError": "Статья устарела, была удалена или не существовала вовсе.",
   "failedLoadArticles": "Ой! Не удалось загрузить статьи...",
   "articlesPageError": "Проверьте подключение к сети.",

@@ -1,6 +1,6 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { ArticleViewType } from '@/entities/article';
+import type { ArticleViewType } from '@/entities/article';
 
 import { LOCAL_STORAGE_ARTICLES_VIEW_KEY } from '@/shared/constant';
 
@@ -31,6 +31,4 @@ export const articleViewSlice = createSlice({
   },
 });
 
-export const { actions: articleViewActions } = articleViewSlice;
-
-export const { reducer: articleViewReducer } = articleViewSlice;
+export const { actions: articleViewActions, reducer: articleViewReducer } = articleViewSlice;

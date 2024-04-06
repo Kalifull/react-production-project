@@ -17,7 +17,7 @@ import { fetchProfileData, saveProfileData, profileActions } from '@/entities/pr
 import { fetchRecommendations } from '@/entities/recommendation';
 import { fetchUserByUsername, userActions } from '@/entities/user';
 
-const allActions = {
+const actionsCreators = {
   fetchArticlesListData,
   fetchNextArticlesPage,
   initArticlesListData,
@@ -39,4 +39,4 @@ const allActions = {
   ...userActions,
 };
 
-export default allActions;
+export default actionsCreators;

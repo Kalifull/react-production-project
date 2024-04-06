@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { PersistGateProps } from 'redux-persist/integration/react';
+import type { PersistGateProps } from 'redux-persist/integration/react';
 
 import { EditableProfileCard } from '@/features/editable-profile-card';
 

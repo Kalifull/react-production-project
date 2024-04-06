@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { type FC, memo } from 'react';
 
 import { ArticleFilter } from '@/features/article-filter';
 import { ArticleViewSwitcher } from '@/features/article-view-switcher';

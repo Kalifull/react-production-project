@@ -7,9 +7,17 @@ import { LOCAL_STORAGE_THEME_KEY } from '../../../constant';
 import { ThemeContext } from '../../../context';
 
 interface UseThemeResponse {
+  /** The current theme. */
   theme: ThemeEnum;
+  /** A function to toggle between themes. */
   toggledTheme: () => void;
 }
+
+/**
+ * Custom hook for managing theme state and toggling between themes.
+ *
+ * @return {UseThemeResponse} An object containing the current theme and a function to toggle between themes.
+ */
 
 const useTheme = (): UseThemeResponse => {
   const { theme, setTheme } = useContext(ThemeContext);

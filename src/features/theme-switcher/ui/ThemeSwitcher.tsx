@@ -1,6 +1,6 @@
-import { FC, memo } from 'react';
+import { type FC, memo } from 'react';
 
-import { ThemeEnum, ButtonVariantEnum } from '@/shared/api';
+import { ButtonVariantEnum } from '@/shared/api';
 
 import { Button } from '@/shared/ui';
 
@@ -8,7 +8,7 @@ import { useTheme } from '@/shared/lib/hooks';
 
 import { cn } from '@/shared/lib';
 
-import SwitcherIcon from '@/shared/assets/icons/switcher-icon.svg';
+import { ThemeSwitcherIconMapping } from '../model/constants/const-theme-switcher';
 
 interface ThemeSwitcherProps {
   className?: string;
@@ -17,15 +17,15 @@ interface ThemeSwitcherProps {
 const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(({ className }) => {
   const { theme, toggledTheme } = useTheme();
 
+  const switcherIcon = ThemeSwitcherIconMapping[theme];
+
   return (
     <Button
       className={cn('', {}, [className])}
       variant={ButtonVariantEnum.CLEAR}
       onClick={toggledTheme}
     >
-      {theme === ThemeEnum.LIGHT && <SwitcherIcon fill="#ffc700" />}
-      {theme === ThemeEnum.DARK && <SwitcherIcon fill="#0115c6" />}
-      {theme === ThemeEnum.VIOLET && <SwitcherIcon fill="#59084e" />}
+      {switcherIcon}
     </Button>
   );
 });

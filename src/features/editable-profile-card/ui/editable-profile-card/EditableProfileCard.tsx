@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useEffect } from 'react';
+import { type FC, memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -17,11 +17,11 @@ import { TextVariantEnum } from '@/shared/api';
 
 import { Text, Loader, Avatar, VStack, HStack } from '@/shared/ui';
 
-import { Mods, cn } from '@/shared/lib';
+import { type Mods, cn } from '@/shared/lib';
 
 import { withAsyncReducers } from '@/shared/lib/hoc';
 
-import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
+import { actionsCreators, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
 
 import { EditableProfileCardHeader } from '../editable-profile-card-header/EditableProfileCardHeader';
 
@@ -29,15 +29,13 @@ import styles from './EditableProfileCard.module.scss';
 
 interface EditableProfileCardProps {
   className?: string;
-  id: string;
+  id?: string;
 }
 
-const EditableProfileCard: FC<EditableProfileCardProps> = memo((props) => {
-  const { className, id } = props;
-
+const EditableProfileCard: FC<EditableProfileCardProps> = memo(({ className, id }) => {
   const { t } = useTranslation('profile');
 
-  const { fetchProfileData, updateProfileForm } = useActionCreators(allActions);
+  const { fetchProfileData, updateProfileForm } = useActionCreators(actionsCreators);
 
   useEffect(() => {
     if (__PROJECT__ !== 'storybook' && __PROJECT__ !== 'jest') {

@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useEffect } from 'react';
+import { type FC, memo, useCallback, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -15,7 +15,7 @@ import { cn } from '@/shared/lib';
 
 import { withAsyncReducers } from '@/shared/lib/hoc';
 
-import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
+import { actionsCreators, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
 
 import { mappingArticlesBlock } from '../article-block';
 
@@ -42,7 +42,7 @@ const ArticleDetails: FC<ArticleDetailsProps> = memo(({ className }) => {
   const { t } = useTranslation('article');
   const { id } = useParams<PageParams>();
 
-  const { fetchArticleById } = useActionCreators(allActions);
+  const { fetchArticleById } = useActionCreators(actionsCreators);
 
   useEffect(() => {
     if (__PROJECT__ !== 'storybook') {
@@ -54,13 +54,12 @@ const ArticleDetails: FC<ArticleDetailsProps> = memo(({ className }) => {
   const isLoading = useAppSelector(selectArticleIsLoading);
   const error = useAppSelector(selectArticleError);
 
-  const handleBackClick = useCallback(() => {
-    navigate(routesPaths.articles);
-  }, [navigate]);
+  const handleBackClick = useCallback(() => navigate(routesPaths.articles), [navigate]);
 
-  const renderArticlesBlock = useCallback((block: ArticleBlock) => {
-    return mappingArticlesBlock(block)[block.type];
-  }, []);
+  const renderArticlesBlock = useCallback(
+    (block: ArticleBlock) => mappingArticlesBlock(block)[block.type],
+    []
+  );
 
   if (isLoading) {
     return (
@@ -100,11 +99,9 @@ const ArticleDetails: FC<ArticleDetailsProps> = memo(({ className }) => {
       stretch
     >
       <Button onClick={handleBackClick}>{t('back')}</Button>
-
       <HStack justify="center" stretch>
         <Avatar className={cn(styles.avatar)} src={article?.img} size={200} alt={article?.title} />
       </HStack>
-
       <VStack gap="4" stretch>
         <Text
           title={article?.title}
@@ -112,12 +109,10 @@ const ArticleDetails: FC<ArticleDetailsProps> = memo(({ className }) => {
           size={TextSizeEnum.L}
           align={TextAlignEnum.LEFT}
         />
-
         <HStack gap="8">
           <Icon Svg={EyeIcon} />
           <Text text={String(article?.views)} />
         </HStack>
-
         <HStack gap="8">
           <Icon Svg={CalendarIcon} />
           <Text text={article?.createdAt} />

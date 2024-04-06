@@ -1,7 +1,9 @@
 import { memo, useCallback } from 'react';
 
-import { CardVariantEnum, TabsOptions } from '../../api';
+import { CardVariantEnum, type TabsOptions } from '../../api';
+
 import { Card, HStack } from '..';
+
 import { cn } from '../../lib';
 
 import styles from './Tabs.module.scss';
@@ -15,15 +17,8 @@ interface TabsProps<T extends string> {
 
 const typedMemo: <T>(c: T) => T = memo;
 
-const Tabs = typedMemo(<T extends string>(props: TabsProps<T>) => {
-  const { className, tabs, type, onClick } = props;
-
-  const handleClick = useCallback(
-    (currentValue: T) => () => {
-      onClick?.(currentValue);
-    },
-    [onClick]
-  );
+const Tabs = typedMemo(<T extends string>({ className, tabs, type, onClick }: TabsProps<T>) => {
+  const handleClick = useCallback((currentValue: T) => () => onClick?.(currentValue), [onClick]);
 
   return (
     <HStack

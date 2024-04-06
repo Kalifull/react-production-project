@@ -125,6 +125,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
+    "@million/lint": "^0.0.73",
     "@reduxjs/toolkit": "^1.8.0",
     "axios": "^1.4.0",
     "compose-function": "^3.0.3",

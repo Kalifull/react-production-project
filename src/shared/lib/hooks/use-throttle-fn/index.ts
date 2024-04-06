@@ -4,11 +4,20 @@ import { useEvent } from '..';
 
 import { throttle } from '../../utils';
 
-export interface useThrottleOptions {
+export interface UseThrottleOptions {
+  /** Throttle duration in milliseconds. */
   ms?: number;
 }
 
-const useThrottleFn = <T extends (...args: any[]) => any>(fn: T, options?: useThrottleOptions) => {
+/**
+ * Custom hook that throttles the execution of a function.
+ *
+ * @param {Function} fn The function to be throttled.
+ * @param {UseThrottleOptions} options Options for customizing the throttle behavior.
+ * @return {T} The throttled function.
+ */
+
+const useThrottleFn = <T extends (...args: any[]) => any>(fn: T, options?: UseThrottleOptions) => {
   const memoizedFn = useEvent(fn);
 
   const ms = options?.ms ?? 1000;
@@ -18,12 +27,7 @@ const useThrottleFn = <T extends (...args: any[]) => any>(fn: T, options?: useTh
     [memoizedFn, ms]
   );
 
-  useEffect(
-    () => () => {
-      throttledFn.cancel();
-    },
-    [throttledFn]
-  );
+  useEffect(() => () => throttledFn.cancel(), [throttledFn]);
 
   return throttledFn;
 };

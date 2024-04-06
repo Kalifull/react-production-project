@@ -1,6 +1,6 @@
-import { FC, forwardRef, memo } from 'react';
+import { type FC, forwardRef, memo } from 'react';
 
-import Flex, { FlexProps } from '../flex/Flex';
+import Flex, { type FlexProps } from '../flex/Flex';
 
 type VStackProps = Omit<FlexProps, 'direction'>;
 

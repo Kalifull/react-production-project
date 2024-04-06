@@ -1,5 +1,5 @@
 import FocusLock from 'react-focus-lock';
-import { FC, memo, useCallback } from 'react';
+import { type FC, memo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -16,10 +16,10 @@ import { cn } from '@/shared/lib';
 import { withAsyncReducers } from '@/shared/lib/hoc';
 
 import {
+  actionsCreators,
   useActionCreators,
   useAppSelector,
   usePasswordToggle,
-  allActions,
 } from '@/shared/lib/hooks';
 
 import { selectLoginUsername, selectLoginPassword } from '../../model/selectors/select-login-state';
@@ -35,7 +35,7 @@ const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
   const navigate = useNavigate();
   const { t } = useTranslation(['translation', 'auth']);
 
-  const { setUsername, setPassword, fetchUserByUsername } = useActionCreators(allActions);
+  const { setUsername, setPassword, fetchUserByUsername } = useActionCreators(actionsCreators);
 
   const isLoading = useAppSelector(selectUserIsLoading);
   const error = useAppSelector(selectUserError);
@@ -46,16 +46,12 @@ const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
   const { Icon, inputType, handleShownPasswordVisibility } = usePasswordToggle();
 
   const handleChangeUsername = useCallback(
-    (value: string) => {
-      setUsername({ username: value.trim() });
-    },
+    (value: string) => setUsername({ username: value.trim() }),
     [setUsername]
   );
 
   const handleChangePassword = useCallback(
-    (value: string) => {
-      setPassword({ password: value.trim() });
-    },
+    (value: string) => setPassword({ password: value.trim() }),
     [setPassword]
   );
 
@@ -71,7 +67,6 @@ const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
     <FocusLock>
       <div className={cn(styles.form, {}, [className])}>
         <Text title={t('authForm', { ns: 'auth' })} className={cn(styles.text)} />
-
         <Input
           className={cn(styles.input)}
           type="text"
@@ -81,7 +76,6 @@ const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
           readOnly={isLoading}
           required
         />
-
         <Input
           className={cn(styles.input)}
           type={inputType}
@@ -91,13 +85,10 @@ const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
           readOnly={isLoading}
           required
         />
-
         <div className={cn(styles.icon)} onClick={handleShownPasswordVisibility}>
           {Icon}
         </div>
-
         {error && <Text text={t(error, { ns: 'auth' })} variant={TextVariantEnum.ERROR} />}
-
         <Button
           variant={ButtonVariantEnum.OUTLINE}
           className={cn(styles.button)}

@@ -1,13 +1,13 @@
-import { FC, memo, useCallback, useState } from 'react';
+import { type FC, memo, useCallback, useState } from 'react';
 
 import { ThemeSwitcher } from '@/features/theme-switcher';
 import { LanguageSwitcher } from '@/features/language-switcher';
 
 import { ButtonSizeEnum, ButtonVariantEnum } from '@/shared/api';
 
-import { Button, HStack, VStack } from '@/shared/ui';
+import { Button, HStack, Tag, VStack } from '@/shared/ui';
 
-import { Mods, cn } from '@/shared/lib';
+import { type Mods, cn } from '@/shared/lib';
 
 import { useAppSelector } from '@/shared/lib/hooks';
 
@@ -26,16 +26,14 @@ const Sidebar: FC<SidebarProps> = memo(({ className }) => {
 
   const sidebarItemList = useAppSelector(selectSidebarItemList);
 
-  const toggleCollapse = useCallback(() => {
-    setIsCollapsed((prev) => !prev);
-  }, []);
+  const toggleCollapse = useCallback(() => setIsCollapsed((prev) => !prev), []);
 
   const mods: Mods = {
     [styles.collapsed]: isCollapsed,
   };
 
   return (
-    <menu data-testid="sidebar" className={cn(styles.sidebar, mods, [className])}>
+    <Tag tag="menu" data-testid="sidebar" className={cn(styles.sidebar, mods, [className])}>
       <Button
         data-testid="sidebar-toggle"
         className={cn(styles.button)}
@@ -49,13 +47,11 @@ const Sidebar: FC<SidebarProps> = memo(({ className }) => {
       >
         {isCollapsed ? '>' : '<'}
       </Button>
-
       <VStack className={cn(styles.links)} gap="16" tag="nav" role="navigation">
         {sidebarItemList.map((item) => (
           <SidebarItem key={item.id} {...item} isCollapsed={isCollapsed} />
         ))}
       </VStack>
-
       <HStack
         className={cn(styles.switchers)}
         justify="center"
@@ -65,7 +61,7 @@ const Sidebar: FC<SidebarProps> = memo(({ className }) => {
         <ThemeSwitcher />
         <LanguageSwitcher isCollapsed={isCollapsed} />
       </HStack>
-    </menu>
+    </Tag>
   );
 });
 

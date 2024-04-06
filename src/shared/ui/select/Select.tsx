@@ -1,7 +1,8 @@
-import { ChangeEvent, memo, useMemo } from 'react';
+import { type ChangeEvent, memo, useMemo } from 'react';
 
 import type { SelectOptions } from '../../api';
-import { Mods, cn } from '../../lib';
+
+import { type Mods, cn } from '../../lib';
 
 import styles from './Select.module.scss';
 

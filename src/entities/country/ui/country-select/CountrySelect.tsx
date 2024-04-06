@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useMemo } from 'react';
+import { type FC, memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Popup } from '@/shared/ui';
@@ -21,6 +21,8 @@ const CountrySelect: FC<CountrySelectProps> = memo((props) => {
 
   const { t } = useTranslation('profile');
 
+  const direction = __PROJECT__ === 'storybook' ? 'bottom-left' : 'top-left';
+
   const countryOptions = useMemo(
     () =>
       Object.entries(CountryEnum).map(([optionValue, content], index) => ({
@@ -32,9 +34,7 @@ const CountrySelect: FC<CountrySelectProps> = memo((props) => {
   );
 
   const handleChangeCountry = useCallback(
-    (valueCountry: string) => {
-      onChangeProfileForm?.(valueCountry as CountryEnum, 'country');
-    },
+    (valueCountry: string) => onChangeProfileForm?.(valueCountry as CountryEnum, 'country'),
     [onChangeProfileForm]
   );
 
@@ -47,7 +47,7 @@ const CountrySelect: FC<CountrySelectProps> = memo((props) => {
         defaultValue={t('country')}
         options={countryOptions}
         readOnly={readOnly}
-        direction={__PROJECT__ === 'storybook' ? 'bottom-left' : 'top-left'}
+        direction={direction}
         onChange={handleChangeCountry}
       />
     </Popup>

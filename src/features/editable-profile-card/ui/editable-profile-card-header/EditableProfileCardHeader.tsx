@@ -1,4 +1,4 @@
-import { FC, memo, useCallback } from 'react';
+import { type FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -14,7 +14,7 @@ import { Button, HStack, Text } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
 
-import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
+import { actionsCreators, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
 
 interface EditableProfileCardHeaderProps {
   className?: string;
@@ -24,7 +24,7 @@ export const EditableProfileCardHeader: FC<EditableProfileCardHeaderProps> = mem
   ({ className }) => {
     const { t } = useTranslation('profile');
 
-    const { setReadOnly, setCancelEdit, saveProfileData } = useActionCreators(allActions);
+    const { setReadOnly, setCancelEdit, saveProfileData } = useActionCreators(actionsCreators);
 
     const profileData = useAppSelector(selectProfileData);
     const readOnly = useAppSelector(selectProfileReadOnly);
@@ -34,17 +34,11 @@ export const EditableProfileCardHeader: FC<EditableProfileCardHeaderProps> = mem
 
     const isCanEditProfile = authData?.id === profileData?.id;
 
-    const handleEdit = useCallback(() => {
-      setReadOnly({ readOnly: false });
-    }, [setReadOnly]);
+    const handleEdit = useCallback(() => setReadOnly({ readOnly: false }), [setReadOnly]);
 
-    const handleCancelEdit = useCallback(() => {
-      setCancelEdit({ readOnly: true });
-    }, [setCancelEdit]);
+    const handleCancelEdit = useCallback(() => setCancelEdit({ readOnly: true }), [setCancelEdit]);
 
-    const handleSaveData = useCallback(() => {
-      saveProfileData();
-    }, [saveProfileData]);
+    const handleSaveData = useCallback(() => saveProfileData(), [saveProfileData]);
 
     return (
       <HStack className={cn('', {}, [className])} justify="between" stretch>

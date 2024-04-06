@@ -1,4 +1,9 @@
-import { CombinedState, Reducer, ReducersMapObject, configureStore } from '@reduxjs/toolkit';
+import {
+  type CombinedState,
+  type Reducer,
+  type ReducersMapObject,
+  configureStore,
+} from '@reduxjs/toolkit';
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 
 import { api, apiInstance } from '@/shared/api';
@@ -7,7 +12,7 @@ import { createReducerManager } from './reducer-manager';
 
 import { syncReducers } from './sync-reducers';
 
-import type { StateSchema, ThunkExtraArgs } from './state-schema';
+import type { StateSchema, StoreWithReducerManager, ThunkExtraArgs } from './state-schema';
 
 const extraArgument: ThunkExtraArgs = {
   api: apiInstance,
@@ -38,10 +43,8 @@ export const createReduxStore = (
       }).concat(api.middleware),
     devTools: __IS_DEV__,
     preloadedState: initialState,
-  });
+  }) as StoreWithReducerManager;
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   store.reducerManager = reducerManager;
 
   return store;

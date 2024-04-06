@@ -1,8 +1,15 @@
-import { ChangeEvent, FC, InputHTMLAttributes, SyntheticEvent, memo, useState } from 'react';
+import {
+  type FC,
+  type ChangeEvent,
+  type SyntheticEvent,
+  type InputHTMLAttributes,
+  memo,
+  useState,
+} from 'react';
 
 import type { Profile } from '@/entities/profile';
 
-import { Mods, cn } from '../../lib';
+import { type Mods, cn } from '../../lib';
 
 import styles from './Input.module.scss';
 

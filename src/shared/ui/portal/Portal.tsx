@@ -1,16 +1,15 @@
 import { createPortal } from 'react-dom';
-import { FC, ReactNode, useEffect, useRef, useState } from 'react';
+import { type FC, type ReactNode, useEffect, useRef, useState } from 'react';
 
 interface PortalProps {
   children: ReactNode;
-  container?: HTMLElement;
+  container?: Element;
 }
 
-const Portal: FC<PortalProps> = (props) => {
-  const { children, container = document.querySelector('#root') } = props;
+const Portal: FC<PortalProps> = ({ children, container = document.querySelector('#root') }) => {
+  const containerRef = useRef<Element | null>(null);
 
   const [isMounted, setIsMounted] = useState(false);
-  const containerRef = useRef<Element | null>(null);
 
   useEffect(() => {
     setIsMounted(true);

@@ -1,5 +1,5 @@
 import { useStore } from 'react-redux';
-import { FC, useLayoutEffect } from 'react';
+import { type ComponentType, useLayoutEffect } from 'react';
 import type { DeepPartial, Reducer } from '@reduxjs/toolkit';
 
 import type {
@@ -15,39 +15,51 @@ type InitialReducers = {
 };
 
 interface AsyncReducersConfig {
+  /** @param {InitialReducers} reducers Async reducers. */
   reducers: DeepPartial<InitialReducers>;
+  /** @param {boolean} removeAfterUnmount Removes the component from the store after unmount. */
   removeAfterUnmount?: boolean;
 }
 
-const withAsyncReducers = (Component: FC<any>, config: AsyncReducersConfig) => (props: any) => {
-  const { reducers, removeAfterUnmount = true } = config;
+/**
+ * Higher order component that adds async reducers to the store and removes them on unmount.
+ *
+ * @param {ComponentType} Component The component to wrap.
+ * @param {AsyncReducersConfig} config Configuration for the async reducers.
+ * @return {JSX.Element} The wrapped component.
+ */
 
-  const dispatch = useAppDispatch();
-  const store = useStore() as StoreWithReducerManager;
+const withAsyncReducers =
+  <T extends object>(Component: ComponentType<T>, config: AsyncReducersConfig) =>
+  (props: T): JSX.Element => {
+    const { reducers, removeAfterUnmount = true } = config;
 
-  useLayoutEffect(() => {
-    const mountedReducers = store.reducerManager.getReducerMap();
+    const dispatch = useAppDispatch();
+    const store = useStore() as StoreWithReducerManager;
 
-    Object.entries(reducers).forEach(([keyReducer, reducer]) => {
-      const isMounted = mountedReducers[keyReducer as StateSchemaKey];
+    useLayoutEffect(() => {
+      const mountedReducers = store.reducerManager.getReducerMap();
 
-      if (!isMounted) {
-        store.reducerManager.add(keyReducer as StateSchemaKey, reducer as Reducer);
-        dispatch({ type: `@INIT/${keyReducer} reducer` });
-      }
-    });
+      Object.entries(reducers).forEach(([keyReducer, reducer]) => {
+        const isMounted = mountedReducers[keyReducer as StateSchemaKey];
 
-    return () => {
-      if (removeAfterUnmount) {
-        Object.entries(reducers).forEach(([keyReducer]) => {
-          store.reducerManager.remove(keyReducer as StateSchemaKey);
-          dispatch({ type: `@DESTROY/${keyReducer} reducer` });
-        });
-      }
-    };
-  }, [dispatch, reducers, removeAfterUnmount, store]);
+        if (!isMounted) {
+          store.reducerManager.add(keyReducer as StateSchemaKey, reducer as Reducer);
+          dispatch({ type: `@INIT/${keyReducer} reducer` });
+        }
+      });
 
-  return <Component {...props} />;
-};
+      return () => {
+        if (removeAfterUnmount) {
+          Object.entries(reducers).forEach(([keyReducer]) => {
+            store.reducerManager.remove(keyReducer as StateSchemaKey);
+            dispatch({ type: `@DESTROY/${keyReducer} reducer` });
+          });
+        }
+      };
+    }, [dispatch, reducers, removeAfterUnmount, store]);
+
+    return <Component {...props} />;
+  };
 
 export default withAsyncReducers;

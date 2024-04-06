@@ -1,8 +1,8 @@
 import type {
+  Reducer,
   AnyAction,
   CombinedState,
   EnhancedStore,
-  Reducer,
   ReducersMapObject,
 } from '@reduxjs/toolkit';
 import type { AxiosInstance } from 'axios';
@@ -48,15 +48,20 @@ export interface ReducerManager {
 }
 
 export interface StoreWithReducerManager extends EnhancedStore<StateSchema> {
+  /** The state reducer manager. */
   reducerManager: ReducerManager;
 }
 
 export interface ThunkExtraArgs {
+  /** The API instance. */
   api: AxiosInstance;
 }
 
 export interface ThunkConfig<T> {
+  /** The type of the data that will be returned if the request is successful. */
   rejectValue: T;
+  /** The type of the data that will be returned if the request is unsuccessful. */
   extra: ThunkExtraArgs;
+  /** The state reducer manager. */
   state: StateSchema;
 }

@@ -1,7 +1,5 @@
 import type { FC } from 'react';
 
-const JestEmptyComponent: FC = () => {
-  return <div />;
-};
+const JestEmptyComponent: FC = () => <div />;
 
 export default JestEmptyComponent;

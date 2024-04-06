@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { type FC, memo } from 'react';
 
 import { FormComments } from '@/widgets/form-comments';
 import { Page } from '@/widgets/page';

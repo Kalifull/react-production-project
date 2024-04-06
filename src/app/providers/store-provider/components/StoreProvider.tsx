@@ -14,11 +14,22 @@ interface StoreProviderProps {
   asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>;
 }
 
+/**
+ * Creates a StoreProvider component that initializes a Redux store with the provided initial state and async reducers,
+ * and wraps the children components with Redux Provider and PersistGate.
+ *
+ * @param {ReactNode} [props.children] The child components to be wrapped by the Provider and PersistGate.
+ * @param {StateSchema} [props.initialState] The initial state for the Redux store.
+ * @param {ReducersMapObject<StateSchema>} [props.asyncReducers] The async reducers to be added to the Redux store.
+ * @return {ReactNode} The wrapped components with Redux Provider and PersistGate.
+ */
+
 const StoreProvider: FC<StoreProviderProps> = ({ children, initialState, asyncReducers }) => {
   const store = createReduxStore(
     initialState as StateSchema,
     asyncReducers as ReducersMapObject<StateSchema>
   );
+
   const persistor = persistStore(store);
 
   return (

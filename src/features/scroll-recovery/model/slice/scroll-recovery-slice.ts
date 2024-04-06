@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import type { ScrollSchema, PayloadScroll } from '../types/scroll-schema.interface';
 
@@ -16,6 +16,5 @@ export const scrollRecoverySlice = createSlice({
   },
 });
 
-export const { actions: scrollRecoveryActions } = scrollRecoverySlice;
-
-export const { reducer: scrollRecoveryReducer } = scrollRecoverySlice;
+export const { actions: scrollRecoveryActions, reducer: scrollRecoveryReducer } =
+  scrollRecoverySlice;

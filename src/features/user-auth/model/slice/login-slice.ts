@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import type {
   LoginSchema,
@@ -24,6 +24,4 @@ export const loginSlice = createSlice({
   },
 });
 
-export const { actions: loginActions } = loginSlice;
-
-export const { reducer: loginReducer } = loginSlice;
+export const { actions: loginActions, reducer: loginReducer } = loginSlice;

@@ -1,4 +1,4 @@
-import { FC, memo, useEffect } from 'react';
+import { type FC, memo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -10,7 +10,7 @@ import { cn } from '@/shared/lib';
 
 import { withAsyncReducers } from '@/shared/lib/hoc';
 
-import { allActions, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
+import { actionsCreators, useActionCreators, useAppSelector } from '@/shared/lib/hooks';
 
 import {
   selectCommentsInfo,
@@ -31,7 +31,7 @@ const CommentList: FC<CommentListProps> = memo(({ className }) => {
   const { t } = useTranslation('article');
   const { id } = useParams<PageParams>();
 
-  const { fetchCommentsByArticleId } = useActionCreators(allActions);
+  const { fetchCommentsByArticleId } = useActionCreators(actionsCreators);
 
   useEffect(() => {
     if (__PROJECT__ !== 'storybook') {
@@ -45,9 +45,7 @@ const CommentList: FC<CommentListProps> = memo(({ className }) => {
   if (isLoading) {
     return (
       <VStack className={cn('', {}, [className])} gap="8" stretch>
-        <CommentCard isLoading />
-        <CommentCard isLoading />
-        <CommentCard isLoading />
+        <CommentCard count={3} isLoading />
       </VStack>
     );
   }

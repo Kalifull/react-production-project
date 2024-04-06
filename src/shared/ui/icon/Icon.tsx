@@ -1,6 +1,6 @@
-import { FC, memo } from 'react';
+import { type FC, memo } from 'react';
 
-import { Mods, cn } from '../../lib';
+import { type Mods, cn } from '../../lib';
 
 import styles from './Icon.module.scss';
 

@@ -1,12 +1,19 @@
-import { FC, memo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { type FC, memo, useEffect } from 'react';
 
 import { Page } from '@/widgets/page';
 
-const MainPage: FC = memo(() => {
-  const { t } = useTranslation('main');
+import { useActivityTime } from '@/shared/lib/hooks';
 
-  return <Page>{t('mainPage')}</Page>;
+const MainPage: FC = memo(() => {
+  const { isVisible, activityTime } = useActivityTime();
+
+  useEffect(() => {
+    if (!isVisible && activityTime > 0) {
+      console.log('activityTime', activityTime);
+    }
+  }, [isVisible, activityTime]);
+
+  return <Page>{activityTime}</Page>;
 });
 
 export default MainPage;

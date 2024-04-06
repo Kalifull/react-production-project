@@ -1,50 +1,74 @@
+import {
+  type FC,
+  type UIEvent,
+  type ReactNode,
+  type ForwardedRef,
+  memo,
+  useRef,
+  forwardRef,
+  useLayoutEffect,
+} from 'react';
 import { useLocation } from 'react-router-dom';
-import { FC, ReactNode, UIEvent, useLayoutEffect, useRef } from 'react';
 
 import { selectScrollPositionByPath } from '@/features/scroll-recovery';
 
-import { allActions, useActionCreators, useAppSelector, useThrottleFn } from '@/shared/lib/hooks';
+import { Tag } from '@/shared/ui';
 
 import { cn } from '@/shared/lib';
+
+import {
+  actionsCreators,
+  useActionCreators,
+  useAppSelector,
+  useCombinedRef,
+  useThrottleFn,
+} from '@/shared/lib/hooks';
 
 import styles from './Page.module.scss';
 
 interface PageProps {
   className?: string;
   children: ReactNode;
+  ref?: ForwardedRef<HTMLElement>;
 }
 
-const Page: FC<PageProps> = ({ className, children }) => {
-  const { pathname } = useLocation();
-  const wrapperRef = useRef<HTMLElement | null>(null);
+const Page: FC<PageProps> = memo(
+  forwardRef(({ className, children }, ref) => {
+    const { pathname } = useLocation();
 
-  const { setScrollPosition } = useActionCreators(allActions);
+    const wrapperRef = useRef<HTMLElement | null>(null);
 
-  const scrollPosition = useAppSelector(selectScrollPositionByPath(pathname));
+    const combinedRef = useCombinedRef(ref, wrapperRef);
 
-  useLayoutEffect(() => {
-    if (wrapperRef.current) {
-      wrapperRef.current.scrollTop = scrollPosition;
-    }
-  }, [scrollPosition]);
+    const { setScrollPosition } = useActionCreators(actionsCreators);
 
-  const handleSetScrollPosition = useThrottleFn(
-    (event: UIEvent<HTMLElement>) => {
-      const position = event.currentTarget.scrollTop;
-      setScrollPosition({ pathname, position });
-    },
-    { ms: 250 }
-  );
+    const scrollPosition = useAppSelector(selectScrollPositionByPath(pathname));
 
-  return (
-    <main
-      ref={wrapperRef}
-      className={cn(styles['page-wrapper'], {}, [className])}
-      onScroll={handleSetScrollPosition}
-    >
-      {children}
-    </main>
-  );
-};
+    useLayoutEffect(() => {
+      if (wrapperRef.current) {
+        wrapperRef.current.scrollTop = scrollPosition;
+      }
+    }, [scrollPosition]);
+
+    const handleSetScrollPosition = useThrottleFn(
+      (event: UIEvent<HTMLElement>) => {
+        const position = event.currentTarget.scrollTop;
+        setScrollPosition({ pathname, position });
+      },
+      { ms: 250 }
+    );
+
+    return (
+      <Tag
+        className={cn(styles['page-wrapper'], {}, [className])}
+        ref={combinedRef}
+        tag="main"
+        onScroll={handleSetScrollPosition}
+      >
+        {children}
+      </Tag>
+    );
+  })
+);
 
 export default Page;

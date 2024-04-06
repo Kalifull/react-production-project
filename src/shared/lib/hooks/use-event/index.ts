@@ -1,4 +1,6 @@
-import { useCallback, useLayoutEffect, useRef } from 'react';
+import { useCallback } from 'react';
+
+import usePrevious from '../use-previous';
 
 type Fn = (this: any, ...args: any[]) => any;
 
@@ -7,18 +9,21 @@ type PickFunction<T extends Fn> = (
   ...args: Parameters<T>
 ) => ReturnType<T>;
 
-type useEventResponse<T extends (...args: any[]) => any> = (...args: Parameters<T>) => any;
+type UseEventResponse<T extends (...args: any[]) => any> = (...args: Parameters<T>) => any;
 
-const useEvent = <T extends (...args: any[]) => any>(fn: T | undefined): useEventResponse<T> => {
-  const fnRef = useRef(fn);
+/**
+ * Custom hook that takes a function and returns a memoized version of it that always has the latest version of the function.
+ *
+ * @param {T} fn The function to be memoized.
+ * @return {UseEventResponse} The memoized version of the input function.
+ */
 
-  useLayoutEffect(() => {
-    fnRef.current = fn;
-  }, [fn]);
+const useEvent = <T extends (...args: any[]) => any>(fn?: T): UseEventResponse<T> => {
+  const previousFn = usePrevious(fn);
 
   const eventCallback = useCallback<PickFunction<T>>(
-    (...args: Parameters<T>) => fnRef.current?.apply(null, args),
-    [fnRef]
+    (...args: Parameters<T>) => previousFn.current?.apply(null, args),
+    [previousFn]
   );
 
   return eventCallback;

@@ -1,5 +1,5 @@
-import { FC, HTMLAttributeAnchorTarget, memo, useCallback, useRef } from 'react';
-import { Virtuoso, VirtuosoGrid, VirtuosoGridHandle } from 'react-virtuoso';
+import { type FC, type HTMLAttributeAnchorTarget, memo, useCallback, useRef } from 'react';
+import { Virtuoso, VirtuosoGrid, type VirtuosoGridHandle } from 'react-virtuoso';
 import { useTranslation } from 'react-i18next';
 
 import { TextSizeEnum } from '@/shared/api';
@@ -73,29 +73,40 @@ const ArticleList: FC<ArticleListProps> = memo((props) => {
 
   const { ref } = useInView<HTMLDivElement>({
     triggerOnce: true,
-    options: {
+    intersectionOptions: {
       threshold: 0.5,
     },
   });
 
   const renderArticle = useCallback(
-    (index: number, article: Article) => {
-      return (
-        <ArticleItem
-          ref={ref}
-          className={cn(styles['list-wrapper'])}
-          key={index}
-          article={article}
-          view={view}
-          target={target}
-        />
-      );
-    },
+    (index: number, article: Article) => (
+      <ArticleItem
+        ref={ref}
+        className={cn(styles['list-wrapper'])}
+        key={index}
+        article={article}
+        view={view}
+        target={target}
+      />
+    ),
     [ref, view, target]
   );
 
   if (!isLoading && !articles.length) {
-    return <Text size={TextSizeEnum.L} title={t('articlesNotFound')} />;
+    return (
+      <VStack
+        className={cn(styles['article-wrapper'], {}, [className, styles[view]])}
+        tag="article"
+        align="stretch"
+      >
+        {Header && <Header />}
+        <Text
+          size={TextSizeEnum.L}
+          title={t('articlesNotFound')}
+          text={t('articlesNotFoundText')}
+        />
+      </VStack>
+    );
   }
 
   if (!virtualized) {

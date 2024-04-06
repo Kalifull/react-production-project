@@ -1,45 +1,62 @@
-import { useEffect, useRef, useState, useCallback, MutableRefObject } from 'react';
+import { useEffect, useRef, useState, useCallback, type MutableRefObject } from 'react';
 
 import useEvent from '../use-event';
 
-interface useInfiniteScrollOptions {
-  /** Only trigger the inView callback once. */
+interface UseInViewOptions {
+  /** @param {boolean} [options.triggerOnce] Run callback function once when the element (trigger) intersects with its container. */
   triggerOnce?: boolean;
-  /** The function to be invoked when the trigger intersects with the wrapper. */
+  /** @param {Function} [options.callback] Function to be called when the trigger intersects with its container. */
   callback?: () => void;
-  /** Options has the following fields:
-   *
-   * `root` – The element that is used as the viewport for checking visibility of the target;
-   *
-   * `rootMargin` – Margin around the root. Can have values similar to the CSS margin property, e.g. `10px 20px 30px 40px` (top, right, bottom, left);
-   *
-   * `threshold` – Either a single number or an array of numbers which indicate at what percentage of the target's visibility the observer's callback should be executed. */
-  options?: IntersectionObserverInit;
+  /** Intersection observer options:
+   * - `root` — Element that is used as the bounding box when checking visibility of the target.
+   * - `rootMargin` — CSS margin around the root. Can have values similar to the margin property, e.g. "10px 20px 30px 40px".
+   * - `threshold` — Number or array of numbers between 0 and 1, indicating at what percentage of the target's visibility the observer's callback should be executed.
+   * @param {IntersectionObserverInit} [options.intersectionOptions] Options passed to the `IntersectionObserver` constructor.
+   */
+  intersectionOptions?: IntersectionObserverInit;
 }
 
-type InViewHookResponse<T> = [MutableRefObject<T | null>, boolean] & {
+/** Поддерживает деструктуризацию как массива, так и объекта. */
+type UseInViewResponse<T> = [MutableRefObject<T | null>, boolean] & {
+  /** DOM element you want to track. */
   ref: MutableRefObject<T | null>;
+  /** Component's view status ('true' or 'false'). */
   inView: boolean;
 };
 
-/** Custom hook that triggers a callback function when an element (trigger) intersects with a wrapper element.
+/**
+ * Custom hook that triggers the passed function when the element (trigger) intersects with the container element.
  *
- * Commonly used for implementing infinite scrolling.
+ * This hook allows you to track the `inView` state of the component ('true' or 'false').
+ * @returns {UseInViewResponse} Returns an object containing `ref` and `inView` status.
+ * Assign `ref` to the DOM element you want to track and the hook will inform you about the status.
+ * @example
+ * ```tsx
+ * import type { FC } from 'react';
  *
- * @param options An object that contains:
+ * const Component: FC = () => {
+ *   const { ref, inView } = useInView<HTMLDivElement>({
+ *     triggerOnce: true,
+ *     intersectionOptions: {
+ *       threshold: 0.5,
+ *     },
+ *   });
  *
- * `triggerOnce` – Only trigger the inView callback once;
- *
- * `callback` – The function to be invoked when the trigger intersects with the wrapper;
- *
- * `options` – The options object passed into the IntersectionObserver() constructor let you control the circumstances under which the observer's callback is invoked. */
+ *   return <div ref={ref}>{`Header inside viewport: ${inView}.`}</div>;
+ * };
+ * ```
+ * ---
+ * Works in the browser that initially supports Intersection Observer API.
+ * @see Additional information: [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API).
+ */
 
 const useInView = <T extends HTMLElement>(
-  { triggerOnce = false, callback, options }: useInfiniteScrollOptions = {},
+  { triggerOnce = false, callback, intersectionOptions }: UseInViewOptions = {},
   wrapperRef?: MutableRefObject<T | null>
-): InViewHookResponse<T> => {
-  const [isInView, setIsInView] = useState(false);
+): UseInViewResponse<T> => {
   const targetRef = useRef<T | null>(null);
+
+  const [isInView, setIsInView] = useState(false);
 
   const memoizedCallback = useEvent(callback);
 
@@ -60,6 +77,7 @@ const useInView = <T extends HTMLElement>(
 
   useEffect(() => {
     const currentTargetRef = targetRef.current;
+    let intersectionObserver: IntersectionObserver;
 
     if (currentTargetRef) {
       const initOptions: IntersectionObserverInit = {
@@ -68,19 +86,25 @@ const useInView = <T extends HTMLElement>(
         threshold: 1.0,
       };
 
-      const observer = new IntersectionObserver(handleIntersect, { ...initOptions, ...options });
-      observer.observe(currentTargetRef);
-
-      return () => {
-        observer.unobserve(currentTargetRef);
-        observer.disconnect();
-      };
+      intersectionObserver = new IntersectionObserver(handleIntersect, {
+        ...initOptions,
+        ...intersectionOptions,
+      });
+      intersectionObserver.observe(currentTargetRef);
     }
-  }, [handleIntersect, options, wrapperRef]);
 
-  const result = [targetRef, isInView] as InViewHookResponse<T>;
-  result.ref = result[0];
-  result.inView = result[1];
+    return () => {
+      if (currentTargetRef) {
+        intersectionObserver.unobserve(currentTargetRef);
+        intersectionObserver.disconnect();
+      }
+    };
+  }, [handleIntersect, intersectionOptions, wrapperRef]);
+
+  const result = [targetRef, isInView] as UseInViewResponse<T>;
+
+  result.ref = targetRef;
+  result.inView = isInView;
 
   return result;
 };

@@ -1,4 +1,4 @@
-import { FC, Fragment, ReactNode, memo } from 'react';
+import { type FC, type ReactNode, Fragment, memo } from 'react';
 import { Transition, Popover as UiPopover } from '@headlessui/react';
 
 import type { PopupDirection } from '../../../../api';

@@ -1,4 +1,4 @@
-import { PayloadAction, createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import { type PayloadAction, createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 
 import { fetchRecommendations } from '../service/fetch-recommendations';
 
@@ -46,6 +46,5 @@ export const recommendationsSlice = createSlice({
   },
 });
 
-export const { actions: recommendationsActions } = recommendationsSlice;
-
-export const { reducer: recommendationsReducer } = recommendationsSlice;
+export const { actions: recommendationsActions, reducer: recommendationsReducer } =
+  recommendationsSlice;

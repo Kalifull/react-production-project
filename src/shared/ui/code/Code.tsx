@@ -1,9 +1,12 @@
-import { FC, memo, useCallback } from 'react';
+import { type FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ButtonVariantEnum, TextAlignEnum } from '../../api';
+
 import { Button, Text } from '..';
+
 import { cn } from '../../lib';
+
 import { useClipboard } from '../../lib/hooks';
 
 import CheckMarkIcon from '../../assets/icons/check-mark.svg';
@@ -20,9 +23,7 @@ const Code: FC<CodeProps> = memo(({ className, text }) => {
   const { t } = useTranslation('article');
   const { isCopied, copyToClipboard } = useClipboard({ ms: 3000 });
 
-  const handleCopyText = useCallback(() => {
-    copyToClipboard(text);
-  }, [copyToClipboard, text]);
+  const handleCopyText = useCallback(() => copyToClipboard(text), [copyToClipboard, text]);
 
   return (
     <pre className={cn(styles.code, {}, [className])}>
